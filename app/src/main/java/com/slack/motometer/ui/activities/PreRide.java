@@ -32,7 +32,7 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
 
     // UI components
     private ListView checklistItemContainer;
-    private TextView profileTitle, profileHoursValue, readyNotReady;
+    private TextView readyNotReady;
 
     // Logic components
     private ProfileRepository profileRepository;
@@ -70,13 +70,9 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
 
         // Get handle on UI components
         checklistItemContainer = findViewById(R.id.pre_ride_cl_lv);
-        profileTitle = findViewById(R.id.profile_header_title_tv);
-        profileHoursValue = findViewById(R.id.profile_header_hours_value_tv);
         readyNotReady = findViewById(R.id.pre_ride_ready_tv);
 
         // Set UI element values
-        profileTitle.setText(new ProfileLogic(this).getProfileTitle(profile));
-        profileHoursValue.setText(profile.getHours());
         // Set ready-not-ready textview text and color depending on checklist completion status
         isChecklistComplete();
 

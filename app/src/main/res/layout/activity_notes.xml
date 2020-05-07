@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.Notes">
 
-    <include
-        android:id="@+id/include6"
-        layout="@layout/profile_header_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notes_toolbar" />
-
     <EditText
         android:id="@+id/notes_content_et"
         android:layout_width="0dp"
@@ -29,7 +19,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include6" />
+        app:layout_constraintTop_toBottomOf="@+id/notes_header_f" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/notes_toolbar"
@@ -41,4 +31,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <fragment
+        android:id="@+id/notes_header_f"
+        android:name="com.slack.motometer.ui.fragments.ProfileHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notes_toolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

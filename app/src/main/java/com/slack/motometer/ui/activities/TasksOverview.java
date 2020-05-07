@@ -89,6 +89,7 @@ public class TasksOverview extends AppCompatActivity {
             Task task = (Task)taskContainer.getItemAtPosition(i);
             Intent taskSignoffActivity = new Intent(getBaseContext(), TaskSignOff.class);
             taskSignoffActivity.putExtra("taskId", task.getId());
+            taskSignoffActivity.putExtra("profileId", profileId);
             startActivityForResult(taskSignoffActivity, 3);
         });
     }

@@ -17,18 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <include
-        android:id="@+id/include7"
-        layout="@layout/profile_header_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pre_ride_toolbar" />
-
     <ListView
         android:id="@+id/pre_ride_cl_lv"
         android:layout_width="0dp"
@@ -37,12 +25,12 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:divider="#00000000"
         android:background="@drawable/accent_color_border"
+        android:divider="#00000000"
         app:layout_constraintBottom_toTopOf="@+id/pre_ride_ready_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include7">
+        app:layout_constraintTop_toBottomOf="@+id/pre_ride_header_f">
 
     </ListView>
 
@@ -50,6 +38,8 @@
         android:id="@+id/empty_checklist_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/empty_checklist_list"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:visibility="visible"
@@ -57,7 +47,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/pre_ride_toolbar" />
 
     <TextView
         android:id="@+id/pre_ride_ready_tv"
@@ -72,5 +62,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <fragment
+        android:id="@+id/pre_ride_header_f"
+        android:name="com.slack.motometer.ui.fragments.ProfileHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pre_ride_toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

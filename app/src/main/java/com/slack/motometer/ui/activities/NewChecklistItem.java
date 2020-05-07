@@ -22,7 +22,6 @@ public class NewChecklistItem extends AppCompatActivity {
 
     // UI components
     private EditText checkListItemTitleValue;
-    private TextView profileTitleTV, profileHoursTV;
 
     // Logic components
     private String profileId;
@@ -54,13 +53,9 @@ public class NewChecklistItem extends AppCompatActivity {
         profileLogic = new ProfileLogic(this);
 
         // Get handle on UI components
-        profileTitleTV = findViewById(R.id.profile_header_title_tv);
-        profileHoursTV = findViewById(R.id.profile_header_hours_value_tv);
         checkListItemTitleValue = findViewById(R.id.new_cl_item_title_value_et);
 
         // Set UI components
-        profileTitleTV.setText(profileLogic.getProfileTitle(profile));
-        profileHoursTV.setText(profile.getHours());
         // Request focus for edittext
         checkListItemTitleValue.requestFocus();
         // Set confirm/cancel button onClick listeners/handlers

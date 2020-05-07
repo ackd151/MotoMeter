@@ -23,7 +23,6 @@ public class Notes extends AppCompatActivity {
 
     // UI components
     private EditText noteContents;
-    private TextView profileTitle, profileHours;
 
     // Logic components
     private ProfileRepository profileRepository;
@@ -57,13 +56,9 @@ public class Notes extends AppCompatActivity {
 
         // Get handle on UI components
         noteContents = findViewById(R.id.notes_content_et);
-        profileTitle = findViewById(R.id.profile_header_title_tv);
-        profileHours = findViewById(R.id.profile_header_hours_value_tv);
 
         // Set UI components
         noteContents.setText(note.getContents());
-        profileTitle.setText(new ProfileLogic(this).getProfileTitle(profile));
-        profileHours.setText(profile.getHours());
         // Start new line when starting notes activity - unless empty
         if (note.getContents().length() != 0) {
             noteContents.append("\n");

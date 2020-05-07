@@ -23,13 +23,11 @@ public class EditTask extends AppCompatActivity {
 
     // UI components
     private EditText nameValue, intervalValue, completedAtValue;
-    private TextView profileTitle, profileHours;
 
     // Logic components
     private String taskId;
     private TaskRepository taskRepository;
     private ProfileRepository profileRepository;
-    private ProfileLogic profileLogic;
     private Task task;
     private Profile profile;
 
@@ -59,8 +57,6 @@ public class EditTask extends AppCompatActivity {
         nameValue = findViewById(R.id.edit_task_name_value_et);
         intervalValue = findViewById(R.id.edit_task_interval_value_et);
         completedAtValue = findViewById(R.id.edit_task_completed_at_value_et);
-        profileTitle = findViewById(R.id.profile_header_title_tv);
-        profileHours = findViewById(R.id.profile_header_hours_value_tv);
 
         // Set UI components
         nameValue.setText(task.getTaskTitle());
@@ -69,8 +65,6 @@ public class EditTask extends AppCompatActivity {
         intervalValue.setSelectAllOnFocus(true);
         completedAtValue.setText(String.valueOf(task.getLastCompletedAt()));
         completedAtValue.setSelectAllOnFocus(true);
-        profileTitle.setText(new ProfileLogic(this).getProfileTitle(profile));
-        profileHours.setText(profile.getHours());
     }
 
     // Inflate toolbar menu

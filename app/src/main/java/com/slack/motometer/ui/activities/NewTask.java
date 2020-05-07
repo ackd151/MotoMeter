@@ -25,7 +25,6 @@ public class NewTask extends AppCompatActivity {
 
     // UI components
     private EditText taskNameET, intervalET, lastCompletedAtET;
-    private TextView profileTitleTV, profileHoursTV;
 
     // Logic components
     private String profileId;
@@ -62,12 +61,8 @@ public class NewTask extends AppCompatActivity {
         taskNameET = findViewById(R.id.new_task_name_value_et);
         intervalET = findViewById(R.id.new_task_interval_value_et);
         lastCompletedAtET = findViewById(R.id.new_task_last_completed_at_value_et);
-        profileTitleTV = findViewById(R.id.profile_header_title_tv);
-        profileHoursTV = findViewById(R.id.profile_header_hours_value_tv);
 
         // Set UI components
-        profileTitleTV.setText(profileLogic.getProfileTitle(profile));
-        profileHoursTV.setText(profile.getHours());
         // Set confirm/cancel button onClick listeners/handlers
         findViewById(R.id.new_task_confirm_btn).setOnClickListener(view -> {
             if (editTextNotEmpty(taskNameET)

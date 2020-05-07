@@ -17,18 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <include
-        android:id="@+id/include8"
-        layout="@layout/profile_header_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_task_toolbar" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -39,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include8">
+        app:layout_constraintTop_toBottomOf="@+id/edit_task_header_f">
 
         <EditText
             android:id="@+id/edit_task_name_value_et"
@@ -140,5 +128,17 @@
             app:layout_constraintGuide_begin="140dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <fragment
+        android:id="@+id/edit_task_header_f"
+        android:name="com.slack.motometer.ui.fragments.ProfileHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_task_toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

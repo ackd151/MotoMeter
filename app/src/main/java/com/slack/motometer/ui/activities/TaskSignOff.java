@@ -28,7 +28,7 @@ import com.slack.motometer.domain.services.TaskService;
 public class TaskSignOff extends AppCompatActivity {
 
     // UI components
-    private TextView profileTitle, profileHours, taskTitle, taskDueIn, taskIntervalValue,
+    private TextView taskTitle, taskDueIn, taskIntervalValue,
             taskLastAtValue;
     private EditText signOffValue;
 
@@ -66,8 +66,6 @@ public class TaskSignOff extends AppCompatActivity {
         taskLogic = new TaskLogic(this, profile.getId());
 
         // Get handle on UI components
-        profileTitle = findViewById(R.id.profile_header_title_tv);
-        profileHours = findViewById(R.id.profile_header_hours_value_tv);
         taskTitle = findViewById(R.id.task_sign_off_task_title_tv);
         taskDueIn = findViewById(R.id.task_sign_off_value_tv);
         signOffValue = findViewById(R.id.task_sign_off_value_et);
@@ -75,8 +73,6 @@ public class TaskSignOff extends AppCompatActivity {
         taskLastAtValue = findViewById(R.id.task_sign_off_last_at_value_tv);
 
         // Set UI components
-        profileTitle.setText(new ProfileLogic(this).getProfileTitle(profile));
-        profileHours.setText(profile.getHours());
         taskTitle.setText(task.getTaskTitle());
         taskDueIn.setText(taskLogic.getRemainingHours(task));
         signOffValue.setText(profile.getHours());
@@ -122,6 +118,7 @@ public class TaskSignOff extends AppCompatActivity {
             case R.id.toolbar_task_sign_off_icon_edit:
                 Intent intent = new Intent(this, EditTask.class);
                 intent.putExtra("taskId", taskId);
+                intent.putExtra("profileId", profile.getId());
                 startActivity(intent);
                 return true;
             // Delete task from db/app

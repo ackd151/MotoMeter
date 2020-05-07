@@ -25,16 +25,10 @@ import com.slack.motometer.ui.fragments.ProfileHeader;
 
 public class ProfileOverview extends AppCompatActivity {
 
-    // UI components
-//    private TextView profileHeaderTitleTV, profileHeaderHoursValueTV;
-//    private ImageView profileImageIV;
-
     // Logic components
     private ProfileRepository profileRepository;
     private Profile profile;
     private String profileId;
-    private ImageRepository imageRepository;
-    private ProfileImage profileImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,22 +45,10 @@ public class ProfileOverview extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        // Get handle on UI components
-//        profileHeaderTitleTV = findViewById(R.id.profile_header_title_tv);
-//        profileHeaderHoursValueTV = findViewById(R.id.profile_header_hours_value_tv);
-//        profileImageIV = findViewById(R.id.profile_header_img_iv);
-
         // Set Logic components
         profileId = getIntent().getExtras().getString("profileId");
         profileRepository = new ProfileService(this);
         profile = profileRepository.getProfile(Integer.parseInt(profileId));
-        imageRepository = new ImageService(this);
-        profileImage = imageRepository.getImageByProfileId(profileId);
-
-        // Set UI components
-//        profileHeaderTitleTV.setText(new ProfileLogic(this).getProfileTitle(profile));
-//        profileHeaderHoursValueTV.setText(profile.getHours());
-//        profileImageIV.setImageBitmap(profileImage.getImage());
 
         // set startActivity button actions
         setOnClick(R.id.profile_overview_maintenance_btn, TasksOverview.class);
@@ -80,8 +62,6 @@ public class ProfileOverview extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         profile = profileRepository.getProfile(Integer.parseInt(profileId));
-        // Only potentially changed value is profile hours
-//        profileHeaderHoursValueTV.setText(profile.getHours());
     }
 
     // Inflate toolbar menu

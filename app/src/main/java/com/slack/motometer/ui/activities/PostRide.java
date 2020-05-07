@@ -20,7 +20,6 @@ import com.slack.motometer.domain.services.ProfileService;
 public class PostRide extends AppCompatActivity {
 
     // UI components
-    private TextView profileTitle, profileHours;
     private EditText hoursValue;
 
     // Logic components
@@ -45,9 +44,7 @@ public class PostRide extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         // Get handle on UI components
-        profileTitle = findViewById(R.id.profile_header_title_tv);
         hoursValue = findViewById(R.id.post_ride_hours_value_et);
-        profileHours = findViewById(R.id.profile_header_hours_value_tv);
 
         // Get active profile
         profileId = getIntent().getExtras().getString("profileId");
@@ -56,8 +53,6 @@ public class PostRide extends AppCompatActivity {
 
         // Set profile header data
         profileLogic = new ProfileLogic(this);
-        profileTitle.setText(profileLogic.getProfileTitle(profile));
-        profileHours.setText(profile.getHours());
 
         // Set button listeners/handlers
         findViewById(R.id.post_ride_confirm_btn).setOnClickListener((view) -> {
