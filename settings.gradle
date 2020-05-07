@@ -1,0 +1,2 @@
+rootProject.name='MotoMeter'
+include ':app'

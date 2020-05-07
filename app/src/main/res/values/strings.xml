@@ -1,0 +1,145 @@
+<resources>
+    <!-- Application Name -->
+    <string name="app_name">MotoMeter</string>
+
+    <!-- activity layout strings -->
+    <!-- activity_edit_profile layout strings -->
+    <string name="activity_edit_profile_title">Edit Profile Information</string>
+
+    <!-- activity_edit_task layout strings -->
+    <string name="activity_edit_task_title">Edit Task Information</string>
+    <string name="activity_edit_task_interval_prompt">Interval</string>
+    <string name="activity_edit_task_completed_at_prompt">Completed At</string>
+
+    <!-- activity_main layout strings -->
+    <string name="empty_profile_list">PROFILE(S) NOT CREATED YET</string>
+
+    <!-- activity_new_checklist_item layout strings -->
+    <string name="activity_new_cl_item_title_prompt">Inspection Title</string>
+    <string name="activity_new_cl_item_value_hint">e.g. Fluids, Chain Tension…</string>
+
+    <!-- activity_new_profile layout strings -->
+    <string name="activity_new_profile_title">Enter Profile Information</string>
+    <string name="activity_new_profile_year">YEAR</string>
+    <string name="activity_new_profile_make">MAKE</string>
+    <string name="activity_new_profile_model">MODEL</string>
+    <string name="activity_new_profile_hourmeter">HOURMETER</string>
+    <string name="activity_new_profile_year_hint">eg. 2020</string>
+    <string name="activity_new_profile_make_hint">manufacturer name</string>
+    <string name="activity_new_profile_model_hint">model series</string>
+    <string name="activity_new_profile_hourmeter_hint">e.g. 12.7</string>
+
+    <!-- activity_new_task layout strings -->
+    <string name="activity_new_task_title">Enter Task Information</string>
+    <string name="activity_new_task_name_prompt">Task Name</string>
+    <string name="activity_new_task_name_value_hint">eg. Engine Oil Change</string>
+    <string name="activity_new_task_interval_prompt">Maintenance Interval</string>
+    <string name="activity_new_task_interval_value_hint">e.g. 7.5</string>
+    <string name="activity_new_task_last_completed_at_prompt">Last Completed At</string>
+    <string name="activity_new_task_last_completed_at_value_hint">e.g. 0.0</string>
+
+    <!-- activity_post_ride layout strings -->
+    <string name="activity_post_ride_prompt">New Hourmeter Reading</string>
+
+    <!-- activity_pre_ride layout strings -->
+    <string name="empty_checklist_list">CHECKLIST ITEM(S) NOT CREATED YET</string>
+    <string name="activity_pre_ride_ready">Pin it!</string>
+    <string name="activity_pre_ride_not_ready">Park it?</string>
+
+    <!-- activity_profile_overview layout strings -->
+    <string name="activity_profile_overview_maintenance">Maintenance</string>
+    <string name="activity_profile_overview_post_ride">Post-Ride</string>
+    <string name="activity_profile_overview_pre_ride">Pre-Ride</string>
+    <string name="activity_profile_overview_notes">Notes / Specs</string>
+
+    <!-- activity_task_sign_off layout strings -->
+    <string name="activity_task_sign_off_interval">Interval:</string>
+    <string name="activity_task_sign_off_last_at">Last completed at:</string>
+    <string name="activity_task_sign_off_due_in">Maintenance due in:</string>
+    <string name="activity_task_sign_off_at">Sign off at:</string>
+
+    <!-- activity_tasks_overview layout strings -->
+    <string name="empty_task_list">TASK(S) NOT CREATED YET</string>
+
+
+    <!-- custom view layout strings-->
+    <!-- checklist_card_view layout strings -->
+    <string name="checklist_card_view_complete">Completed</string>
+
+    <!-- profile_card_view layout strings -->
+    <string name="profile_card_view_hrs"> hrs.</string>
+
+    <!-- task_card_view layout strings -->
+    <string name="task_card_view_due_in">Maintenance due in</string>
+
+
+    <!-- toolbar strings -->
+    <!-- toolbar for activity_edit_task strings -->
+    <string name="toolbar_edit_task_title">Edit Task</string>
+    <string name="toolbar_edit_task_icon_save">save</string>
+    <string name="toolbar_edit_task_icon_clear">clear form</string>
+
+
+    <!-- toolbar for activity_edit_profile strings -->
+    <string name="toolbar_edit_profile_title">Edit Profile</string>
+    <string name="toolbar_edit_profile_icon_save">save</string>
+    <string name="toolbar_edit_profile_icon_clear">clear form</string>
+    <!-- toolbar for activity_main strings -->
+    <string name="toolbar_main_title">MotoMeter</string>
+    <string name="toolbar_main_icon_add_profile">Add</string>
+    <!-- toolbar for activity_new_checklist_item strings -->
+    <string name="toolbar_new_checklist_item_title">New Checklist Item</string>
+    <!-- toolbar for activity_new_profile strings -->
+    <string name="toolbar_new_profile_title">New Profile</string>
+    <string name="toolbar_new_profile_icon_clear">clear form</string>
+    <!-- toolbar for activity_new_task strings -->
+    <string name="toolbar_new_task_title">New Maintenance Task</string>
+    <string name="toolbar_new_task_icon_clear">clear form</string>
+    <!-- toolbar for activity_notes strings -->
+    <string name="toolbar_notes_title">Notes</string>
+    <string name="toolbar_notes_icon_save">save</string>
+    <string name="toolbar_notes_icon_clear">clear</string>
+    <!-- toolbar for activity_post_ride strings -->
+    <string name="toolbar_post_ride_title">Update Hourmeter</string>
+    <!-- toolbar for activity_pre_ride strings -->
+    <string name="toolbar_pre_ride_title">Pre-Ride Inspection</string>
+    <string name="toolbar_pre_ride_icon_add">Add</string>
+    <string name="toolbar_pre_ride_delete_title">delete item</string>
+    <!-- toolbar for activity_profile_overview strings -->
+    <string name="toolbar_profile_overview_title">Profile Overview</string>
+    <string name="toolbar_profile_overview_icon_edit">edit profile</string>
+    <string name="toolbar_profile_overview_icon_delete">delete profile</string>
+    <!-- toolbar for activity_task_sign_off strings -->
+    <string name="toolbar_task_sign_off_title">Maintenance Task</string>
+    <string name="toolbar_task_sign_off_icon_edit">edit task</string>
+    <string name="toolbar_task_sign_off_icon_delete">delete task</string>
+    <!-- toolbar for activity_tasks_overview strings -->
+    <string name="toolbar_tasks_overview_title">Tracked Tasks</string>
+    <string name="toolbar_tasks_overview_icon_add">new task</string>
+
+
+    <!-- validation error strings -->
+    <string name="validation_entry_required">entry required</string>
+    <string name="validation_hours_lte_current">must be &lt;= current engine hours</string>
+    <string name="validation_hours_gt_current">must be &gt; previous engine hours</string>
+
+
+    <!-- alert dialog strings -->
+    <string name="alert_dialog_delete_profile_title">Delete Profile</string>
+    <string name="alert_dialog_delete_profile_message">Permanently delete this profile?</string>
+    <string name="alert_dialog_delete_task_title">Delete Maintenance Task</string>
+    <string name="alert_dialog_delete_task_message">Permanently delete this task?</string>
+    <string name="alert_dialog_delete_checklist_item_title">Delete Inspection Task</string>
+    <string name="alert_dialog_delete_checklist_item_message">
+        Permanently delete this checklist item?</string>
+    <string name="alert_dialog_confirm">CONFIRM</string>
+    <string name="alert_dialog_cancel">CANCEL</string>
+
+
+    <!-- non localized strings -->
+    <string name="hours">hours</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

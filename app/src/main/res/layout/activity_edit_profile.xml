@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".ui.activities.EditProfile">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/edit_profile_toolbar"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/edit_profile_window"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/accent_color_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_toolbar">
+
+        <EditText
+            android:id="@+id/edit_profile_year_value_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/edit_profile_iv" />
+
+        <EditText
+            android:id="@+id/edit_profile_make_value_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/edit_profile_year_value_et" />
+
+        <EditText
+            android:id="@+id/edit_profile_model_value_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/edit_profile_make_value_et" />
+
+        <EditText
+            android:id="@+id/edit_profile_hours_value_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="64dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/edit_profile_model_value_et" />
+
+        <ImageView
+            android:id="@+id/edit_profile_iv"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/edit_profile_title_tv"
+            app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+        <TextView
+            android:id="@+id/edit_profile_year_prompt_tv"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/activity_new_profile_year"
+            app:layout_constraintBaseline_toBaselineOf="@+id/edit_profile_year_value_et"
+            app:layout_constraintEnd_toStartOf="@+id/guideline" />
+
+        <TextView
+            android:id="@+id/edit_profile_make_prompt_tv"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/activity_new_profile_make"
+            app:layout_constraintBaseline_toBaselineOf="@+id/edit_profile_make_value_et"
+            app:layout_constraintEnd_toStartOf="@+id/guideline" />
+
+        <TextView
+            android:id="@+id/edit_profile_model_prompt_tv"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/activity_new_profile_model"
+            app:layout_constraintBaseline_toBaselineOf="@+id/edit_profile_model_value_et"
+            app:layout_constraintEnd_toStartOf="@+id/guideline" />
+
+        <TextView
+            android:id="@+id/edit_profile_hours_prompt_tv"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/activity_new_profile_hourmeter"
+            app:layout_constraintBaseline_toBaselineOf="@+id/edit_profile_hours_value_et"
+            app:layout_constraintEnd_toStartOf="@+id/guideline" />
+
+        <TextView
+            android:id="@+id/edit_profile_image_prompt_tv"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="108dp"
+            android:layout_marginEnd="8dp"
+            android:text="IMAGE"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/edit_profile_title_tv" />
+
+        <TextView
+            android:id="@+id/edit_profile_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/activity_edit_profile_title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="140dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

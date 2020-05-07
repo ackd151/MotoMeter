@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/accent_color_border"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/task_card_view_due_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/task_card_view_due_in"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/task_card_view_hour_value_tv"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/constraint_card"
+            app:layout_constraintTop_toBottomOf="@+id/task_card_view_title_tv" />
+
+        <TextView
+            android:id="@+id/task_card_view_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintEnd_toEndOf="@id/constraint_card"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/constraint_card"
+            app:layout_constraintTop_toTopOf="@id/constraint_card" />
+
+        <TextView
+            android:id="@+id/task_card_view_hour_value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="4dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBaseline_toBaselineOf="@+id/task_card_view_due_tv"
+            app:layout_constraintEnd_toStartOf="@+id/task_card_view_hours_tv"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/task_card_view_due_tv" />
+
+        <TextView
+            android:id="@+id/task_card_view_hours_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="4dp"
+            android:text="@string/hours"
+            app:layout_constraintBaseline_toBaselineOf="@+id/task_card_view_hour_value_tv"
+            app:layout_constraintEnd_toEndOf="@id/constraint_card"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/task_card_view_hour_value_tv" />
+
+        <View
+            android:id="@+id/task_card_view_chevron"
+            android:layout_width="35dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/ic_chevron_right"
+            android:backgroundTint="@color/accent"
+            app:layout_constraintBottom_toBottomOf="@id/constraint_card"
+            app:layout_constraintEnd_toEndOf="@id/constraint_card"
+            app:layout_constraintTop_toTopOf="@id/constraint_card" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
