@@ -60,7 +60,7 @@
             android:ems="12"
             android:gravity="center"
             android:hint="@string/activity_new_cl_item_value_hint"
-            android:inputType="textPersonName"
+            android:inputType="textNoSuggestions"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"

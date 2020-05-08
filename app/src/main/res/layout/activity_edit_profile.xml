@@ -51,7 +51,7 @@
             android:layout_marginTop="16dp"
             android:ems="10"
             android:gravity="center"
-            android:inputType="textPersonName"
+            android:inputType="textNoSuggestions"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/edit_profile_year_value_et" />
 
@@ -63,7 +63,7 @@
             android:layout_marginTop="16dp"
             android:ems="10"
             android:gravity="center"
-            android:inputType="textPersonName"
+            android:inputType="textNoSuggestions"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/edit_profile_make_value_et" />
 
@@ -84,9 +84,12 @@
         <ImageView
             android:id="@+id/edit_profile_iv"
             android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/accent_color_border"
+            android:padding="5dp"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/edit_profile_title_tv"
             app:srcCompat="@android:drawable/ic_menu_gallery" />
@@ -133,7 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="108dp"
             android:layout_marginEnd="8dp"
-            android:text="IMAGE"
+            android:text="@string/activity_edit_profile_image"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/edit_profile_title_tv" />
 

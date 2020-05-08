@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Menu;
@@ -124,8 +125,8 @@ public class EditProfile extends AppCompatActivity {
                 modelValue.setText("");
                 hoursValue.setText("");
                 yearValue.requestFocus();
-                imageView.setBackground(getResources()
-                        .getDrawable(android.R.drawable.ic_menu_gallery));
+                imageView.setImageBitmap(BitmapFactory.decodeResource(getResources(),
+                        android.R.drawable.ic_menu_gallery));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -233,6 +234,8 @@ public class EditProfile extends AppCompatActivity {
             }
         }
         // Save image to db
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
         imageView.setImageBitmap(bitmap);
         profileImage.setImage(bitmap);
         imageRepository.updateImage(profileImage);

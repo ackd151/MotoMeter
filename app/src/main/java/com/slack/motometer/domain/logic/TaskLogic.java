@@ -17,8 +17,12 @@ public class TaskLogic implements Comparator<Task> {
 
     private TaskRepository taskRepository;
     private ProfileRepository profileRepository;
-    Profile profile;
+    private Profile profile;
     private Context context;
+
+    public enum MaintenanceDue {
+        NOT, SOON, PAST
+    }
 
     public TaskLogic(Context context, String profileId) {
         this.context = context;
@@ -39,6 +43,20 @@ public class TaskLogic implements Comparator<Task> {
     public void signOffTask(Task task, Float hours) {
         task.setLastCompletedAt(hours);
         taskRepository.updateTask(task);
+    }
+
+    // Helper method to check if maintenance is due
+    public MaintenanceDue isMaintenanceDue(Profile profile) {
+        List<Task> tasks = taskRepository.getProfileTasks(Integer.parseInt(profile.getId()));
+        Collections.sort(tasks, this);
+        if (tasks.size() == 0) {
+            return MaintenanceDue.NOT;
+        }
+        Task dueSoonest = tasks.get(0);
+        float dueIn = Float.parseFloat(getRemainingHours(dueSoonest));
+        return dueIn <= 0 ? MaintenanceDue.PAST :
+                dueIn < 2 ? MaintenanceDue.SOON :
+                        MaintenanceDue.NOT;
     }
 
     @Override

@@ -30,6 +30,7 @@ public class ProfileHeader extends Fragment {
     // Logic components
     private Context context;
     private ProfileRepository profileRepository;
+    private ProfileLogic profileLogic;
     private Profile profile;
     private String profileId;
     private ImageRepository imageRepository;
@@ -58,12 +59,26 @@ public class ProfileHeader extends Fragment {
         // Set Logic components
         profileId = getActivity().getIntent().getExtras().getString("profileId");
         profileRepository = new ProfileService(context);
+        profileLogic = new ProfileLogic(context);
         profile = profileRepository.getProfile(Integer.parseInt(profileId));
         imageRepository = new ImageService(context);
         profileImage = imageRepository.getImageByProfileId(profileId);
 
         // Set UI components
-        profileHeaderTitleTV.setText(new ProfileLogic(context).getProfileTitle(profile));
+        profileHeaderTitleTV.setText(profileLogic.getProfileTitle(profile));
+        profileHeaderHoursValueTV.setText(profile.getHours());
+        profileImageIV.setImageBitmap(profileImage.getImage());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Get fresh profile data from db
+        profile = profileRepository.getProfile(Integer.parseInt(profileId));
+        profileImage = imageRepository.getImageByProfileId(profileId);
+
+        // Set UI components
+        profileHeaderTitleTV.setText(profileLogic.getProfileTitle(profile));
         profileHeaderHoursValueTV.setText(profile.getHours());
         profileImageIV.setImageBitmap(profileImage.getImage());
     }

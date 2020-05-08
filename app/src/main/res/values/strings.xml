@@ -5,6 +5,7 @@
     <!-- activity layout strings -->
     <!-- activity_edit_profile layout strings -->
     <string name="activity_edit_profile_title">Edit Profile Information</string>
+    <string name="activity_edit_profile_image">IMAGE</string>
 
     <!-- activity_edit_task layout strings -->
     <string name="activity_edit_task_title">Edit Task Information</string>
@@ -68,6 +69,8 @@
 
     <!-- profile_card_view layout strings -->
     <string name="profile_card_view_hrs"> hrs.</string>
+    <string name="profile_card_view_no_maintenance_due">No Maintenance Due</string>
+    <string name="profile_card_view_maintenance_due">Maintenance Due Soon</string>
 
     <!-- task_card_view layout strings -->
     <string name="task_card_view_due_in">Maintenance due in</string>

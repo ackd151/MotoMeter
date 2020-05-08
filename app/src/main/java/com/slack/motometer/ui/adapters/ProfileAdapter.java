@@ -1,6 +1,7 @@
 package com.slack.motometer.ui.adapters;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,20 +10,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.slack.motometer.R;
+import com.slack.motometer.domain.logic.TaskLogic;
 import com.slack.motometer.domain.model.Profile;
 import com.slack.motometer.domain.model.ProfileImage;
+import com.slack.motometer.domain.model.Task;
 import com.slack.motometer.domain.repositories.ImageRepository;
+import com.slack.motometer.domain.repositories.TaskRepository;
 import com.slack.motometer.domain.services.ImageService;
+import com.slack.motometer.domain.services.TaskService;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ProfileAdapter extends ArrayAdapter<Profile> {
 
     private List<Profile> profiles;
+    private Context context;
 
     public ProfileAdapter(Context context, int textViewResourceId, List<Profile> profiles) {
         super(context, textViewResourceId, profiles);
         this.profiles = profiles;
+        this.context = context;
     }
 
     @Override
@@ -49,6 +58,20 @@ public class ProfileAdapter extends ArrayAdapter<Profile> {
         ProfileImage profileImage = imageRepository.getImageByProfileId(profile.getId());
         ImageView imageView = view.findViewById(R.id.profile_card_view_iv);
         imageView.setImageBitmap(profileImage.getImage());
+
+        // Set maintenance indicator (i.e. wrench icon color/visibility)
+        TextView maintenanceIcon = view.findViewById(R.id.profile_card_view_wrench);
+        TaskLogic.MaintenanceDue due =
+                new TaskLogic(context, profile.getId()).isMaintenanceDue(profile);
+        if (due == TaskLogic.MaintenanceDue.NOT) {
+            maintenanceIcon.setVisibility(View.GONE);
+        } else if (due == TaskLogic.MaintenanceDue.SOON) {
+            maintenanceIcon.getBackground().setColorFilter(context.getResources()
+                    .getColor(R.color.caution), PorterDuff.Mode.SRC_ATOP);
+        } else {
+            maintenanceIcon.getBackground().setColorFilter(context.getResources()
+                    .getColor(R.color.danger), PorterDuff.Mode.SRC_ATOP);
+        }
 
         return view;
     }

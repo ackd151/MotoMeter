@@ -73,7 +73,7 @@
             android:ems="10"
             android:gravity="center"
             android:hint="@string/activity_new_task_name_value_hint"
-            android:inputType="textPersonName"
+            android:inputType="textNoSuggestions"
             app:layout_constraintBaseline_toBaselineOf="@+id/new_task_title_prompt_tv"
             app:layout_constraintEnd_toEndOf="parent" />
 
