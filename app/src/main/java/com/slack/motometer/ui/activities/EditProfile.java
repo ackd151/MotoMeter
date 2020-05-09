@@ -125,8 +125,8 @@ public class EditProfile extends AppCompatActivity {
                 modelValue.setText("");
                 hoursValue.setText("");
                 yearValue.requestFocus();
-                imageView.setImageBitmap(BitmapFactory.decodeResource(getResources(),
-                        android.R.drawable.ic_menu_gallery));
+//                imageView.setImageBitmap(BitmapFactory.decodeResource(getResources(),
+//                        android.R.drawable.ic_menu_gallery));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -200,7 +200,6 @@ public class EditProfile extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-
         if (requestCode == PhotoUtility.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 if (userSelection.equals("Take Photo"))
@@ -214,7 +213,6 @@ public class EditProfile extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == SELECT_FILE)
                 onSelectFromGalleryResult(data);
@@ -223,31 +221,35 @@ public class EditProfile extends AppCompatActivity {
         }
     }
 
+    // User selected Gallery. Take bitmap from intent data, compress, set image view and store in
+    // file/db via ImageRepository
     private void onSelectFromGalleryResult(Intent data) {
-        Bitmap bitmap = null;
         if (data != null) {
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext()
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext()
                         .getContentResolver(), data.getData());
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
+                // Set profile image view
+                imageView.setImageBitmap(bitmap);
+                // Save image to db
+                profileImage.setImage(bitmap);
+                imageRepository.updateImage(profileImage);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        // Save image to db
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
-        imageView.setImageBitmap(bitmap);
-        profileImage.setImage(bitmap);
-        imageRepository.updateImage(profileImage);
     }
 
+    // User selected take photo. Take bitmap from intent data, compress, set image view and store in
+    // file/db via ImageRepository
     private void onCaptureImageResult(Intent data) {
         Bitmap bitmap = (Bitmap)data.getExtras().get("data");
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
-
-        // Save image to db
+        // Set profile image view
         imageView.setImageBitmap(bitmap);
+        // Save image to db
         profileImage.setImage(bitmap);
         imageRepository.updateImage(profileImage);
     }

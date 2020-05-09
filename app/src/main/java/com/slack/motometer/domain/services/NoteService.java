@@ -24,7 +24,7 @@ public class NoteService implements NoteRepository {
     }
 
     @Override
-    public void addNote(Note note) {
+    public long addNote(Note note) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
@@ -32,8 +32,7 @@ public class NoteService implements NoteRepository {
         contentValues.put(PROFILE_ID, note.getProfileId());
         contentValues.put(NOTES_CONTENT, note.getContents());
 
-        db.insert(NOTES_TABLE_NAME, null, contentValues);
-        db.close();
+        return db.insert(NOTES_TABLE_NAME, null, contentValues);
     }
 
     @Override
@@ -61,7 +60,7 @@ public class NoteService implements NoteRepository {
     }
 
     @Override
-    public int updateNote(Note note) {
+    public long updateNote(Note note) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();

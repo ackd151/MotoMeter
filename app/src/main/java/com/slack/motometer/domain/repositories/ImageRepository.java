@@ -4,7 +4,9 @@ import com.slack.motometer.domain.model.ProfileImage;
 
 public interface ImageRepository {
 
+    long addImage(ProfileImage profileImage);
+
     ProfileImage getImageByProfileId(String profileId);
 
-    int updateImage(ProfileImage profileImage);
+    void updateImage(ProfileImage profileImage);
 }

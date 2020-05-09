@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface ChecklistRepository {
 
-    void addChecklistItem(ChecklistItem checklistItem);
+    long addChecklistItem(ChecklistItem checklistItem);
 
     ChecklistItem getChecklistItem(int id);
 
     List<ChecklistItem> getProfileChecklistItems(int profileId);
 
-    int updateChecklistItem(ChecklistItem checklistItem);
+    long updateChecklistItem(ChecklistItem checklistItem);
 
     void deleteChecklistItem(ChecklistItem checklistItem);
 

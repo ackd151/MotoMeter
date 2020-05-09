@@ -56,7 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Table Columns
     // _ID = "_id" // primary key autoincrement
     // PROFILE_ID = "profile_id" // foreign key Profile.id
-    public static final String IMAGE = "image";
+    public static final String IMAGE_PATH = "image_path";
 
     //// Database Information - end
 
@@ -99,7 +99,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_IMAGES_TABLE = "create table " + IMAGES_TABLE_NAME + "("
             + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + PROFILE_ID + " INTEGER, "
-            + IMAGE + " BLOB, "
+            + IMAGE_PATH + " TEXT NOT NULL, "
             + " FOREIGN KEY(" + PROFILE_ID + ") REFERENCES profiles(" + _ID + "))";
 
     //// Table creation query strings - end

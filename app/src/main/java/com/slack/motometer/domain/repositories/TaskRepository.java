@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface TaskRepository {
 
-    void addTask(Task task);
+    long addTask(Task task);
 
     Task getTask(int id);
 
     List<Task> getProfileTasks(int profileId);
 
-    int updateTask(Task task);
+    long updateTask(Task task);
 
     void deleteTask(Task task);
 

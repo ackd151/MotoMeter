@@ -27,7 +27,7 @@ public class ChecklistService implements ChecklistRepository {
     }
 
     @Override
-    public void addChecklistItem(ChecklistItem checklistItem) {
+    public long addChecklistItem(ChecklistItem checklistItem) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
@@ -35,8 +35,7 @@ public class ChecklistService implements ChecklistRepository {
         contentValues.put(CL_ITEM_TITLE, checklistItem.getClItemTitle());
         contentValues.put(CL_ITEM_COMPLETE, checklistItem.isComplete());
 
-        db.insert(CHECKLIST_TABLE_NAME, null, contentValues);
-        db.close();
+        return db.insert(CHECKLIST_TABLE_NAME, null, contentValues);
     }
 
     @Override
@@ -73,7 +72,7 @@ public class ChecklistService implements ChecklistRepository {
     }
 
     @Override
-    public int updateChecklistItem(ChecklistItem checklistItem) {
+    public long updateChecklistItem(ChecklistItem checklistItem) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();

@@ -4,12 +4,13 @@ import android.graphics.Bitmap;
 
 public class ProfileImage {
 
-    private String id, profileId;
+    private String id, profileId, imagePath;
     private Bitmap image;
 
-    public ProfileImage(String id, String profileId, Bitmap image) {
+    public ProfileImage(String id, String profileId, String imagePath, Bitmap image) {
         this.id = id;
         this.profileId = profileId;
+        this.imagePath = imagePath;
         this.image = image;
     }
 
@@ -27,6 +28,14 @@ public class ProfileImage {
 
     public void setProfileId(String profileId) {
         this.profileId = profileId;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public Bitmap getImage() {

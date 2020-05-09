@@ -13,9 +13,4 @@ public class DbBitmapUtility {
         bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
     }
-
-    // convert byte[] to bitmap
-    public static Bitmap getBitmap(byte[] bytes) {
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-    }
 }

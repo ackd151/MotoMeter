@@ -7,17 +7,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.slack.motometer.R;
 import com.slack.motometer.domain.db.DatabaseHelper;
 import com.slack.motometer.domain.model.Profile;
+import com.slack.motometer.domain.model.ProfileImage;
+import com.slack.motometer.domain.repositories.ImageRepository;
 import com.slack.motometer.domain.repositories.ProfileRepository;
-import com.slack.motometer.utilities.DbBitmapUtility;
 
 import java.util.ArrayList;
 
 import static com.slack.motometer.domain.db.DatabaseHelper.HOURS;
-import static com.slack.motometer.domain.db.DatabaseHelper.IMAGE;
-import static com.slack.motometer.domain.db.DatabaseHelper.IMAGES_TABLE_NAME;
 import static com.slack.motometer.domain.db.DatabaseHelper.MAKE;
 import static com.slack.motometer.domain.db.DatabaseHelper.MODEL;
 import static com.slack.motometer.domain.db.DatabaseHelper.NOTES_CONTENT;
@@ -39,7 +37,7 @@ public class ProfileService implements ProfileRepository {
     }
 
     @Override
-    public void addProfile(Profile profile) {
+    public long addProfile(Profile profile) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
@@ -61,13 +59,12 @@ public class ProfileService implements ProfileRepository {
         // Using drawable ic_menu_gallery as default image
         Bitmap defaultImage = BitmapFactory.decodeResource(context.getResources(),
                 android.R.drawable.ic_menu_gallery);
-        byte[] defaultImageByteArray = DbBitmapUtility.getByteArray(defaultImage);
-        contentValues.clear();
-        contentValues.put(PROFILE_ID, profileId);
-        contentValues.put(IMAGE, defaultImageByteArray);
-        db.insert(IMAGES_TABLE_NAME, null, contentValues);
+        ImageRepository imageRepository = new ImageService(context);
+        imageRepository.addImage(new ProfileImage(null, String.valueOf(profileId),
+                null, defaultImage));
 
         db.close();
+        return profileId;
     }
 
     @Override
@@ -104,7 +101,7 @@ public class ProfileService implements ProfileRepository {
     }
 
     @Override
-    public int updateProfile(Profile profile) {
+    public long updateProfile(Profile profile) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();

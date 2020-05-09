@@ -7,13 +7,13 @@ import java.util.List;
 // Interface for Profile database actions - implementation in services package
 public interface ProfileRepository {
 
-    void addProfile(Profile profile);
+    long addProfile(Profile profile);
 
     Profile getProfile(int id);
 
     List<Profile> getAllProfiles();
 
-    int updateProfile(Profile profile);
+    long updateProfile(Profile profile);
 
     void deleteProfile(Profile profile);
 

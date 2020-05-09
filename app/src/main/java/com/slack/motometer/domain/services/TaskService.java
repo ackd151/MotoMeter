@@ -32,7 +32,7 @@ public class TaskService implements TaskRepository {
     }
 
     @Override
-    public void addTask(Task task) {
+    public long addTask(Task task) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
@@ -41,8 +41,7 @@ public class TaskService implements TaskRepository {
         contentValues.put(INTERVAL, task.getInterval());
         contentValues.put(LAST_COMPLETED_AT, task.getLastCompletedAt());
 
-        db.insert(TASK_TABLE_NAME, null, contentValues);
-        db.close();
+        return db.insert(TASK_TABLE_NAME, null, contentValues);
     }
 
     @Override
@@ -79,7 +78,7 @@ public class TaskService implements TaskRepository {
     }
 
     @Override
-    public int updateTask(Task task) {
+    public long updateTask(Task task) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
