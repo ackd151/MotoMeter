@@ -17,7 +17,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <ImageView
             android:id="@+id/profile_card_image_iv"
@@ -27,7 +28,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:adjustViewBounds="true"
-            app:layout_constraintEnd_toStartOf="@+id/profile_card_view_chevron"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_card_title_tv" />
 
@@ -35,9 +36,9 @@
             android:id="@+id/profile_card_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,10 +47,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="24dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_card_image_iv" />
 
@@ -62,25 +61,47 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/profile_card_hrs_value_tv"
             app:layout_constraintStart_toEndOf="@+id/profile_card_hrs_value_tv" />
 
-        <View
-            android:id="@+id/profile_card_view_chevron"
-            android:layout_width="35dp"
-            android:layout_height="0dp"
-            android:background="@drawable/ic_chevron_right"
-            android:backgroundTint="@color/accent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/profile_card_wrench_tv"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="@android:drawable/ic_menu_manage"
-            app:layout_constraintEnd_toStartOf="@+id/profile_card_view_chevron"
-            app:layout_constraintTop_toBottomOf="@+id/profile_card_image_iv" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/profile_card_hrs_tv"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/profile_card_task_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="placeholder"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_card_hrs_value_tv" />
+
+        <TextView
+            android:id="@+id/profile_card_insp_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:text="Pre-ride Inspection Status"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile_card_task_tv" />
+
+        <TextView
+            android:id="@+id/profile_card_insp_status_tv"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBaseline_toBaselineOf="@+id/profile_card_insp_tv"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -13,14 +13,9 @@ import com.slack.motometer.R;
 import com.slack.motometer.domain.logic.TaskLogic;
 import com.slack.motometer.domain.model.Profile;
 import com.slack.motometer.domain.model.ProfileImage;
-import com.slack.motometer.domain.model.Task;
 import com.slack.motometer.domain.repositories.ImageRepository;
-import com.slack.motometer.domain.repositories.TaskRepository;
 import com.slack.motometer.domain.services.ImageService;
-import com.slack.motometer.domain.services.TaskService;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ProfileAdapter extends ArrayAdapter<Profile> {
@@ -44,8 +39,8 @@ public class ProfileAdapter extends ArrayAdapter<Profile> {
         }
         Profile profile = profiles.get(position);
         if (profile != null) {
-            TextView profileTitleTV = view.findViewById(R.id.profile_card_view_title_tv);
-            TextView hoursTV = view.findViewById(R.id.profile_card_view_hrs_value_tv);
+            TextView profileTitleTV = view.findViewById(R.id.profile_card_title_tv);
+            TextView hoursTV = view.findViewById(R.id.profile_card_hrs_value_tv);
             if (profileTitleTV != null) {
                 String profileTitle = profile.getYear() + " " + profile.getMake() + " "
                         + profile.getModel();
@@ -56,11 +51,11 @@ public class ProfileAdapter extends ArrayAdapter<Profile> {
         // Set profile image
         ImageRepository imageRepository = new ImageService(super.getContext());
         ProfileImage profileImage = imageRepository.getImageByProfileId(profile.getId());
-        ImageView imageView = view.findViewById(R.id.profile_card_view_iv);
+        ImageView imageView = view.findViewById(R.id.profile_card_image_iv);
         imageView.setImageBitmap(profileImage.getImage());
 
         // Set maintenance indicator (i.e. wrench icon color/visibility)
-        TextView maintenanceIcon = view.findViewById(R.id.profile_card_view_wrench);
+        TextView maintenanceIcon = view.findViewById(R.id.profile_card_wrench_tv);
         TaskLogic.MaintenanceDue due =
                 new TaskLogic(context, profile.getId()).isMaintenanceDue(profile);
         if (due == TaskLogic.MaintenanceDue.NOT) {

@@ -45,18 +45,26 @@ public class TaskLogic implements Comparator<Task> {
         taskRepository.updateTask(task);
     }
 
-    // Helper method to check if maintenance is due
+    // Check if maintenance is due
     public MaintenanceDue isMaintenanceDue(Profile profile) {
-        List<Task> tasks = taskRepository.getProfileTasks(Integer.parseInt(profile.getId()));
-        Collections.sort(tasks, this);
-        if (tasks.size() == 0) {
+        Task dueSoonest = getNextDue(Integer.parseInt(profile.getId()));
+        if (dueSoonest == null) {
             return MaintenanceDue.NOT;
         }
-        Task dueSoonest = tasks.get(0);
         float dueIn = Float.parseFloat(getRemainingHours(dueSoonest));
         return dueIn <= 0 ? MaintenanceDue.PAST :
                 dueIn < 2 ? MaintenanceDue.SOON :
                         MaintenanceDue.NOT;
+    }
+
+    // Get the task that is due soonest
+    public Task getNextDue(int profileId) {
+        List<Task> tasks = taskRepository.getProfileTasks(profileId);
+        if (tasks.size() != 0) {
+            Collections.sort(tasks, this);
+            return tasks.get(0);
+        }
+        return null;
     }
 
     @Override
