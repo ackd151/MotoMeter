@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.slack.motometer.R;
 import com.slack.motometer.domain.logic.ProfileLogic;
 import com.slack.motometer.domain.model.Profile;
@@ -89,6 +90,33 @@ public class TasksOverview extends AppCompatActivity {
             taskSignoffActivity.putExtra("taskId", task.getId());
             taskSignoffActivity.putExtra("profileId", profileId);
             startActivityForResult(taskSignoffActivity, 3);
+        });
+
+        // Set bottom navigation bar
+        BottomNavigationView navBar = findViewById(R.id.tasks_overview_nav_bar);
+        navBar.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.tasks_overview_nav_home:
+                    Intent homeIntent = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(homeIntent);
+                    return true;
+                case R.id.tasks_overview_nav_post_ride:
+                    Intent postRideIntent = new Intent(getBaseContext(), PostRide.class);
+                    postRideIntent.putExtra("profileId", profileId);
+                    startActivity(postRideIntent);
+                    return true;
+                case R.id.tasks_overview_nav_pre_ride:
+                    Intent preRideIntent = new Intent(getBaseContext(), PreRide.class);
+                    preRideIntent.putExtra("profileId", profileId);
+                    startActivity(preRideIntent);
+                    return true;
+                case R.id.tasks_overview_nav_notes:
+                    Intent notesIntent = new Intent(getBaseContext(), Notes.class);
+                    notesIntent.putExtra("profileId", profileId);
+                    startActivity(notesIntent);
+                    return true;
+            }
+            return false;
         });
     }
 

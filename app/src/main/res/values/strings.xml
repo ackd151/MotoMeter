@@ -81,8 +81,6 @@
     <string name="toolbar_edit_task_title">Edit Task</string>
     <string name="toolbar_edit_task_icon_save">save</string>
     <string name="toolbar_edit_task_icon_clear">clear form</string>
-
-
     <!-- toolbar for activity_edit_profile strings -->
     <string name="toolbar_edit_profile_title">Edit Profile</string>
     <string name="toolbar_edit_profile_icon_save">save</string>
@@ -120,6 +118,12 @@
     <string name="toolbar_tasks_overview_title">Tracked Tasks</string>
     <string name="toolbar_tasks_overview_icon_add">new task</string>
 
+    <!-- bottom navbar strings -->
+    <string name="navbar_home">home</string>
+    <string name="navbar_maintenance">maintenance</string>
+    <string name="navbar_post_ride">post-ride</string>
+    <string name="navbar_pre_ride">pre-ride</string>
+    <string name="navbar_notes">notes</string>
 
     <!-- validation error strings -->
     <string name="validation_entry_required">entry required</string>

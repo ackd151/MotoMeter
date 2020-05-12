@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.slack.motometer.R;
 import com.slack.motometer.domain.logic.ChecklistLogic;
 import com.slack.motometer.domain.model.ChecklistItem;
@@ -74,6 +75,33 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
 
         // Set view to display message when no Task(s) have been created for the active profile
         checklistItemContainer.setEmptyView(findViewById(R.id.empty_checklist_item));
+
+        // Set bottom navigation bar
+        BottomNavigationView navBar = findViewById(R.id.pre_ride_nav_bar);
+        navBar.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.pre_ride_nav_home:
+                    Intent homeIntent = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(homeIntent);
+                    return true;
+                case R.id.pre_ride_nav_maintenance:
+                    Intent maintenanceIntent = new Intent(getBaseContext(), TasksOverview.class);
+                    maintenanceIntent.putExtra("profileId", profileId);
+                    startActivity(maintenanceIntent);
+                    return true;
+                case R.id.pre_ride_nav_post_ride:
+                    Intent postRideIntent = new Intent(getBaseContext(), PostRide.class);
+                    postRideIntent.putExtra("profileId", profileId);
+                    startActivity(postRideIntent);
+                    return true;
+                case R.id.pre_ride_nav_notes:
+                    Intent notesIntent = new Intent(getBaseContext(), Notes.class);
+                    notesIntent.putExtra("profileId", profileId);
+                    startActivity(notesIntent);
+                    return true;
+            }
+            return false;
+        });
     }
 
     // Inflate toolbar

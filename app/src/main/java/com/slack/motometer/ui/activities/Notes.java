@@ -4,11 +4,13 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.slack.motometer.R;
 import com.slack.motometer.domain.model.Note;
 import com.slack.motometer.domain.model.Profile;
@@ -62,6 +64,33 @@ public class Notes extends AppCompatActivity {
             noteContents.append("\n");
         }
         noteContents.setSelection(noteContents.getText().length());
+
+        // Set bottom navigation bar
+        BottomNavigationView navBar = findViewById(R.id.notes_nav_bar);
+        navBar.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.notes_nav_home:
+                    Intent homeIntent = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(homeIntent);
+                    return true;
+                case R.id.notes_nav_maintenance:
+                    Intent maintenanceIntent = new Intent(getBaseContext(), TasksOverview.class);
+                    maintenanceIntent.putExtra("profileId", profileId);
+                    startActivity(maintenanceIntent);
+                    return true;
+                case R.id.notes_nav_post_ride:
+                    Intent postRideIntent = new Intent(getBaseContext(), PostRide.class);
+                    postRideIntent.putExtra("profileId", profileId);
+                    startActivity(postRideIntent);
+                    return true;
+                case R.id.notes_nav_pre_ride:
+                    Intent preRideIntent = new Intent(getBaseContext(), PreRide.class);
+                    preRideIntent.putExtra("profileId", profileId);
+                    startActivity(preRideIntent);
+                    return true;
+            }
+            return false;
+        });
     }
 
     // Inflate toolbar menu

@@ -4,10 +4,12 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.slack.motometer.R;
 import com.slack.motometer.domain.logic.ChecklistLogic;
 import com.slack.motometer.domain.logic.ProfileLogic;
@@ -64,6 +66,33 @@ public class PostRide extends AppCompatActivity {
         });
         findViewById(R.id.post_ride_cancel_btn).setOnClickListener((view) -> {
             finish();
+        });
+
+        // Set bottom navigation bar
+        BottomNavigationView navBar = findViewById(R.id.post_ride_nav_bar);
+        navBar.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.post_ride_nav_home:
+                    Intent homeIntent = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(homeIntent);
+                    return true;
+                case R.id.post_ride_nav_maintenance:
+                    Intent maintenanceIntent = new Intent(getBaseContext(), TasksOverview.class);
+                    maintenanceIntent.putExtra("profileId", profileId);
+                    startActivity(maintenanceIntent);
+                    return true;
+                case R.id.post_ride_nav_pre_ride:
+                    Intent preRideIntent = new Intent(getBaseContext(), PreRide.class);
+                    preRideIntent.putExtra("profileId", profileId);
+                    startActivity(preRideIntent);
+                    return true;
+                case R.id.post_ride_nav_notes:
+                    Intent notesIntent = new Intent(getBaseContext(), Notes.class);
+                    notesIntent.putExtra("profileId", profileId);
+                    startActivity(notesIntent);
+                    return true;
+            }
+            return false;
         });
     }
 
