@@ -16,13 +16,9 @@ import android.widget.TextView;
 
 import com.slack.motometer.R;
 import com.slack.motometer.domain.logic.ChecklistLogic;
-import com.slack.motometer.domain.logic.ProfileLogic;
 import com.slack.motometer.domain.model.ChecklistItem;
-import com.slack.motometer.domain.model.Profile;
 import com.slack.motometer.domain.repositories.ChecklistRepository;
-import com.slack.motometer.domain.repositories.ProfileRepository;
 import com.slack.motometer.domain.services.ChecklistService;
-import com.slack.motometer.domain.services.ProfileService;
 import com.slack.motometer.utilities.ChecklistListener;
 import com.slack.motometer.ui.adapters.ChecklistAdapter;
 
@@ -35,12 +31,10 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
     private TextView readyNotReady;
 
     // Logic components
-    private ProfileRepository profileRepository;
     private ChecklistRepository checklistRepository;
     private String profileId;
     private List<ChecklistItem> checklistItems;
     private ArrayAdapter<ChecklistItem> checklistAdapter;
-    private Profile profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +53,6 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
 
         // getExtra - active profile ID
         profileId = getIntent().getExtras().getString("profileId");
-
-        // Fetch active profile
-        profileRepository = new ProfileService(this);
-        profile = profileRepository.getProfile(Integer.parseInt(profileId));
 
         // Fetch checklist items
         checklistRepository = new ChecklistService(this);
@@ -113,7 +103,7 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
                     int finalI = i;
                     deleteClItemBtn.setOnClickListener(view1 -> {
                         checklistRepository.deleteChecklistItem(checklistItems.get(finalI));
-                        onResume(); // refresh adapter in delete method?
+                        onResume(); // Get fresh data after deletion
                         isChecklistComplete();
                     });
                 }
@@ -129,8 +119,12 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
         // refresh checklistItems object to display up-to-date listview
         checklistItems = checklistRepository.getProfileChecklistItems(Integer.parseInt(profileId));
         // clear adapter and repopulate with fresh profiles data
-        checklistAdapter.clear();
-        checklistAdapter.addAll(checklistItems);
+        // adapter.clear() -> addAll() not refreshing the views properly
+        // i.e. delete icon staying visible on views outside of ListView port
+        // instantiating new adapter with fresh db data instead - appears to fix issue
+        checklistAdapter = new ChecklistAdapter(this, R.layout.checklist_card_view,
+                checklistItems, this);
+        checklistItemContainer.setAdapter(checklistAdapter);
     }
 
     // Used when returning from adding new inspection task, to set readyNotReady textview

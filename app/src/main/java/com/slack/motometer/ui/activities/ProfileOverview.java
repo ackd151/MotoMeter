@@ -5,23 +5,15 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.slack.motometer.R;
-import com.slack.motometer.domain.logic.ProfileLogic;
 import com.slack.motometer.domain.model.Profile;
-import com.slack.motometer.domain.model.ProfileImage;
-import com.slack.motometer.domain.repositories.ImageRepository;
 import com.slack.motometer.domain.repositories.ProfileRepository;
-import com.slack.motometer.domain.services.ImageService;
 import com.slack.motometer.domain.services.ProfileService;
-import com.slack.motometer.ui.fragments.ProfileHeader;
 
 public class ProfileOverview extends AppCompatActivity {
 

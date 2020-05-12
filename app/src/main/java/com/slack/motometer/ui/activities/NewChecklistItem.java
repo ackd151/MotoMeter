@@ -7,16 +7,11 @@ import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.slack.motometer.R;
-import com.slack.motometer.domain.logic.ProfileLogic;
 import com.slack.motometer.domain.model.ChecklistItem;
-import com.slack.motometer.domain.model.Profile;
 import com.slack.motometer.domain.repositories.ChecklistRepository;
-import com.slack.motometer.domain.repositories.ProfileRepository;
 import com.slack.motometer.domain.services.ChecklistService;
-import com.slack.motometer.domain.services.ProfileService;
 
 public class NewChecklistItem extends AppCompatActivity {
 
@@ -26,9 +21,6 @@ public class NewChecklistItem extends AppCompatActivity {
     // Logic components
     private String profileId;
     private ChecklistRepository checklistRepository;
-    private ProfileRepository profileRepository;
-    private Profile profile;
-    private ProfileLogic profileLogic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +40,6 @@ public class NewChecklistItem extends AppCompatActivity {
         // Set Logic components
         profileId = getIntent().getExtras().getString("profileId");
         checklistRepository = new ChecklistService(this);
-        profileRepository = new ProfileService(this);
-        profile = profileRepository.getProfile(Integer.parseInt(profileId));
-        profileLogic = new ProfileLogic(this);
 
         // Get handle on UI components
         checkListItemTitleValue = findViewById(R.id.new_cl_item_title_value_et);

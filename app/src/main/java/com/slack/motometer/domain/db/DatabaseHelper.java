@@ -104,11 +104,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //// Table creation query strings - end
 
+    // Private static DatabaseHelper instance
+    private static DatabaseHelper instance;
 
-    // Constructor
-    public DatabaseHelper(Context context) {
+    // Private Constructor
+    private DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
+
+    // Get databaseHelper instance
+    public static DatabaseHelper getInstance(Context context) {
+        if (instance == null) {
+            instance = new DatabaseHelper(context.getApplicationContext());
+        }
+        return instance;
+    }
+
 
     // Create tables in onCreate
     @Override

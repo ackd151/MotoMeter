@@ -7,14 +7,12 @@ import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.slack.motometer.R;
 import com.slack.motometer.domain.logic.ChecklistLogic;
 import com.slack.motometer.domain.logic.ProfileLogic;
 import com.slack.motometer.domain.model.Profile;
 import com.slack.motometer.domain.repositories.ProfileRepository;
-import com.slack.motometer.domain.services.ChecklistService;
 import com.slack.motometer.domain.services.ProfileService;
 
 public class PostRide extends AppCompatActivity {

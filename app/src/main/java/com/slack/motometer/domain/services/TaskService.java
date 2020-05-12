@@ -27,7 +27,7 @@ public class TaskService implements TaskRepository {
     private Context context;
 
     public TaskService(Context context) {
-        dbHelper = new DatabaseHelper(context);
+        dbHelper = DatabaseHelper.getInstance(context);
         this.context = context;
     }
 
@@ -41,7 +41,9 @@ public class TaskService implements TaskRepository {
         contentValues.put(INTERVAL, task.getInterval());
         contentValues.put(LAST_COMPLETED_AT, task.getLastCompletedAt());
 
-        return db.insert(TASK_TABLE_NAME, null, contentValues);
+        long taskId = db.insert(TASK_TABLE_NAME, null, contentValues);
+        db.close();
+        return taskId;
     }
 
     @Override
@@ -53,8 +55,10 @@ public class TaskService implements TaskRepository {
         if (c != null) {
             c.moveToFirst();
         }
-        return new Task(c.getString(0), c.getString(1), c.getString(2), c.getString(3),
+        Task task = new Task(c.getString(0), c.getString(1), c.getString(2), c.getString(3),
                 c.getString(4));
+        db.close();
+        return task;
     }
 
     @Override
@@ -74,6 +78,7 @@ public class TaskService implements TaskRepository {
             } while (c.moveToNext());
         }
         Collections.sort(tasks, new TaskLogic(context, String.valueOf(profileId)));
+        db.close();
         return tasks;
     }
 
@@ -87,14 +92,17 @@ public class TaskService implements TaskRepository {
         contentValues.put(INTERVAL, task.getInterval());
         contentValues.put(LAST_COMPLETED_AT, task.getLastCompletedAt());
 
-        return db.update(TASK_TABLE_NAME, contentValues, _ID + "= ?",
+        long rowsAffected = db.update(TASK_TABLE_NAME, contentValues, _ID + "= ?",
                 new String[]{ task.getId() });
+        db.close();
+        return rowsAffected;
     }
 
     @Override
     public void deleteTask(Task task) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.delete(TASK_TABLE_NAME, _ID + "= ?", new String[] { task.getId() });
+        db.close();
     }
 
 }

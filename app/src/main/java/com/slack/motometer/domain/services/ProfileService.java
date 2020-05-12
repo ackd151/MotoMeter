@@ -32,7 +32,7 @@ public class ProfileService implements ProfileRepository {
     private Context context;
 
     public ProfileService(Context context) {
-        dbHelper = new DatabaseHelper(context);
+        dbHelper = DatabaseHelper.getInstance(context);
         this.context = context;
     }
 
@@ -70,15 +70,17 @@ public class ProfileService implements ProfileRepository {
     @Override
     public Profile getProfile(int id) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query(PROFILE_TABLE_NAME, new String[]{ _ID, YEAR, MAKE, MODEL, HOURS },
-                _ID + "= ?", new String[]{ String.valueOf(id) },
+        Profile profile = null;
+        Cursor cursor = db.query(PROFILE_TABLE_NAME, new String[]{_ID, YEAR, MAKE, MODEL, HOURS},
+                _ID + "= ?", new String[]{String.valueOf(id)},
                 null, null, null, null);
-        if (cursor != null) {
-            cursor.moveToFirst();
+        if (cursor != null && cursor.moveToFirst()) {
+            profile = new Profile(cursor.getString(0), cursor.getString(1), cursor.getString(2),
+                    cursor.getString(3), cursor.getString(4));
+            cursor.close();
         }
-
-        return new Profile(cursor.getString(0), cursor.getString(1), cursor.getString(2),
-                cursor.getString(3), cursor.getString(4));
+        db.close();
+        return profile;
     }
 
     @Override
@@ -87,16 +89,17 @@ public class ProfileService implements ProfileRepository {
         String selectAllQuery = "SELECT * FROM " + PROFILE_TABLE_NAME;
 
         // Get db
-        SQLiteDatabase db = dbHelper.getReadableDatabase(); // writable in example?
-        Cursor cursor = db.rawQuery(selectAllQuery, null);
-        // Loop through all rows and add to list
-        if (cursor.moveToFirst()) {
-            do {
-                profiles.add(new Profile(cursor.getString(0), cursor.getString(1),
-                        cursor.getString(2), cursor.getString(3), cursor.getString(4)));
-            } while (cursor.moveToNext());
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        try(Cursor cursor = db.rawQuery(selectAllQuery, null)) {
+            // Loop through all rows and add to list
+            if (cursor.moveToFirst()) {
+                do {
+                    profiles.add(new Profile(cursor.getString(0), cursor.getString(1),
+                            cursor.getString(2), cursor.getString(3), cursor.getString(4)));
+                } while (cursor.moveToNext());
+            }
         }
-
+        db.close();
         return profiles;
     }
 
@@ -110,14 +113,17 @@ public class ProfileService implements ProfileRepository {
         contentValues.put(MODEL, profile.getModel());
         contentValues.put(HOURS, profile.getHours());
 
-        return db.update(PROFILE_TABLE_NAME, contentValues, _ID + "= ?",
+        long numRowsUpdated = db.update(PROFILE_TABLE_NAME, contentValues, _ID + "= ?",
                 new String[]{ profile.getId() });
+        db.close();
+        return numRowsUpdated;
     }
 
     @Override
     public void deleteProfile(Profile profile) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.delete(PROFILE_TABLE_NAME, _ID + "= ?", new String[] { profile.getId() });
+        db.close();
     }
 
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.slack.motometer.domain.model.Profile;
 import com.slack.motometer.domain.repositories.ProfileRepository;
-import com.slack.motometer.domain.services.ChecklistService;
 import com.slack.motometer.domain.services.ProfileService;
 
 public class ProfileLogic {
@@ -20,6 +19,11 @@ public class ProfileLogic {
     // Creates and returns profile title from profile.year,make,model
     public String getProfileTitle(Profile profile) {
         return profile.getYear() + " " + profile.getMake() + " " + profile.getModel();
+    }
+
+    // Creates and returns tabbed ViewPager title from profile year and model
+    public String getTabTitle(Profile profile) {
+        return profile.getYear() + "\n" + profile.getModel();
     }
 
     // Post ride updates profile hourmeter value

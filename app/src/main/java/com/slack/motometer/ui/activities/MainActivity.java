@@ -1,11 +1,9 @@
 package com.slack.motometer.ui.activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -13,8 +11,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
@@ -22,7 +18,6 @@ import com.slack.motometer.R;
 import com.slack.motometer.domain.model.Profile;
 import com.slack.motometer.domain.repositories.ProfileRepository;
 import com.slack.motometer.domain.services.ProfileService;
-import com.slack.motometer.ui.adapters.ProfileAdapter;
 import com.slack.motometer.ui.adapters.ProfilePagerAdapter;
 
 import java.util.List;
@@ -31,12 +26,13 @@ public class MainActivity extends AppCompatActivity {
 
     // UI components
     private ViewPager viewPager;
+    private TabLayout tabLayout;
+    private TextView emptyView;
 
     // Logic Components
-    private FragmentPagerAdapter profilePagerAdapter;
+    private FragmentStatePagerAdapter profilePagerAdapter;
     private ProfileRepository profileRepository;
     private List<Profile> profiles;
-//    private ArrayAdapter<Profile> profileListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(R.string.toolbar_main_title);
 
-        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
 
         // Get profiles
@@ -59,34 +55,16 @@ public class MainActivity extends AppCompatActivity {
         profiles = profileRepository.getAllProfiles();
 
         // Set empty view visibility
-        TextView emptyView = findViewById(R.id.empty_list_item);
+        emptyView = findViewById(R.id.empty_list_item);
         emptyView.setVisibility(profiles.size() == 0 ? View.VISIBLE : View.GONE);
 
         viewPager = findViewById(R.id.main_view_pager);
-        profilePagerAdapter = new ProfilePagerAdapter(getSupportFragmentManager(), profiles);
+        profilePagerAdapter = new ProfilePagerAdapter(getSupportFragmentManager(), profiles, this);
         viewPager.setAdapter(profilePagerAdapter);
+
+        // Set tab_layout tabMode
+        tabLayout.setTabMode(profiles.size() <= 4 ? TabLayout.MODE_FIXED : TabLayout.MODE_SCROLLABLE);
     }
-
-
-
-
-//        // Set Logic components
-//        profileRepository = new ProfileService(this);
-//        profiles = profileRepository.getAllProfiles();
-//        profileListAdapter = new ProfileAdapter(this, R.layout.profile_card_view, profiles);
-//
-//        // Set UI components
-//        profileContainer = findViewById(android.R.id.list);
-//        profileContainer.setEmptyView(findViewById(R.id.empty_list_item));
-//        profileContainer.setAdapter(profileListAdapter);
-//        profileContainer.setClickable(true);
-//        profileContainer.setOnItemClickListener((adapterView, view, i, l) -> {
-//            Profile p = (Profile)profileContainer.getItemAtPosition(i);
-//            Intent profileOverview = new Intent(getBaseContext(), ProfileOverview.class);
-//            profileOverview.putExtra("profileId", p.getId());
-//            startActivity(profileOverview);
-//        });
-//    }
 
     @Override
     protected void onResume() {
@@ -94,8 +72,15 @@ public class MainActivity extends AppCompatActivity {
         // refresh profiles object to display up-to-date listview
         profiles = profileRepository.getAllProfiles();
         // clear adapter and repopulate with fresh profiles data
-        profilePagerAdapter = new ProfilePagerAdapter(getSupportFragmentManager(), profiles);
+        profilePagerAdapter.notifyDataSetChanged(); // notify so FragmentManager refreshes
+        profilePagerAdapter = new ProfilePagerAdapter(getSupportFragmentManager(), profiles, this);
         viewPager.setAdapter(profilePagerAdapter);
+        // Set tab_layout tabMode
+        tabLayout.setTabMode(profiles.size() <= 4 ? TabLayout.MODE_FIXED : TabLayout.MODE_SCROLLABLE);
+
+        // Set empty view visibility
+        emptyView = findViewById(R.id.empty_list_item);
+        emptyView.setVisibility(profiles.size() == 0 ? View.VISIBLE : View.GONE);
     }
 
     // Inflate toolbar menu

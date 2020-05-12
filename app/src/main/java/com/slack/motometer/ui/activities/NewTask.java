@@ -10,11 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.slack.motometer.R;
-import com.slack.motometer.domain.logic.ProfileLogic;
-import com.slack.motometer.domain.model.Profile;
 import com.slack.motometer.domain.model.Task;
 import com.slack.motometer.domain.repositories.ProfileRepository;
 import com.slack.motometer.domain.repositories.TaskRepository;
@@ -30,8 +27,6 @@ public class NewTask extends AppCompatActivity {
     private String profileId;
     private ProfileRepository profileRepository;
     private TaskRepository taskRepository;
-    private Profile profile;
-    private ProfileLogic profileLogic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +49,6 @@ public class NewTask extends AppCompatActivity {
         // Set logic components
         profileRepository = new ProfileService(this);
         taskRepository = new TaskService(this);
-        profile = profileRepository.getProfile(Integer.parseInt(profileId));
-        profileLogic = new ProfileLogic(this);
 
         // Get handle on UI components
         taskNameET = findViewById(R.id.new_task_name_value_et);

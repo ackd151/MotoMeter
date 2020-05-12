@@ -46,7 +46,7 @@ public class TaskLogic implements Comparator<Task> {
     }
 
     // Check if maintenance is due
-    public MaintenanceDue isMaintenanceDue(Profile profile) {
+    public MaintenanceDue isMaintenanceDue() {
         Task dueSoonest = getNextDue(Integer.parseInt(profile.getId()));
         if (dueSoonest == null) {
             return MaintenanceDue.NOT;

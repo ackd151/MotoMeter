@@ -20,7 +20,7 @@ public class NoteService implements NoteRepository {
     private DatabaseHelper dbHelper;
 
     public NoteService(Context context) {
-        dbHelper = new DatabaseHelper(context);
+        dbHelper = DatabaseHelper.getInstance(context);
     }
 
     @Override
@@ -32,7 +32,9 @@ public class NoteService implements NoteRepository {
         contentValues.put(PROFILE_ID, note.getProfileId());
         contentValues.put(NOTES_CONTENT, note.getContents());
 
-        return db.insert(NOTES_TABLE_NAME, null, contentValues);
+        long noteId = db.insert(NOTES_TABLE_NAME, null, contentValues);
+        db.close();
+        return noteId;
     }
 
     @Override
@@ -44,7 +46,9 @@ public class NoteService implements NoteRepository {
         if (cursor != null) {
             cursor.moveToFirst();
         }
-        return new Note(cursor.getString(0), cursor.getString(1), cursor.getString(2));
+        Note note = new Note(cursor.getString(0), cursor.getString(1), cursor.getString(2));
+        db.close();
+        return note;
     }
 
     @Override
@@ -56,7 +60,9 @@ public class NoteService implements NoteRepository {
         if (cursor != null) {
             cursor.moveToFirst();
         }
-        return new Note(cursor.getString(0), cursor.getString(1), cursor.getString(2));
+        Note note = new Note(cursor.getString(0), cursor.getString(1), cursor.getString(2));
+        db.close();
+        return note;
     }
 
     @Override
@@ -66,15 +72,16 @@ public class NoteService implements NoteRepository {
         ContentValues contentValues = new ContentValues();
         contentValues.put(NOTES_CONTENT, note.getContents());
 
-        return db.update(NOTES_TABLE_NAME, contentValues, _ID + "= ?",
+        long rowsAffected = db.update(NOTES_TABLE_NAME, contentValues, _ID + "= ?",
                 new String[]{ note.getId() });
+        db.close();
+        return rowsAffected;
     }
 
     // Just clearing the notes, not deleting the record as it should always exist
     // change if/when better approach learned
     @Override
     public void deleteNote(Note note) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
         String clearedNotes = "";
         updateNote(new Note(note.getId(), note.getProfileId(), clearedNotes));
     }

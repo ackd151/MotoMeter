@@ -1,7 +1,6 @@
 package com.slack.motometer.utilities;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 import java.io.ByteArrayOutputStream;
 

@@ -5,18 +5,14 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.slack.motometer.R;
-import com.slack.motometer.domain.logic.ProfileLogic;
 import com.slack.motometer.domain.logic.TaskLogic;
 import com.slack.motometer.domain.model.Profile;
 import com.slack.motometer.domain.model.Task;

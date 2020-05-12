@@ -26,7 +26,7 @@ public class ImageService implements ImageRepository {
     private Context context;
 
     public ImageService(Context context) {
-        dbHelper = new DatabaseHelper(context);
+        dbHelper = DatabaseHelper.getInstance(context);
         this.context = context;
     }
 
@@ -72,8 +72,10 @@ public class ImageService implements ImageRepository {
         }
         Bitmap image = BitmapFactory.decodeFile(cursor.getString(2));
 
-        return new ProfileImage(cursor.getString(0), cursor.getString(1),
+        ProfileImage profileImage = new ProfileImage(cursor.getString(0), cursor.getString(1),
                 cursor.getString(2), image);
+        db.close();
+        return profileImage;
     }
 
     // Overwrite filepath "{profileId}.jpeg" with new image byte[]

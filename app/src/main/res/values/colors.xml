@@ -13,5 +13,6 @@
     <color name="page_background">#FF393E46</color>
     <color name="accent">#FF00ADB5</color>
     <color name="accent_pressed">#00DDB5</color>
-    <color name="light">#FFEEEEEE</color>
+    <color name="textColor">#FFEEEEEE</color>
+    <color name="opaqueTextColor">#77EEEEEE</color>
 </resources>

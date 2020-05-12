@@ -23,7 +23,7 @@ public class ChecklistService implements ChecklistRepository {
     private DatabaseHelper dbHelper;
 
     public ChecklistService(Context context) {
-        dbHelper = new DatabaseHelper(context);
+        dbHelper = DatabaseHelper.getInstance(context);
     }
 
     @Override
@@ -35,7 +35,9 @@ public class ChecklistService implements ChecklistRepository {
         contentValues.put(CL_ITEM_TITLE, checklistItem.getClItemTitle());
         contentValues.put(CL_ITEM_COMPLETE, checklistItem.isComplete());
 
-        return db.insert(CHECKLIST_TABLE_NAME, null, contentValues);
+        long checklistItemId = db.insert(CHECKLIST_TABLE_NAME, null, contentValues);
+        db.close();
+        return checklistItemId;
     }
 
     @Override
@@ -47,8 +49,10 @@ public class ChecklistService implements ChecklistRepository {
         if (c != null) {
             c.moveToFirst();
         }
-        return new ChecklistItem(c.getString(0), c.getString(1), c.getString(2),
+        ChecklistItem checklistItem = new ChecklistItem(c.getString(0), c.getString(1), c.getString(2),
                 c.getInt(3) == 1);
+        db.close();
+        return checklistItem;
     }
 
     @Override
@@ -68,6 +72,7 @@ public class ChecklistService implements ChecklistRepository {
                         c.getInt(3) == 1));
             } while (c.moveToNext());
         }
+        db.close();
         return tasks;
     }
 
@@ -80,8 +85,10 @@ public class ChecklistService implements ChecklistRepository {
         contentValues.put(CL_ITEM_TITLE, checklistItem.getClItemTitle());
         contentValues.put(CL_ITEM_COMPLETE, checklistItem.isComplete());
 
-        return db.update(CHECKLIST_TABLE_NAME, contentValues, _ID + "= ?",
+        long rowsAffected = db.update(CHECKLIST_TABLE_NAME, contentValues, _ID + "= ?",
                 new String[]{ checklistItem.getId() });
+        db.close();
+        return rowsAffected;
     }
 
     @Override
@@ -89,6 +96,7 @@ public class ChecklistService implements ChecklistRepository {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.delete(CHECKLIST_TABLE_NAME, _ID + "= ?",
                 new String[] { checklistItem.getId() });
+        db.close();
     }
 
 }

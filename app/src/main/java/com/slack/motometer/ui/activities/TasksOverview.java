@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.slack.motometer.R;
 import com.slack.motometer.domain.logic.ProfileLogic;
-import com.slack.motometer.domain.logic.TaskLogic;
 import com.slack.motometer.domain.model.Profile;
 import com.slack.motometer.domain.model.Task;
 import com.slack.motometer.domain.repositories.ProfileRepository;
@@ -23,7 +22,6 @@ import com.slack.motometer.domain.services.ProfileService;
 import com.slack.motometer.domain.services.TaskService;
 import com.slack.motometer.ui.adapters.TaskAdapter;
 
-import java.util.Collections;
 import java.util.List;
 
 public class TasksOverview extends AppCompatActivity {

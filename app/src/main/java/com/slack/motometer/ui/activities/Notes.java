@@ -8,10 +8,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.slack.motometer.R;
-import com.slack.motometer.domain.logic.ProfileLogic;
 import com.slack.motometer.domain.model.Note;
 import com.slack.motometer.domain.model.Profile;
 import com.slack.motometer.domain.repositories.NoteRepository;

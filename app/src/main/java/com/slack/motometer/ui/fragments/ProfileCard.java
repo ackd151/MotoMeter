@@ -6,7 +6,6 @@ import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -67,7 +66,7 @@ public class ProfileCard extends Fragment {
         ChecklistLogic checklistLogic;
         Task nextTask;
         // Get handle on context.getResources to reduce calls below
-        Resources resources = Objects.requireNonNull(getContext()).getResources();
+        Resources resources = Objects.requireNonNull(context).getResources();
 
         // Set Logic components
         profileRepository = new ProfileService(context);
@@ -93,7 +92,7 @@ public class ProfileCard extends Fragment {
         profileHoursTV.setText(profile.getHours());
         // Set maintenance indicator (i.e. wrench icon color/visibility)
         TaskLogic.MaintenanceDue due =
-                new TaskLogic(context, profile.getId()).isMaintenanceDue(profile);
+                new TaskLogic(context, profile.getId()).isMaintenanceDue();
         if (due == TaskLogic.MaintenanceDue.NOT) {
             maintenanceIconTV.setVisibility(View.GONE);
         } else if (due == TaskLogic.MaintenanceDue.SOON) {

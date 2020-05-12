@@ -4,13 +4,11 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import com.slack.motometer.R;
@@ -56,6 +54,7 @@ public class NewProfile extends AppCompatActivity {
                 if (editTextNotEmpty(yearET) && editTextNotEmpty(makeET) &&
                         editTextNotEmpty(modelET) && editTextNotEmpty(hoursET)) {
                     createProfile(view);
+                    finish();
                 }
             }
         });
@@ -100,11 +99,7 @@ public class NewProfile extends AppCompatActivity {
         String makeValue = makeET.getText().toString();
         String modelValue = modelET.getText().toString();
         String hourmeterValue = hoursET.getText().toString();
-        profileRepository = new ProfileService(this);
         profileRepository.addProfile(new Profile(yearValue, makeValue, modelValue, hourmeterValue));
-
-//        setResult(Activity.RESULT_OK); // not using?
-        finish();
     }
 
     // Helper method to validate user input in edittext fields
