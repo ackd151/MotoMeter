@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_nav_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/bottom_nav_home"/>
+    <item
+        android:id="@+id/bottom_nav_maintenance"
+        android:enabled="true"
+        android:icon="@drawable/ic_maintenance"
+        android:title="@string/bottom_nav_maintenance"/>
+    <item
+        android:id="@+id/bottom_nav_post_ride"
+        android:enabled="true"
+        android:icon="@drawable/ic_post_ride"
+        android:title="@string/bottom_nav_post_ride"/>
+    <item
+        android:id="@+id/bottom_nav_pre_ride"
+        android:enabled="true"
+        android:icon="@drawable/ic_checklist"
+        android:title="@string/bottom_nav_pre_ride"/>
+    <item
+        android:id="@+id/bottom_nav_notes"
+        android:enabled="true"
+        android:icon="@drawable/ic_notes"
+        android:title="@string/bottom_nav_notes"/>
+</menu>

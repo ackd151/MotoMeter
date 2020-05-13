@@ -71,6 +71,7 @@
     <string name="profile_card_view_hrs"> hrs.</string>
     <string name="profile_card_view_no_maintenance_due">No Maintenance Due</string>
     <string name="profile_card_view_maintenance_due">Maintenance Due Soon</string>
+    <string name="profile_card_no_tasks">No tasks being tracked</string>
 
     <!-- task_card_view layout strings -->
     <string name="task_card_view_due_in">Maintenance due in</string>
@@ -119,11 +120,11 @@
     <string name="toolbar_tasks_overview_icon_add">new task</string>
 
     <!-- bottom navbar strings -->
-    <string name="navbar_home">home</string>
-    <string name="navbar_maintenance">maintenance</string>
-    <string name="navbar_post_ride">post-ride</string>
-    <string name="navbar_pre_ride">pre-ride</string>
-    <string name="navbar_notes">notes</string>
+    <string name="bottom_nav_home">home</string>
+    <string name="bottom_nav_maintenance">maintenance</string>
+    <string name="bottom_nav_post_ride">post-ride</string>
+    <string name="bottom_nav_pre_ride">pre-ride</string>
+    <string name="bottom_nav_notes">notes</string>
 
     <!-- validation error strings -->
     <string name="validation_entry_required">entry required</string>
@@ -145,8 +146,5 @@
 
     <!-- non localized strings -->
     <string name="hours">hours</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

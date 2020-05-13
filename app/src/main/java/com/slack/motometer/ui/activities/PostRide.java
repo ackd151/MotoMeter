@@ -72,21 +72,26 @@ public class PostRide extends AppCompatActivity {
         BottomNavigationView navBar = findViewById(R.id.post_ride_nav_bar);
         navBar.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
-                case R.id.post_ride_nav_home:
+                case R.id.bottom_nav_home:
                     Intent homeIntent = new Intent(getBaseContext(), MainActivity.class);
                     startActivity(homeIntent);
                     return true;
-                case R.id.post_ride_nav_maintenance:
+                case R.id.bottom_nav_maintenance:
                     Intent maintenanceIntent = new Intent(getBaseContext(), TasksOverview.class);
                     maintenanceIntent.putExtra("profileId", profileId);
                     startActivity(maintenanceIntent);
                     return true;
-                case R.id.post_ride_nav_pre_ride:
+                case R.id.bottom_nav_post_ride:
+                    Intent postRideIntent = new Intent(getBaseContext(), PostRide.class);
+                    postRideIntent.putExtra("profileId", profileId);
+                    startActivity(postRideIntent);
+                    return true;
+                case R.id.bottom_nav_pre_ride:
                     Intent preRideIntent = new Intent(getBaseContext(), PreRide.class);
                     preRideIntent.putExtra("profileId", profileId);
                     startActivity(preRideIntent);
                     return true;
-                case R.id.post_ride_nav_notes:
+                case R.id.bottom_nav_notes:
                     Intent notesIntent = new Intent(getBaseContext(), Notes.class);
                     notesIntent.putExtra("profileId", profileId);
                     startActivity(notesIntent);

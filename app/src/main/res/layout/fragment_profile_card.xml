@@ -4,14 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraint_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="10dp">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_card"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="5dp"
         android:background="@drawable/accent_color_border"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -65,8 +63,8 @@
 
         <TextView
             android:id="@+id/profile_card_wrench_tv"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="16dp"
             android:background="@android:drawable/ic_menu_manage"
             app:layout_constraintBaseline_toBaselineOf="@+id/profile_card_hrs_tv"
@@ -77,16 +75,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_card_upcoming_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/profile_card_hrs_value_tv" />
 
         <TextView
             android:id="@+id/profile_card_insp_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:text="Pre-ride Inspection Status"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintStart_toStartOf="parent"
@@ -94,9 +93,9 @@
 
         <TextView
             android:id="@+id/profile_card_insp_status_tv"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="18dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintBaseline_toBaselineOf="@+id/profile_card_insp_tv"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -118,11 +117,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
             android:text="Upcoming:"
             android:textColor="@color/opaqueTextColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_card_hrs_value_tv" />
+            app:layout_constraintBottom_toTopOf="@+id/profile_card_task_tv"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/profile_card_task_hrs_value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="TextView"
+            app:layout_constraintBaseline_toBaselineOf="@+id/profile_card_task_tv"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

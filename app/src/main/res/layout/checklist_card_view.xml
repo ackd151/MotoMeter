@@ -34,4 +34,5 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBaseline_toBaselineOf="@+id/checklist_card_delete_btn"
         app:layout_constraintStart_toEndOf="@+id/checklist_card_delete_btn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

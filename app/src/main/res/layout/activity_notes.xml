@@ -6,25 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.Notes">
 
-    <EditText
-        android:id="@+id/notes_content_et"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/accent_color_border"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine|textNoSuggestions"
-        android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/notes_nav_bar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notes_header_f" />
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/notes_toolbar"
         android:layout_width="0dp"
@@ -36,17 +17,60 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:id="@+id/notes_header_top_border"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/opaqueTextColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notes_toolbar" />
+
     <fragment
         android:id="@+id/notes_header_f"
         android:name="com.slack.motometer.ui.fragments.ProfileHeader"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notes_header_top_border" />
+
+    <View
+        android:id="@+id/notes_header_bottom_border"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/opaqueTextColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notes_toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/notes_header_f" />
+
+    <EditText
+        android:id="@+id/notes_content_et"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/accent_color_border"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine|textNoSuggestions"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/notes_nav_bar_top_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notes_header_f" />
+
+    <View
+        android:id="@+id/notes_nav_bar_top_border"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/opaqueTextColor"
+        app:layout_constraintBottom_toTopOf="@+id/notes_nav_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/notes_nav_bar"
@@ -57,6 +81,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/notes_nav_menu" />
+        app:menu="@menu/bottom_navigation_view_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

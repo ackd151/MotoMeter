@@ -54,7 +54,8 @@ public class ProfileCard extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile_card, container, false);
 
         // UI components
-        TextView profileTitleTV, profileHoursTV, maintenanceIconTV, nextTaskTV, inspStatusTV;
+        TextView profileTitleTV, profileHoursTV, maintenanceIconTV, nextTaskTV, inspStatusTV,
+                taskHoursTV;
         ImageView profileImageIV;
 
         // Logic components
@@ -84,6 +85,7 @@ public class ProfileCard extends Fragment {
         maintenanceIconTV = view.findViewById(R.id.profile_card_wrench_tv);
         nextTaskTV = view.findViewById(R.id.profile_card_task_tv);
         inspStatusTV = view.findViewById(R.id.profile_card_insp_status_tv);
+        taskHoursTV = view.findViewById(R.id.profile_card_task_hrs_value_tv);
 
         // Set UI components
         profileTitleTV.setText(new ProfileLogic(context).getProfileTitle(profile));
@@ -102,7 +104,20 @@ public class ProfileCard extends Fragment {
             maintenanceIconTV.getBackground().setColorFilter(resources
                     .getColor(R.color.danger), PorterDuff.Mode.SRC_ATOP);
         }
-        nextTaskTV.setText(nextTask == null? "No tasks being tracked" : nextTask.getTaskTitle());
+        // combine into if
+        if (nextTask == null) {
+            nextTaskTV.setText(R.string.profile_card_no_tasks);
+            taskHoursTV.setVisibility(View.GONE);
+        } else {
+            nextTaskTV.setText(nextTask.getTaskTitle());
+            taskHoursTV.setVisibility(View.VISIBLE);
+            taskHoursTV.setText(taskLogic.getRemainingHours(nextTask));
+            taskHoursTV.setTextColor(due == TaskLogic.MaintenanceDue.NOT ?
+                    resources.getColor(R.color.accent_pressed) :
+                    due == TaskLogic.MaintenanceDue.SOON ?
+                            resources.getColor(R.color.caution) :
+                            resources.getColor(R.color.danger));
+        }
         inspStatusTV.setBackgroundColor(
             checklistLogic.isReady(checklistRepository
                     .getProfileChecklistItems(Integer.parseInt(profileId))) ?
