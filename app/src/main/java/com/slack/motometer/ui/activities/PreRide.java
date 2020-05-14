@@ -140,6 +140,11 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
                         isChecklistComplete();
                     });
                 }
+                return true;
+            case R.id.toolbar_pre_ride_delete_all_cl_items:
+                checklistRepository.deleteAllChecklistItems(checklistItems);
+                onResume();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -158,6 +163,7 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
         checklistAdapter = new ChecklistAdapter(this, R.layout.checklist_card_view,
                 checklistItems, this);
         checklistItemContainer.setAdapter(checklistAdapter);
+        isChecklistComplete();
     }
 
     // Used when returning from adding new inspection task, to set readyNotReady textview
@@ -165,7 +171,8 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1  && resultCode  == RESULT_OK) {
-            isChecklistComplete();
+            onResume();
+//            isChecklistComplete();
         }
     }
 

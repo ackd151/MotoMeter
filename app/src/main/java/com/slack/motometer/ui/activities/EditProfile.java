@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.slack.motometer.R;
 import com.slack.motometer.domain.model.Profile;
@@ -33,8 +34,9 @@ import java.io.IOException;
 public class EditProfile extends AppCompatActivity {
 
     // UI components
-    private ImageView imageView;
-    private EditText yearValue, makeValue, modelValue, hoursValue;
+    private ImageView profileImageIV;
+    private EditText yearValueET, makeValueET, modelValueET, hoursValueET;
+    private TextView infoPanelTV;
 
     // Logic components
     private String profileId;
@@ -69,25 +71,27 @@ public class EditProfile extends AppCompatActivity {
         profileImage = imageRepository.getImageByProfileId(profileId);
 
         // Get handle on UI components
-        imageView = findViewById(R.id.edit_profile_iv);
-        yearValue = findViewById(R.id.edit_profile_year_value_et);
-        makeValue = findViewById(R.id.edit_profile_make_value_et);
-        modelValue = findViewById(R.id.edit_profile_model_value_et);
-        hoursValue = findViewById(R.id.edit_profile_hours_value_et);
+        profileImageIV = findViewById(R.id.edit_profile_iv);
+        yearValueET = findViewById(R.id.edit_profile_year_value_et);
+        makeValueET = findViewById(R.id.edit_profile_make_value_et);
+        modelValueET = findViewById(R.id.edit_profile_model_value_et);
+        hoursValueET = findViewById(R.id.edit_profile_hours_value_et);
+        infoPanelTV = findViewById(R.id.information_tv);
 
         // Set UI components
-        imageView.setImageBitmap(profileImage.getImage());
-        imageView.setClickable(true);
-        yearValue.setText(profile.getYear());
-        yearValue.setSelectAllOnFocus(true);
-        makeValue.setText(profile.getMake());
-        makeValue.setSelectAllOnFocus(true);
-        modelValue.setText(profile.getModel());
-        modelValue.setSelectAllOnFocus(true);
-        hoursValue.setText(profile.getHours());
-        hoursValue.setSelectAllOnFocus(true);
+        profileImageIV.setImageBitmap(profileImage.getImage());
+        profileImageIV.setClickable(true);
+        yearValueET.setText(profile.getYear());
+        yearValueET.setSelectAllOnFocus(true);
+        makeValueET.setText(profile.getMake());
+        makeValueET.setSelectAllOnFocus(true);
+        modelValueET.setText(profile.getModel());
+        modelValueET.setSelectAllOnFocus(true);
+        hoursValueET.setText(profile.getHours());
+        hoursValueET.setSelectAllOnFocus(true);
+        infoPanelTV.setText(R.string.activity_edit_profile_information);
         // Set imageView onClick to show dialog prompt for photo selection (camera/gallery)
-        imageView.setOnClickListener(new View.OnClickListener() {
+        profileImageIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showPhotoSelectDialog();
@@ -119,11 +123,11 @@ public class EditProfile extends AppCompatActivity {
                 return true;
             // Clear edit profile fields
             case R.id.toolbar_edit_profile_icon_clear:
-                yearValue.setText("");
-                makeValue.setText("");
-                modelValue.setText("");
-                hoursValue.setText("");
-                yearValue.requestFocus();
+                yearValueET.setText("");
+                makeValueET.setText("");
+                modelValueET.setText("");
+                hoursValueET.setText("");
+                yearValueET.requestFocus();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -132,8 +136,8 @@ public class EditProfile extends AppCompatActivity {
 
     // Helper method to validate all edittexts in edit profile activity
     private boolean validateEditProfileForm() {
-        if (validateEditText(yearValue) && validateEditText(makeValue)
-                && validateEditText(modelValue) && validateEditText(hoursValue)) {
+        if (validateEditText(yearValueET) && validateEditText(makeValueET)
+                && validateEditText(modelValueET) && validateEditText(hoursValueET)) {
             return true;
         }
         return false;
@@ -151,9 +155,9 @@ public class EditProfile extends AppCompatActivity {
 
     // Helper method to save profile edits to db
     private void saveProfileEdits() {
-        profileRepository.updateProfile(new Profile(profile.getId(), yearValue.getText().toString(),
-                makeValue.getText().toString(), modelValue.getText().toString(),
-                hoursValue.getText().toString()));
+        profileRepository.updateProfile(new Profile(profile.getId(), yearValueET.getText().toString(),
+                makeValueET.getText().toString(), modelValueET.getText().toString(),
+                hoursValueET.getText().toString()));
     }
 
     // Helper method to build/show photo select dialog
@@ -228,7 +232,7 @@ public class EditProfile extends AppCompatActivity {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
                 // Set profile image view
-                imageView.setImageBitmap(bitmap);
+                profileImageIV.setImageBitmap(bitmap);
                 // Save image to db
                 profileImage.setImage(bitmap);
                 imageRepository.updateImage(profileImage);
@@ -245,7 +249,7 @@ public class EditProfile extends AppCompatActivity {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 90, byteArrayOutputStream);
         // Set profile image view
-        imageView.setImageBitmap(bitmap);
+        profileImageIV.setImageBitmap(bitmap);
         // Save image to db
         profileImage.setImage(bitmap);
         imageRepository.updateImage(profileImage);

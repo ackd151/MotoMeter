@@ -10,6 +10,7 @@ import com.slack.motometer.domain.model.ChecklistItem;
 import com.slack.motometer.domain.repositories.ChecklistRepository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.slack.motometer.domain.db.DatabaseHelper.CHECKLIST_TABLE_NAME;
 import static com.slack.motometer.domain.db.DatabaseHelper.CL_ITEM_COMPLETE;
@@ -99,4 +100,10 @@ public class ChecklistService implements ChecklistRepository {
         db.close();
     }
 
+    @Override
+    public void deleteAllChecklistItems(List<ChecklistItem> checklistItems) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete(CHECKLIST_TABLE_NAME, null, null);
+        db.close();
+    }
 }

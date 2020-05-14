@@ -16,4 +16,6 @@ public interface ChecklistRepository {
 
     void deleteChecklistItem(ChecklistItem checklistItem);
 
+    void deleteAllChecklistItems(List<ChecklistItem> checklistItems);
+
 }

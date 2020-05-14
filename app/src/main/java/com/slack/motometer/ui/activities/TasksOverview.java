@@ -28,8 +28,8 @@ import java.util.List;
 public class TasksOverview extends AppCompatActivity {
 
     // UI components
-    private ListView taskContainer;
-    private TextView profileTitle, profileHoursValue;
+    private ListView taskContainerLV;
+    private TextView profileTitleTV, profileHoursValueTV, infoPanelTV;
 
     // Logic components
     private ProfileRepository profileRepository;
@@ -54,6 +54,7 @@ public class TasksOverview extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        // Set Logic components
         // getExtra - active profile ID
         profileId = getIntent().getExtras().getString("profileId");
 
@@ -66,26 +67,28 @@ public class TasksOverview extends AppCompatActivity {
         tasks = taskRepository.getProfileTasks(Integer.parseInt(profileId));
 
         // Get handle on UI elements
-        profileTitle = findViewById(R.id.profile_header_title_tv);
-        profileHoursValue = findViewById(R.id.profile_header_hours_value_tv);
+        profileTitleTV = findViewById(R.id.profile_header_title_tv);
+        profileHoursValueTV = findViewById(R.id.profile_header_hours_value_tv);
+        infoPanelTV = findViewById(R.id.information_tv);
 
         // Set UI element values
-        profileTitle.setText(new ProfileLogic(this).getProfileTitle(profile));
-        profileHoursValue.setText(profile.getHours());
+        profileTitleTV.setText(new ProfileLogic(this).getProfileTitle(profile));
+        profileHoursValueTV.setText(profile.getHours());
+        infoPanelTV.setText(R.string.activity_tasks_overview_information);
 
         // Create and set adapter for ListView
         taskAdapter = new TaskAdapter(this, R.layout.task_card_view, tasks);
-        taskContainer = findViewById(R.id.taskListView);
-        taskContainer.setAdapter(taskAdapter);
+        taskContainerLV = findViewById(R.id.tasks_overview_tasks_list_view_lv);
+        taskContainerLV.setAdapter(taskAdapter);
 
         // Set view to display message when no Task(s) have been created for the active profile
-        taskContainer.setEmptyView(findViewById(R.id.empty_task_item));
+        taskContainerLV.setEmptyView(findViewById(R.id.empty_task_item));
 
         // Make ListView items clickable and set listener/handler
-        taskContainer.setClickable(true);
-        taskContainer.setOnItemClickListener((adapterView, view, i, l) -> {
+        taskContainerLV.setClickable(true);
+        taskContainerLV.setOnItemClickListener((adapterView, view, i, l) -> {
             // start task sign off activity
-            Task task = (Task)taskContainer.getItemAtPosition(i);
+            Task task = (Task) taskContainerLV.getItemAtPosition(i);
             Intent taskSignoffActivity = new Intent(getBaseContext(), TaskSignOff.class);
             taskSignoffActivity.putExtra("taskId", task.getId());
             taskSignoffActivity.putExtra("profileId", profileId);

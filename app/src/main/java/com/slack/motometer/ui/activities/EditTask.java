@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.slack.motometer.R;
 import com.slack.motometer.domain.model.Profile;
@@ -20,7 +21,8 @@ import com.slack.motometer.domain.services.TaskService;
 public class EditTask extends AppCompatActivity {
 
     // UI components
-    private EditText nameValue, intervalValue, completedAtValue;
+    private EditText nameValueET, intervalValueET, completedAtValueET;
+    private TextView infoPanelTV;
 
     // Logic components
     private String taskId;
@@ -52,17 +54,19 @@ public class EditTask extends AppCompatActivity {
         profile = profileRepository.getProfile(Integer.parseInt(task.getProfileId()));
 
         // Get handle on UI components
-        nameValue = findViewById(R.id.edit_task_name_value_et);
-        intervalValue = findViewById(R.id.edit_task_interval_value_et);
-        completedAtValue = findViewById(R.id.edit_task_completed_at_value_et);
+        nameValueET = findViewById(R.id.edit_task_name_value_et);
+        intervalValueET = findViewById(R.id.edit_task_interval_value_et);
+        completedAtValueET = findViewById(R.id.edit_task_completed_at_value_et);
+        infoPanelTV = findViewById(R.id.information_tv);
 
         // Set UI components
-        nameValue.setText(task.getTaskTitle());
-        nameValue.setSelectAllOnFocus(true);
-        intervalValue.setText(String.valueOf(task.getInterval()));
-        intervalValue.setSelectAllOnFocus(true);
-        completedAtValue.setText(String.valueOf(task.getLastCompletedAt()));
-        completedAtValue.setSelectAllOnFocus(true);
+        nameValueET.setText(task.getTaskTitle());
+        nameValueET.setSelectAllOnFocus(true);
+        intervalValueET.setText(String.valueOf(task.getInterval()));
+        intervalValueET.setSelectAllOnFocus(true);
+        completedAtValueET.setText(String.valueOf(task.getLastCompletedAt()));
+        completedAtValueET.setSelectAllOnFocus(true);
+        infoPanelTV.setText(R.string.activity_edit_task_information);
     }
 
     // Inflate toolbar menu
@@ -89,10 +93,10 @@ public class EditTask extends AppCompatActivity {
                 return true;
             // Clear edit profile fields
             case R.id.toolbar_edit_task_icon_clear:
-                nameValue.setText("");
-                intervalValue.setText("");
-                completedAtValue.setText("");
-                nameValue.requestFocus();
+                nameValueET.setText("");
+                intervalValueET.setText("");
+                completedAtValueET.setText("");
+                nameValueET.requestFocus();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -101,8 +105,8 @@ public class EditTask extends AppCompatActivity {
 
     // Helper method to validate all edittexts in edit profile activity
     private boolean validateEditTaskForm() {
-        if (validateEditText(nameValue) && validateEditText(intervalValue)
-                && validateEditText(completedAtValue)) {
+        if (validateEditText(nameValueET) && validateEditText(intervalValueET)
+                && validateEditText(completedAtValueET)) {
             return true;
         }
         return false;
@@ -121,7 +125,7 @@ public class EditTask extends AppCompatActivity {
     // Helper method to save profile edits to db
     private void saveTaskEdits() {
         taskRepository.updateTask(new Task(task.getId(), task.getProfileId(),
-                nameValue.getText().toString(), intervalValue.getText().toString(),
-                completedAtValue.getText().toString()));
+                nameValueET.getText().toString(), intervalValueET.getText().toString(),
+                completedAtValueET.getText().toString()));
     }
 }

@@ -54,7 +54,7 @@
     <string name="activity_profile_overview_notes">Notes / Specs</string>
 
     <!-- activity_task_sign_off layout strings -->
-    <string name="activity_task_sign_off_interval">Interval:</string>
+    <string name="activity_task_sign_off_interval">Maintenance interval:</string>
     <string name="activity_task_sign_off_last_at">Last completed at:</string>
     <string name="activity_task_sign_off_due_in">Maintenance due in:</string>
     <string name="activity_task_sign_off_at">Sign off at:</string>
@@ -107,6 +107,7 @@
     <string name="toolbar_pre_ride_title">Pre-Ride Inspection</string>
     <string name="toolbar_pre_ride_icon_add">Add</string>
     <string name="toolbar_pre_ride_delete_title">delete item</string>
+    <string name="toolbar_pre_ride_delete_all_title">delete all</string>
     <!-- toolbar for activity_profile_overview strings -->
     <string name="toolbar_profile_overview_title">Profile Overview</string>
     <string name="toolbar_profile_overview_icon_edit">edit profile</string>
@@ -142,9 +143,30 @@
         Permanently delete this checklist item?</string>
     <string name="alert_dialog_confirm">CONFIRM</string>
     <string name="alert_dialog_cancel">CANCEL</string>
+    <string name="alert_dialog_notify_saved">saved</string>
+
+    <!-- activity_information strings -->
+    <!-- activity_task_sign_off information strings -->
+    <string name="activity_edit_profile_information">Edit blah</string>
+    <string name="activity_edit_task_information">Edit blah</string>
+    <string name="activity_main_information">Select the + icon in the toolbar menu above
+        to create a new motorcycle profile.\n\nYou can switch between profiles by swiping left/right
+        or by using the tabs above.\n\nTouch anywhere in the main view to interact with the
+        corresponding profile</string>
+    <string name="activity_task_sign_off_information">The selected task can be signed off at any
+        value up to the current hourmeter reading.\n\nMaintenace tasks can be edited or deleted by
+        selecting the corresponding option in the toolbar menu above.</string>
+    <string name="activity_tasks_overview_information">Select the + icon in the toolbar menu above
+        to create a new maintenance task to be tracked.\n\nSelect an existing task to sign-off,
+        edit, or delete that task.\n\nThe navigation tabs below will open the corresponding profile
+        action pages.\n\nSelecting the home tab will return to the profile select screen.</string>
 
 
     <!-- non localized strings -->
     <string name="hours">hours</string>
+    <string name="help">Help/Info</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

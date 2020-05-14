@@ -8,31 +8,31 @@
 
     <Button
         android:id="@+id/checklist_card_delete_btn"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="8dp"
         android:background="@drawable/button_cancel"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/checklist_card_title_tv"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
         android:id="@+id/checklist_card_complete_cb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:text="@string/checklist_card_view_complete"
-        app:layout_constraintBaseline_toBaselineOf="@+id/checklist_card_title_tv"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/checklist_card_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBaseline_toBaselineOf="@+id/checklist_card_delete_btn"
+        app:layout_constraintBaseline_toBaselineOf="@+id/checklist_card_complete_cb"
         app:layout_constraintStart_toEndOf="@+id/checklist_card_delete_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

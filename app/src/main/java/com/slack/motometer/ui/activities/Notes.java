@@ -1,11 +1,13 @@
 package com.slack.motometer.ui.activities;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -18,6 +20,8 @@ import com.slack.motometer.domain.repositories.NoteRepository;
 import com.slack.motometer.domain.repositories.ProfileRepository;
 import com.slack.motometer.domain.services.NoteService;
 import com.slack.motometer.domain.services.ProfileService;
+
+import java.util.concurrent.TimeUnit;
 
 public class Notes extends AppCompatActivity {
 
@@ -117,7 +121,11 @@ public class Notes extends AppCompatActivity {
             case R.id.toolbar_notes_icon_save:
                 noteRepository.updateNote(new Note(note.getId(), note.getProfileId(),
                         noteContents.getText().toString()));
-                finish();
+                // Show and dismiss notify notes saved alert dialog
+                AlertDialog notifySavedDialog = createNotifySavedDialog();
+                notifySavedDialog.show();
+                Runnable dismissNotifySavedDialog = notifySavedDialog::dismiss;
+                new Handler().postDelayed( dismissNotifySavedDialog, 1000 );
                 return true;
             // Clear notes and record in db
             case R.id.toolbar_notes_icon_clear:
@@ -128,5 +136,13 @@ public class Notes extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private AlertDialog createNotifySavedDialog() {
+        return new AlertDialog.Builder(this)
+                .setTitle("Notes Saved")
+                .setMessage("")
+                .setIcon(R.drawable.ic_check_mark)
+                .create();
     }
 }

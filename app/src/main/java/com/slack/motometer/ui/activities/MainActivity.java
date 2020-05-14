@@ -25,9 +25,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     // UI components
-    private ViewPager viewPager;
-    private TabLayout tabLayout;
-    private TextView emptyView;
+    private ViewPager viewPagerVP;
+    private TabLayout tabLayoutTL;
+    private TextView emptyViewTV, infoPanelTV;
 
     // Logic Components
     private FragmentStatePagerAdapter profilePagerAdapter;
@@ -47,23 +47,27 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(R.string.toolbar_main_title);
 
-        tabLayout = findViewById(R.id.tab_layout);
-        tabLayout.setupWithViewPager(viewPager);
+        tabLayoutTL = findViewById(R.id.tab_layout);
+        tabLayoutTL.setupWithViewPager(viewPagerVP);
 
-        // Get profiles
+        // Set Logic components
         profileRepository = new ProfileService(this);
         profiles = profileRepository.getAllProfiles();
 
+        // Set UI components
         // Set empty view visibility
-        emptyView = findViewById(R.id.empty_list_item);
-        emptyView.setVisibility(profiles.size() == 0 ? View.VISIBLE : View.GONE);
-
-        viewPager = findViewById(R.id.main_view_pager);
+        emptyViewTV = findViewById(R.id.empty_list_item);
+        emptyViewTV.setVisibility(profiles.size() == 0 ? View.VISIBLE : View.GONE);
+        // Set view pager
+        viewPagerVP = findViewById(R.id.main_view_pager);
         profilePagerAdapter = new ProfilePagerAdapter(getSupportFragmentManager(), profiles, this);
-        viewPager.setAdapter(profilePagerAdapter);
-
+        viewPagerVP.setAdapter(profilePagerAdapter);
         // Set tab_layout tabMode
-        tabLayout.setTabMode(profiles.size() <= 4 ? TabLayout.MODE_FIXED : TabLayout.MODE_SCROLLABLE);
+        tabLayoutTL.setTabMode(profiles.size() <= 4 ? TabLayout.MODE_FIXED : TabLayout.MODE_SCROLLABLE);
+        // Set infoPanel fragment text
+        infoPanelTV = findViewById(R.id.information_tv);
+        infoPanelTV.setText(R.string.activity_main_information);
+
     }
 
     @Override
@@ -74,13 +78,13 @@ public class MainActivity extends AppCompatActivity {
         // clear adapter and repopulate with fresh profiles data
         profilePagerAdapter.notifyDataSetChanged(); // notify so FragmentManager refreshes
         profilePagerAdapter = new ProfilePagerAdapter(getSupportFragmentManager(), profiles, this);
-        viewPager.setAdapter(profilePagerAdapter);
+        viewPagerVP.setAdapter(profilePagerAdapter);
         // Set tab_layout tabMode
-        tabLayout.setTabMode(profiles.size() <= 4 ? TabLayout.MODE_FIXED : TabLayout.MODE_SCROLLABLE);
+        tabLayoutTL.setTabMode(profiles.size() <= 4 ? TabLayout.MODE_FIXED : TabLayout.MODE_SCROLLABLE);
 
         // Set empty view visibility
-        emptyView = findViewById(R.id.empty_list_item);
-        emptyView.setVisibility(profiles.size() == 0 ? View.VISIBLE : View.GONE);
+        emptyViewTV = findViewById(R.id.empty_list_item);
+        emptyViewTV.setVisibility(profiles.size() == 0 ? View.VISIBLE : View.GONE);
     }
 
     // Inflate toolbar menu

@@ -24,9 +24,8 @@ import com.slack.motometer.domain.services.TaskService;
 public class TaskSignOff extends AppCompatActivity {
 
     // UI components
-    private TextView taskTitle, taskDueIn, taskIntervalValue,
-            taskLastAtValue;
-    private EditText signOffValue;
+    private TextView taskTitleTV, taskDueInTV, taskIntervalValueTV, taskLastAtValueTV, infoPanelTV;
+    private EditText signOffValueET;
 
     // Logic components
     private ProfileRepository profileRepository;
@@ -62,27 +61,30 @@ public class TaskSignOff extends AppCompatActivity {
         taskLogic = new TaskLogic(this, profile.getId());
 
         // Get handle on UI components
-        taskTitle = findViewById(R.id.task_sign_off_task_title_tv);
-        taskDueIn = findViewById(R.id.task_sign_off_value_tv);
-        signOffValue = findViewById(R.id.task_sign_off_value_et);
-        taskIntervalValue = findViewById(R.id.task_sign_off_interval_value_tv);
-        taskLastAtValue = findViewById(R.id.task_sign_off_last_at_value_tv);
+        taskTitleTV = findViewById(R.id.task_sign_off_task_title_tv);
+        taskDueInTV = findViewById(R.id.task_sign_off_value_tv);
+        signOffValueET = findViewById(R.id.task_sign_off_value_et);
+        taskIntervalValueTV = findViewById(R.id.task_sign_off_interval_value_tv);
+        taskLastAtValueTV = findViewById(R.id.task_sign_off_last_at_value_tv);
+        infoPanelTV = findViewById(R.id.information_tv);
 
         // Set UI components
-        taskTitle.setText(task.getTaskTitle());
-        taskDueIn.setText(taskLogic.getRemainingHours(task));
-        signOffValue.setText(profile.getHours());
-        signOffValue.setSelection(signOffValue.getText().length());
-        taskIntervalValue.setText(String.valueOf(task.getInterval()));
-        taskLastAtValue.setText(String.valueOf(task.getLastCompletedAt()));
+        taskTitleTV.setText(task.getTaskTitle());
+        taskDueInTV.setText(taskLogic.getRemainingHours(task));
+        signOffValueET.setText(profile.getHours());
+        signOffValueET.setSelectAllOnFocus(true);
+        taskIntervalValueTV.setText(String.valueOf(task.getInterval()));
+        taskLastAtValueTV.setText(String.valueOf(task.getLastCompletedAt()));
         // Set sign off button listener/handler
-        findViewById(R.id.task_sign_off_btn).setOnClickListener((view) -> {
+        findViewById(R.id.task_sign_off_btn).setOnClickListener(view -> {
             if (validateHours()) {
-                float signOffHours = Float.parseFloat(signOffValue.getText().toString());
+                float signOffHours = Float.parseFloat(signOffValueET.getText().toString());
                 taskLogic.signOffTask(task, signOffHours);
                 finish();
             }
         });
+        // Set infoPanel fragment text
+        infoPanelTV.setText(R.string.activity_task_sign_off_information);
     }
 
     // Ensure fresh db data fetched on activity resume
@@ -91,8 +93,8 @@ public class TaskSignOff extends AppCompatActivity {
         super.onResume();
         // refresh profiles object to display up-to-date listview
         task = taskRepository.getTask(Integer.parseInt(taskId));
-        taskTitle.setText(task.getTaskTitle());
-        taskDueIn.setText(taskLogic.getRemainingHours(task));
+        taskTitleTV.setText(task.getTaskTitle());
+        taskDueInTV.setText(taskLogic.getRemainingHours(task));
     }
 
     // Inflate toolbar menu
@@ -146,14 +148,14 @@ public class TaskSignOff extends AppCompatActivity {
 
     // Helper method to validate edittext values
     private boolean validateHours() {
-        String hoursString = signOffValue.getText().toString();
+        String hoursString = signOffValueET.getText().toString();
         if (hoursString.length() < 1) {
-            signOffValue.setError(getResources().getString(R.string.validation_entry_required));
-            signOffValue.requestFocus();
+            signOffValueET.setError(getResources().getString(R.string.validation_entry_required));
+            signOffValueET.requestFocus();
             return false;
         } else if (Float.parseFloat(hoursString) > Float.parseFloat(profile.getHours())) {
-            signOffValue.setError(getResources().getString(R.string.validation_hours_lte_current));
-            signOffValue.requestFocus();
+            signOffValueET.setError(getResources().getString(R.string.validation_hours_lte_current));
+            signOffValueET.requestFocus();
             return false;
         }
         return true;

@@ -79,7 +79,7 @@ public class ProfileOverview extends AppCompatActivity {
                 return true;
             // Delete profile from db/app
             case R.id.toolbar_profile_overview_icon_delete:
-                AlertDialog profileDeleteDialog = deleteProfile(profile);
+                AlertDialog profileDeleteDialog = createDeleteProfileDialog(profile);
                 profileDeleteDialog.show();
                 return true;
             default:
@@ -96,7 +96,7 @@ public class ProfileOverview extends AppCompatActivity {
         });
     }
 
-    private AlertDialog deleteProfile(Profile profileToDelete) {
+    private AlertDialog createDeleteProfileDialog(Profile profileToDelete) {
         return new AlertDialog.Builder(this)
                 .setTitle(getResources().getString(R.string.alert_dialog_delete_profile_title))
                 .setMessage(getResources().getString(R.string.alert_dialog_delete_profile_message))
