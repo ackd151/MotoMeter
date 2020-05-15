@@ -120,6 +120,15 @@
             app:layout_constraintStart_toEndOf="@+id/post_ride_hours_value_et" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <fragment
+        android:id="@+id/post_ride_info_panel_f"
+        android:name="com.slack.motometer.ui.fragments.CollapsibleInfoPanel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/post_ride_nav_bar_top_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <View
         android:id="@+id/post_ride_nav_bar_top_border"
         android:layout_width="match_parent"
@@ -138,6 +147,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navigation_view_menu"
         app:labelVisibilityMode="labeled"
-        app:itemIconTint="@color/textColor" />
+        android:theme="@style/BottomNavigationTheme" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

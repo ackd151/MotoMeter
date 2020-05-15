@@ -1,6 +1,7 @@
 package com.slack.motometer.ui.activities;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -28,8 +29,8 @@ import java.util.List;
 public class PreRide extends AppCompatActivity implements ChecklistListener {
 
     // UI components
-    private ListView checklistItemContainer;
-    private TextView readyNotReady;
+    private ListView checklistItemContainerLV;
+    private TextView readyNotReadyTV, infoPanelTV;
 
     // Logic components
     private ChecklistRepository checklistRepository;
@@ -60,24 +61,27 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
         checklistItems = checklistRepository.getProfileChecklistItems(Integer.parseInt(profileId));
 
         // Get handle on UI components
-        checklistItemContainer = findViewById(R.id.pre_ride_cl_lv);
-        readyNotReady = findViewById(R.id.pre_ride_ready_tv);
+        checklistItemContainerLV = findViewById(R.id.pre_ride_cl_lv);
+        readyNotReadyTV = findViewById(R.id.pre_ride_ready_tv);
+        infoPanelTV = findViewById(R.id.information_tv);
 
         // Set UI element values
         // Set ready-not-ready textview text and color depending on checklist completion status
         isChecklistComplete();
+        infoPanelTV.setText(R.string.activity_pre_ride_information);
 
         // Create and set adapter for ListView
         checklistAdapter = new ChecklistAdapter(this, R.layout.checklist_card_view,
                 checklistItems, this);
-        checklistItemContainer = findViewById(R.id.pre_ride_cl_lv);
-        checklistItemContainer.setAdapter(checklistAdapter);
+        checklistItemContainerLV = findViewById(R.id.pre_ride_cl_lv);
+        checklistItemContainerLV.setAdapter(checklistAdapter);
 
         // Set view to display message when no Task(s) have been created for the active profile
-        checklistItemContainer.setEmptyView(findViewById(R.id.empty_checklist_item));
+        checklistItemContainerLV.setEmptyView(findViewById(R.id.empty_checklist_item));
 
         // Set bottom navigation bar
         BottomNavigationView navBar = findViewById(R.id.pre_ride_nav_bar);
+        navBar.setSelectedItemId(R.id.bottom_nav_pre_ride);
         navBar.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.bottom_nav_home:
@@ -129,12 +133,12 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
                 startActivityForResult(intent, 1);
                 return true;
             case R.id.toolbar_pre_ride_delete_cl_items:
-                for (int i = 0 ; i < checklistItemContainer.getCount() ; ++i) {
-                    View view = getViewFromListView(i, checklistItemContainer);
+                for (int i = 0; i < checklistItemContainerLV.getCount() ; ++i) {
+                    View view = getViewFromListView(i, checklistItemContainerLV);
                     Button deleteClItemBtn = view.findViewById(R.id.checklist_card_delete_btn);
                     deleteClItemBtn.setVisibility(View.VISIBLE);
                     int finalI = i;
-                    deleteClItemBtn.setOnClickListener(view1 -> {
+                    deleteClItemBtn.setOnClickListener(v -> {
                         checklistRepository.deleteChecklistItem(checklistItems.get(finalI));
                         onResume(); // Get fresh data after deletion
                         isChecklistComplete();
@@ -142,8 +146,8 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
                 }
                 return true;
             case R.id.toolbar_pre_ride_delete_all_cl_items:
-                checklistRepository.deleteAllChecklistItems(checklistItems);
-                onResume();
+                AlertDialog deleteAllClItemsDialog = createDeleteAllDialog();
+                deleteAllClItemsDialog.show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -162,7 +166,7 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
         // instantiating new adapter with fresh db data instead - appears to fix issue
         checklistAdapter = new ChecklistAdapter(this, R.layout.checklist_card_view,
                 checklistItems, this);
-        checklistItemContainer.setAdapter(checklistAdapter);
+        checklistItemContainerLV.setAdapter(checklistAdapter);
         isChecklistComplete();
     }
 
@@ -172,7 +176,6 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1  && resultCode  == RESULT_OK) {
             onResume();
-//            isChecklistComplete();
         }
     }
 
@@ -183,13 +186,13 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
         checklistItems = checklistRepository.getProfileChecklistItems(Integer.parseInt(profileId));
         // Set readyNotReady textview text and color according to checklist completion status
         if (checklistItems.size() == 0) {
-            readyNotReady.setVisibility(View.GONE);
+            readyNotReadyTV.setVisibility(View.GONE);
         } else {
-            readyNotReady.setVisibility(View.VISIBLE);
+            readyNotReadyTV.setVisibility(View.VISIBLE);
             boolean checklistComplete = new ChecklistLogic(this).isReady(checklistItems);
-            readyNotReady.setText(checklistComplete ? R.string.activity_pre_ride_ready :
+            readyNotReadyTV.setText(checklistComplete ? R.string.activity_pre_ride_ready :
                     R.string.activity_pre_ride_not_ready);
-            readyNotReady.setBackgroundColor(checklistComplete ?
+            readyNotReadyTV.setBackgroundColor(checklistComplete ?
                     getResources().getColor(R.color.accent_pressed) :
                     getResources().getColor(R.color.danger));
         }
@@ -206,5 +209,21 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
             int childIndex = index - firstIndex;
             return listView.getChildAt(childIndex);
         }
+    }
+
+    private AlertDialog createDeleteAllDialog() {
+        return new AlertDialog.Builder(this)
+                .setTitle(getResources().getString(R.string.alert_dialog_delete_all_clItems_title))
+                .setMessage(getResources().getString(R.string.alert_dialog_delete_all_clItems_message))
+                .setIcon(R.drawable.ic_warning)
+                .setPositiveButton(getResources().getString(R.string.alert_dialog_confirm),
+                        (dialogInterface, i) -> {
+                            checklistRepository.deleteAllChecklistItems(checklistItems);
+                            dialogInterface.dismiss();
+                            onResume();
+                        })
+                .setNegativeButton(getResources().getString(R.string.alert_dialog_cancel),
+                        (dialogInterface, i) -> dialogInterface.dismiss())
+                .create();
     }
 }

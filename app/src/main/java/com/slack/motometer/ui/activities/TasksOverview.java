@@ -97,6 +97,7 @@ public class TasksOverview extends AppCompatActivity {
 
         // Set bottom navigation bar
         BottomNavigationView navBar = findViewById(R.id.tasks_overview_nav_bar);
+        navBar.setSelectedItemId(R.id.bottom_nav_maintenance);
         navBar.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.bottom_nav_home:

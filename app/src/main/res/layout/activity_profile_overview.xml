@@ -96,4 +96,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_overview_pre_ride_btn" />
 
+    <fragment
+        android:id="@+id/profile_overview_info_panel_f"
+        android:name="com.slack.motometer.ui.fragments.CollapsibleInfoPanel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

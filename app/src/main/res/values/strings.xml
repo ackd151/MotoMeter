@@ -109,7 +109,7 @@
     <string name="toolbar_pre_ride_delete_title">delete item</string>
     <string name="toolbar_pre_ride_delete_all_title">delete all</string>
     <!-- toolbar for activity_profile_overview strings -->
-    <string name="toolbar_profile_overview_title">Profile Overview</string>
+    <string name="toolbar_profile_overview_title">Profile</string>
     <string name="toolbar_profile_overview_icon_edit">edit profile</string>
     <string name="toolbar_profile_overview_icon_delete">delete profile</string>
     <!-- toolbar for activity_task_sign_off strings -->
@@ -138,7 +138,8 @@
     <string name="alert_dialog_delete_profile_message">Permanently delete this profile?</string>
     <string name="alert_dialog_delete_task_title">Delete Maintenance Task</string>
     <string name="alert_dialog_delete_task_message">Permanently delete this task?</string>
-    <string name="alert_dialog_delete_checklist_item_title">Delete Inspection Task</string>
+    <string name="alert_dialog_delete_all_clItems_title">Delete All Checklist Items</string>
+    <string name="alert_dialog_delete_all_clItems_message">Permanently delete all checklist items?</string>
     <string name="alert_dialog_delete_checklist_item_message">
         Permanently delete this checklist item?</string>
     <string name="alert_dialog_confirm">CONFIRM</string>
@@ -147,12 +148,54 @@
 
     <!-- activity_information strings -->
     <!-- activity_task_sign_off information strings -->
-    <string name="activity_edit_profile_information">Edit blah</string>
-    <string name="activity_edit_task_information">Edit blah</string>
+    <string name="activity_edit_profile_information">Edit the year, make, model, and hourmeter
+        values in the corresponding fields.\n\nSelecting \'clear form\' from the toolbar menu above
+        will clear the text fields but will not affect the profile image.\n\n*The updated
+        information is only recorded if the save icon is selected in the toolbar above.*\n\nTouching
+        the profile image area will display a prompt to either take a picture or to select an image
+        from your phone\'s gallery. *Permissions are required for this action.*</string>
+    <string name="activity_edit_task_information">Edit the task name/title, interval (hrs.), and the
+        hourmeter value of when the task was last completed in the corresponding fields.
+        \n\nSelecting \'clear form\' from the toolbar menu above will clear the text fields.\n\n*The
+        updated information is only recorded if the save icon is selected in the toolbar above.*
+    </string>
     <string name="activity_main_information">Select the + icon in the toolbar menu above
         to create a new motorcycle profile.\n\nYou can switch between profiles by swiping left/right
         or by using the tabs above.\n\nTouch anywhere in the main view to interact with the
-        corresponding profile</string>
+        corresponding profile.</string>
+    <string name="activity_new_checklist_item_information">Supply the inspection name/title and
+        select the check mark to add an inspection to the checklist.\n\nSelect the back arrow or
+        the cancel(x) button to abort and return to the previous screen.</string>
+    <string name="activity_new_profile_information">Enter the motorcycle\'s year, make, model and
+        current hourmeter reading in the corresponding fields.\n\nTouch the check mark to save the
+        profile to the database.\n\nA profile image can be added after the profile is created by
+        touching the profile image area of the \'edit profile\' page.\n\nSelect the back arrow
+        or the cancel(x) button to abort and return to the previous screen.</string>
+    <string name="activity_new_task_information">Enter the maintenance task\'s name/title, interval
+        (hrs.), and the hourmeter value of when the task was last completed in the corresponding
+        fields.\n\nTouch the check mark to save the task to the database.\n\nSelect the back arrow
+        or the cancel(x) button to abort and return to the previous screen.</string>
+    <string name="activity_notes_information">Use this space to consolidate/maintain any profile
+        specific information, e.g. maintenance steps, torque specs, dimensions, clearances, etc.
+        \n\nSelecting \'clear\' from the toolbar menu above will clear all notes.\n\n*The
+        updated information is only recorded if the save icon is selected in the toolbar above.*
+    </string>
+    <string name="activity_post_ride_information">Supply the new hourmeter reading and select the
+        check mark to update the profile\'s current hours.\n\nSelect the back arrow or the
+        cancel(x) button to abort and return to the previous screen.</string>
+    <string name="activity_pre_ride_information">Select the + icon in the toolbar menu above to
+        create a new pre-ride inspection checklist item.\n\nChecklist items can be removed by
+        selecting \'delete item\' or \'delete all\' from the toolbar menu above.\n\nWhen the
+        profile\'s current hourmeter reading is updated in the post-ride screen the checklist items
+        are reset.\n\nIf you do not wish to use the pre-ride inspection functionality, simply leave
+        this list empty and the inspection status flag will not be set on the main profile
+        selection page.</string>
+    <string name="activity_profile_overview_information">The selected profile can be edited or
+        deleted by selecting the corresponding option in the toolbar menu above.\n\nMAINTENANCE -
+        create, view, and interact with maintenance tasks for the selected profile.\n\nPOST-RIDE -
+        update the profile\'s current hourmeter reading.\n\nPRE-RIDE - populate, view, and interact
+        with the pre-ride inspection checklist.\n\nNOTES / SPECS - record desired notes, specs,
+        torques, inspection criteria, etc.</string>
     <string name="activity_task_sign_off_information">The selected task can be signed off at any
         value up to the current hourmeter reading.\n\nMaintenace tasks can be edited or deleted by
         selecting the corresponding option in the toolbar menu above.</string>
@@ -165,8 +208,5 @@
     <!-- non localized strings -->
     <string name="hours">hours</string>
     <string name="help">Help/Info</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

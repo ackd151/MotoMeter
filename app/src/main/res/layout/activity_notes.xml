@@ -58,10 +58,19 @@
         android:gravity="start|top"
         android:inputType="textMultiLine|textNoSuggestions"
         android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/notes_nav_bar_top_border"
+        app:layout_constraintBottom_toTopOf="@+id/notes_info_panel_f"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notes_header_f" />
+
+    <fragment
+        android:id="@+id/notes_info_panel_f"
+        android:name="com.slack.motometer.ui.fragments.CollapsibleInfoPanel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/notes_nav_bar_top_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/notes_nav_bar_top_border"
@@ -76,11 +85,11 @@
         android:id="@+id/notes_nav_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemIconTint="@color/textColor"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation_view_menu" />
+        app:menu="@menu/bottom_navigation_view_menu"
+        android:theme="@style/BottomNavigationTheme" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

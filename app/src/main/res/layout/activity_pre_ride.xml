@@ -68,7 +68,7 @@
         android:text="@string/empty_checklist_list"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/pre_ride_nav_bar_top_border"
+        app:layout_constraintBottom_toTopOf="@+id/pre_ride_ready_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,6 +82,15 @@
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/db2"
+        app:layout_constraintBottom_toTopOf="@+id/pre_ride_info_panel_f"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <fragment
+        android:id="@+id/pre_ride_info_panel_f"
+        android:name="com.slack.motometer.ui.fragments.CollapsibleInfoPanel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/pre_ride_nav_bar_top_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -99,11 +108,11 @@
         android:id="@+id/pre_ride_nav_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemIconTint="@color/textColor"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_navigation_view_menu" />
+        app:menu="@menu/bottom_navigation_view_menu"
+        android:theme="@style/BottomNavigationTheme" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

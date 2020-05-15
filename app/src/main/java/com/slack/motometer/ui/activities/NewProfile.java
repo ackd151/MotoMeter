@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.slack.motometer.R;
 import com.slack.motometer.domain.model.Profile;
@@ -20,6 +21,7 @@ public class NewProfile extends AppCompatActivity {
 
     // UI components
     private EditText yearET, makeET, modelET, hoursET;
+    private TextView infoPanelTV;
 
     // Logic components
     private ProfileRepository profileRepository;
@@ -64,6 +66,9 @@ public class NewProfile extends AppCompatActivity {
                 finish();
             }
         });
+        // Set help/info panel text
+        infoPanelTV = findViewById(R.id.information_tv);
+        infoPanelTV.setText(R.string.activity_new_profile_information);
 
         // Set Logic components
         profileRepository = new ProfileService(this);

@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.slack.motometer.R;
 import com.slack.motometer.domain.model.Task;
@@ -22,6 +23,7 @@ public class NewTask extends AppCompatActivity {
 
     // UI components
     private EditText taskNameET, intervalET, lastCompletedAtET;
+    private TextView infoPanelTV;
 
     // Logic components
     private String profileId;
@@ -54,6 +56,7 @@ public class NewTask extends AppCompatActivity {
         taskNameET = findViewById(R.id.new_task_name_value_et);
         intervalET = findViewById(R.id.new_task_interval_value_et);
         lastCompletedAtET = findViewById(R.id.new_task_last_completed_at_value_et);
+        infoPanelTV = findViewById(R.id.information_tv);
 
         // Set UI components
         // Set confirm/cancel button onClick listeners/handlers
@@ -68,6 +71,7 @@ public class NewTask extends AppCompatActivity {
         findViewById(R.id.new_task_cancel_btn).setOnClickListener(view -> finish());
         // Give top edittext focus
         taskNameET.requestFocus();
+        infoPanelTV.setText(R.string.activity_new_task_information);
     }
 
     @Override

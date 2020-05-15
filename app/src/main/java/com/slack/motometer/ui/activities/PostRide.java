@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.slack.motometer.R;
@@ -20,7 +21,8 @@ import com.slack.motometer.domain.services.ProfileService;
 public class PostRide extends AppCompatActivity {
 
     // UI components
-    private EditText hoursValue;
+    private EditText hoursValueET;
+    private TextView infoPanelTV;
 
     // Logic components
     private ProfileRepository profileRepository;
@@ -44,21 +46,22 @@ public class PostRide extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         // Get handle on UI components
-        hoursValue = findViewById(R.id.post_ride_hours_value_et);
+        hoursValueET = findViewById(R.id.post_ride_hours_value_et);
+        infoPanelTV = findViewById(R.id.information_tv);
 
-        // Get active profile
+        // Set Logic components
         profileId = getIntent().getExtras().getString("profileId");
         profileRepository = new ProfileService(this);
         profile = profileRepository.getProfile(Integer.parseInt(profileId));
-
-        // Set profile header data
         profileLogic = new ProfileLogic(this);
 
+        // Set UI components
+        infoPanelTV.setText(R.string.activity_post_ride_information);
         // Set button listeners/handlers
         findViewById(R.id.post_ride_confirm_btn).setOnClickListener((view) -> {
-            if (validateHoursValue(hoursValue)) {
+            if (validateHoursValue(hoursValueET)) {
                 // Update profile hours
-                profileLogic.postRide(profile, hoursValue.getText().toString());
+                profileLogic.postRide(profile, hoursValueET.getText().toString());
                 // Also reset pre-ride inspections
                 new ChecklistLogic(this).resetChecklist(Integer.parseInt(profileId));
                 finish();
@@ -70,6 +73,7 @@ public class PostRide extends AppCompatActivity {
 
         // Set bottom navigation bar
         BottomNavigationView navBar = findViewById(R.id.post_ride_nav_bar);
+        navBar.setSelectedItemId(R.id.bottom_nav_post_ride);
         navBar.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.bottom_nav_home:

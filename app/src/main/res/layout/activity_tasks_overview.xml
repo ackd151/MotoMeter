@@ -100,6 +100,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_navigation_view_menu"
         app:labelVisibilityMode="labeled"
-        app:itemIconTint="@color/textColor" />
+        android:theme="@style/BottomNavigationTheme" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.slack.motometer.R;
 import com.slack.motometer.domain.model.ChecklistItem;
@@ -16,7 +17,8 @@ import com.slack.motometer.domain.services.ChecklistService;
 public class NewChecklistItem extends AppCompatActivity {
 
     // UI components
-    private EditText checkListItemTitleValue;
+    private EditText checkListItemTitleValueET;
+    private TextView infoPanelTV;
 
     // Logic components
     private String profileId;
@@ -42,17 +44,19 @@ public class NewChecklistItem extends AppCompatActivity {
         checklistRepository = new ChecklistService(this);
 
         // Get handle on UI components
-        checkListItemTitleValue = findViewById(R.id.new_cl_item_title_value_et);
+        checkListItemTitleValueET = findViewById(R.id.new_cl_item_title_value_et);
+        infoPanelTV = findViewById(R.id.information_tv);
 
         // Set UI components
         // Request focus for edittext
-        checkListItemTitleValue.requestFocus();
+        checkListItemTitleValueET.requestFocus();
+        infoPanelTV.setText(R.string.activity_new_checklist_item_information);
         // Set confirm/cancel button onClick listeners/handlers
         findViewById(R.id.new_cl_item_confirm_btn).setOnClickListener(view -> {
-            if (validateClItemTitleValue(checkListItemTitleValue)) {
+            if (validateClItemTitleValue(checkListItemTitleValueET)) {
                 // Create new checklist item and record in db
                 checklistRepository.addChecklistItem(
-                        new ChecklistItem(profileId, checkListItemTitleValue.getText().toString()));
+                        new ChecklistItem(profileId, checkListItemTitleValueET.getText().toString()));
                 setResult(RESULT_OK);
                 finish();
             }

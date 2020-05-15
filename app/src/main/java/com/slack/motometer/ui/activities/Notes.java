@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.slack.motometer.R;
@@ -21,12 +22,11 @@ import com.slack.motometer.domain.repositories.ProfileRepository;
 import com.slack.motometer.domain.services.NoteService;
 import com.slack.motometer.domain.services.ProfileService;
 
-import java.util.concurrent.TimeUnit;
-
 public class Notes extends AppCompatActivity {
 
     // UI components
-    private EditText noteContents;
+    private EditText noteContentsET;
+    private TextView infoPanelTV;
 
     // Logic components
     private ProfileRepository profileRepository;
@@ -59,18 +59,21 @@ public class Notes extends AppCompatActivity {
         note = noteRepository.getNoteByProfileId(profileId);
 
         // Get handle on UI components
-        noteContents = findViewById(R.id.notes_content_et);
+        noteContentsET = findViewById(R.id.notes_content_et);
+        infoPanelTV = findViewById(R.id.information_tv);
 
         // Set UI components
-        noteContents.setText(note.getContents());
+        noteContentsET.setText(note.getContents());
         // Start new line when starting notes activity - unless empty
         if (note.getContents().length() != 0) {
-            noteContents.append("\n");
+            noteContentsET.append("\n");
         }
-        noteContents.setSelection(noteContents.getText().length());
+        noteContentsET.setSelection(noteContentsET.getText().length());
+        infoPanelTV.setText(R.string.activity_notes_information);
 
         // Set bottom navigation bar
         BottomNavigationView navBar = findViewById(R.id.notes_nav_bar);
+        navBar.setSelectedItemId(R.id.bottom_nav_notes);
         navBar.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.bottom_nav_home:
@@ -120,7 +123,7 @@ public class Notes extends AppCompatActivity {
             // Save notes to db
             case R.id.toolbar_notes_icon_save:
                 noteRepository.updateNote(new Note(note.getId(), note.getProfileId(),
-                        noteContents.getText().toString()));
+                        noteContentsET.getText().toString()));
                 // Show and dismiss notify notes saved alert dialog
                 AlertDialog notifySavedDialog = createNotifySavedDialog();
                 notifySavedDialog.show();
@@ -129,9 +132,9 @@ public class Notes extends AppCompatActivity {
                 return true;
             // Clear notes and record in db
             case R.id.toolbar_notes_icon_clear:
-                noteContents.setText("");
+                noteContentsET.setText("");
                 noteRepository.updateNote(new Note(note.getId(), note.getProfileId(),
-                        noteContents.getText().toString()));
+                        noteContentsET.getText().toString()));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

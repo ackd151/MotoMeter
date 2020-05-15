@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.slack.motometer.R;
 import com.slack.motometer.domain.model.Profile;
@@ -16,6 +17,9 @@ import com.slack.motometer.domain.repositories.ProfileRepository;
 import com.slack.motometer.domain.services.ProfileService;
 
 public class ProfileOverview extends AppCompatActivity {
+
+    // UI components
+    private TextView infoPanelTV;
 
     // Logic components
     private ProfileRepository profileRepository;
@@ -42,6 +46,9 @@ public class ProfileOverview extends AppCompatActivity {
         profileRepository = new ProfileService(this);
         profile = profileRepository.getProfile(Integer.parseInt(profileId));
 
+        // Set UI components
+        infoPanelTV = findViewById(R.id.information_tv);
+        infoPanelTV.setText(R.string.activity_profile_overview_information);
         // set startActivity button actions
         setOnClick(R.id.profile_overview_maintenance_btn, TasksOverview.class);
         setOnClick(R.id.profile_overview_post_ride_btn, PostRide.class);
