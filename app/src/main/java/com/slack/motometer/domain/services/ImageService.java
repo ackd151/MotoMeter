@@ -60,8 +60,8 @@ public class ImageService implements ImageRepository {
         return imageId;
     }
 
-    @Override
-    public ProfileImage getImageByProfileId(String profileId) {
+        @Override
+        public ProfileImage getImageByProfileId(String profileId) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         Cursor cursor = db.query(IMAGES_TABLE_NAME, new String[]{_ID, PROFILE_ID, IMAGE_PATH},
@@ -70,10 +70,30 @@ public class ImageService implements ImageRepository {
         if (cursor != null) {
             cursor.moveToFirst();
         }
-        Bitmap image = BitmapFactory.decodeFile(cursor.getString(2));
+        String imagePath = cursor.getString(2);
+        Bitmap image = null;
+        // Scale image for largest view in app (~ 200 x 356)
+        BitmapFactory.Options options= new BitmapFactory.Options();
+        options.inJustDecodeBounds= true;
+        BitmapFactory.decodeFile(imagePath, options);
+        int srcWidth = options.outWidth, srcHeight = options.outHeight;
+        int scaleFactor = (int)Math.max(1.0, Math.min((double) srcWidth / (double)200,
+                (double)srcHeight / (double)356));
+        scaleFactor = (int)Math.pow(2.0, Math.floor(Math.log(scaleFactor) / Math.log(2.0)));
+        options.inJustDecodeBounds = false;
+        options.inSampleSize = scaleFactor;
+        do {
+            try {
+                scaleFactor*= 2;
+                image= BitmapFactory.decodeFile(imagePath, options);
+            } catch(OutOfMemoryError e) {
+                options.inSampleSize = scaleFactor;
+            }
+        }
+        while(image == null && scaleFactor <= 256);
 
         ProfileImage profileImage = new ProfileImage(cursor.getString(0), cursor.getString(1),
-                cursor.getString(2), image);
+                imagePath, image);
         db.close();
         return profileImage;
     }

@@ -52,6 +52,7 @@
     <string name="activity_profile_overview_post_ride">Post-Ride</string>
     <string name="activity_profile_overview_pre_ride">Pre-Ride</string>
     <string name="activity_profile_overview_notes">Notes / Specs</string>
+    <string name="activity_profile_overview_edit">Edit Profile</string>
 
     <!-- activity_task_sign_off layout strings -->
     <string name="activity_task_sign_off_interval">Maintenance interval:</string>
@@ -109,7 +110,7 @@
     <string name="toolbar_pre_ride_delete_title">delete item</string>
     <string name="toolbar_pre_ride_delete_all_title">delete all</string>
     <!-- toolbar for activity_profile_overview strings -->
-    <string name="toolbar_profile_overview_title">Profile</string>
+    <string name="toolbar_profile_overview_title">Profile Home</string>
     <string name="toolbar_profile_overview_icon_edit">edit profile</string>
     <string name="toolbar_profile_overview_icon_delete">delete profile</string>
     <!-- toolbar for activity_task_sign_off strings -->
@@ -117,7 +118,7 @@
     <string name="toolbar_task_sign_off_icon_edit">edit task</string>
     <string name="toolbar_task_sign_off_icon_delete">delete task</string>
     <!-- toolbar for activity_tasks_overview strings -->
-    <string name="toolbar_tasks_overview_title">Tracked Tasks</string>
+    <string name="toolbar_tasks_overview_title">Maintenance Overview</string>
     <string name="toolbar_tasks_overview_icon_add">new task</string>
 
     <!-- bottom navbar strings -->
@@ -153,7 +154,8 @@
         will clear the text fields but will not affect the profile image.\n\n*The updated
         information is only recorded if the save icon is selected in the toolbar above.*\n\nTouching
         the profile image area will display a prompt to either take a picture or to select an image
-        from your phone\'s gallery. *Permissions are required for this action.*</string>
+        from your phone\'s gallery. *Permissions are required for this action.*\n\nSelect \'delete
+        profile\' from the toolbar menu to permanently remove this profile from the app.</string>
     <string name="activity_edit_task_information">Edit the task name/title, interval (hrs.), and the
         hourmeter value of when the task was last completed in the corresponding fields.
         \n\nSelecting \'clear form\' from the toolbar menu above will clear the text fields.\n\n*The
@@ -190,12 +192,13 @@
         are reset.\n\nIf you do not wish to use the pre-ride inspection functionality, simply leave
         this list empty and the inspection status flag will not be set on the main profile
         selection page.</string>
-    <string name="activity_profile_overview_information">The selected profile can be edited or
-        deleted by selecting the corresponding option in the toolbar menu above.\n\nMAINTENANCE -
-        create, view, and interact with maintenance tasks for the selected profile.\n\nPOST-RIDE -
-        update the profile\'s current hourmeter reading.\n\nPRE-RIDE - populate, view, and interact
-        with the pre-ride inspection checklist.\n\nNOTES / SPECS - record desired notes, specs,
-        torques, inspection criteria, etc.</string>
+    <string name="activity_profile_overview_information">MAINTENANCE - create, view, and interact
+        with maintenance tasks for the selected profile.\n\nPOST-RIDE - update the profile\'s
+        current hourmeter reading.\n\nPRE-RIDE - populate, view, and interact with the pre-ride
+        inspection checklist.\n\nNOTES / SPECS - record desired notes, specs, torques, inspection
+        criteria, etc.\n\nEDIT PROFILE - edit profile year, make, model, hours, and set or change
+        the profile image. The profile can be deleted by selecting the option in the toolbar menu
+        at the top of the edit profile screen.</string>
     <string name="activity_task_sign_off_information">The selected task can be signed off at any
         value up to the current hourmeter reading.\n\nMaintenace tasks can be edited or deleted by
         selecting the corresponding option in the toolbar menu above.</string>

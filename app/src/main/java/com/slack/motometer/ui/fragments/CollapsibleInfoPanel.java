@@ -45,4 +45,16 @@ public class CollapsibleInfoPanel extends Fragment {
         });
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        collapseInfoPanel();
+    }
+
+    public void collapseInfoPanel() {
+        infoVisible = false;
+        infoCollapseView.setVisibility(View.GONE);
+        infoButton.setBackgroundResource(R.drawable.ic_info);
+    }
 }

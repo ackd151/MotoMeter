@@ -1,29 +1,21 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <style name="theme_test" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@color/dark_background</item>
-        <item name="colorPrimary">@color/db2</item>
+        <item name="android:windowBackground">@color/screen_background</item>
+        <item name="colorPrimaryDark">@color/content_background</item>
+        <item name="colorPrimary">@color/content_background</item>
         <item name="android:textColorSecondary">@color/accent</item>
-        <item name="colorPrimaryDark">@color/page_background</item>
         <item name="colorAccent">@color/accent</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="editTextStyle">@style/App_EditTextStyle</item>
     </style>
 
     <style name="App_EditTextStyle" parent="@android:style/Widget.EditText">
-        <item name="backgroundTint">@color/accent</item>
+        <item name="backgroundTint">?colorAccent</item>
     </style>
 
     <style name="BottomNavigationTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/textColor</item>
+        <item name="colorPrimary">?android:textColor</item>
         <item name="android:textColorSecondary">@color/accent</item>
     </style>
 

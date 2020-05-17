@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         // Set infoPanel fragment text
         infoPanelTV = findViewById(R.id.information_tv);
         infoPanelTV.setText(R.string.activity_main_information);
-
     }
 
     @Override

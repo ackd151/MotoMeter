@@ -129,12 +129,16 @@ public class EditProfile extends AppCompatActivity {
                 hoursValueET.setText("");
                 yearValueET.requestFocus();
                 return true;
+            case R.id.toolbar_delete_profile:
+                AlertDialog profileDeleteDialog = createDeleteProfileDialog(profile);
+                profileDeleteDialog.show();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    // Helper method to validate all edittexts in edit profile activity
+    // Validate all EditTexts in edit profile activity
     private boolean validateEditProfileForm() {
         if (validateEditText(yearValueET) && validateEditText(makeValueET)
                 && validateEditText(modelValueET) && validateEditText(hoursValueET)) {
@@ -143,7 +147,7 @@ public class EditProfile extends AppCompatActivity {
         return false;
     }
 
-    // Helper method to ensure edittext field is not empty
+    // Ensure EditText field is not empty
     private boolean validateEditText(EditText editText) {
         if (editText.getText().toString().length() < 1) {
             editText.setError(getResources().getString(R.string.validation_entry_required));
@@ -153,11 +157,30 @@ public class EditProfile extends AppCompatActivity {
         return true;
     }
 
-    // Helper method to save profile edits to db
+    // Save profile edits to db
     private void saveProfileEdits() {
         profileRepository.updateProfile(new Profile(profile.getId(), yearValueET.getText().toString(),
                 makeValueET.getText().toString(), modelValueET.getText().toString(),
                 hoursValueET.getText().toString()));
+    }
+
+    // Build profile delete alert dialog
+    private AlertDialog createDeleteProfileDialog(Profile profileToDelete) {
+        return new AlertDialog.Builder(this)
+                .setTitle(getResources().getString(R.string.alert_dialog_delete_profile_title))
+                .setMessage(getResources().getString(R.string.alert_dialog_delete_profile_message))
+                .setIcon(R.drawable.ic_warning)
+                .setPositiveButton(getResources().getString(R.string.alert_dialog_confirm),
+                        (dialogInterface, i) -> {
+                            profileRepository.deleteProfile(profile);
+                            dialogInterface.dismiss();
+                            // Go to main activity
+                            Intent homeIntent = new Intent(this, MainActivity.class);
+                            startActivity(homeIntent);
+                        })
+                .setNegativeButton(getResources().getString(R.string.alert_dialog_cancel),
+                        (dialogInterface, i) -> dialogInterface.dismiss())
+                .create();
     }
 
     // Helper method to build/show photo select dialog
@@ -184,13 +207,13 @@ public class EditProfile extends AppCompatActivity {
         builder.show();
     }
 
-    // Helper method to start camera intent
+    // Start camera intent
     private void cameraIntent() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, REQUEST_CAMERA);
     }
 
-    // Helper method to start gallery picker intent
+    // Start gallery picker intent
     private void galleryIntent() {
         Intent intent = new Intent();
         intent.setType("image/*");

@@ -67,7 +67,7 @@
         android:text="@string/empty_task_list"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/tasks_overview_nav_bar_top_border"
+        app:layout_constraintBottom_toTopOf="@+id/tasks_overview_info_panel_f"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

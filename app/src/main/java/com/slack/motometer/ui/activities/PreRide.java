@@ -31,6 +31,8 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
     // UI components
     private ListView checklistItemContainerLV;
     private TextView readyNotReadyTV, infoPanelTV;
+    private Toolbar toolbar;
+    private MenuItem delete, deleteAll;
 
     // Logic components
     private ChecklistRepository checklistRepository;
@@ -42,16 +44,6 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_ride);
-
-        // Set toolbar
-        Toolbar toolbar = findViewById(R.id.pre_ride_toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(R.string.toolbar_pre_ride_title);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
 
         // getExtra - active profile ID
         profileId = getIntent().getExtras().getString("profileId");
@@ -78,6 +70,23 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
 
         // Set view to display message when no Task(s) have been created for the active profile
         checklistItemContainerLV.setEmptyView(findViewById(R.id.empty_checklist_item));
+
+        // Set toolbar
+        toolbar = findViewById(R.id.pre_ride_toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayShowTitleEnabled(true);
+        actionBar.setTitle(R.string.toolbar_pre_ride_title);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+//        // Set toolbar option visibility
+//        if (checklistItems.size() == 0) {
+//            hideToolbarOption(delete, deleteAll);
+//        } else {
+//            showToolbarOption(delete, deleteAll);
+//        }
 
         // Set bottom navigation bar
         BottomNavigationView navBar = findViewById(R.id.pre_ride_nav_bar);
@@ -117,6 +126,8 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.pre_ride_menu, menu);
+//        delete = menu.getItem(1);
+//        deleteAll = menu.getItem(2);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -211,6 +222,7 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
         }
     }
 
+    // Create dialog for delete all action
     private AlertDialog createDeleteAllDialog() {
         return new AlertDialog.Builder(this)
                 .setTitle(getResources().getString(R.string.alert_dialog_delete_all_clItems_title))
@@ -225,5 +237,17 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
                 .setNegativeButton(getResources().getString(R.string.alert_dialog_cancel),
                         (dialogInterface, i) -> dialogInterface.dismiss())
                 .create();
+    }
+
+    private void hideToolbarOption(MenuItem... items) {
+        for (MenuItem item : items) {
+            item.setVisible(true);
+        }
+    }
+
+    private void showToolbarOption(MenuItem... items) {
+        for (MenuItem item : items) {
+            item.setVisible(true);
+        }
     }
 }

@@ -133,8 +133,8 @@ public class Notes extends AppCompatActivity {
             // Clear notes and record in db
             case R.id.toolbar_notes_icon_clear:
                 noteContentsET.setText("");
-                noteRepository.updateNote(new Note(note.getId(), note.getProfileId(),
-                        noteContentsET.getText().toString()));
+//                noteRepository.updateNote(new Note(note.getId(), note.getProfileId(),
+//                        noteContentsET.getText().toString()));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

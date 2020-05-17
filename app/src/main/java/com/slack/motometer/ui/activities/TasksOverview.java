@@ -30,6 +30,7 @@ public class TasksOverview extends AppCompatActivity {
     // UI components
     private ListView taskContainerLV;
     private TextView profileTitleTV, profileHoursValueTV, infoPanelTV;
+    private BottomNavigationView navBar;
 
     // Logic components
     private ProfileRepository profileRepository;
@@ -96,7 +97,7 @@ public class TasksOverview extends AppCompatActivity {
         });
 
         // Set bottom navigation bar
-        BottomNavigationView navBar = findViewById(R.id.tasks_overview_nav_bar);
+        navBar = findViewById(R.id.tasks_overview_nav_bar);
         navBar.setSelectedItemId(R.id.bottom_nav_maintenance);
         navBar.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
@@ -147,7 +148,7 @@ public class TasksOverview extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    // Set toolbar icon actions
+    // Set toolbar actions
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

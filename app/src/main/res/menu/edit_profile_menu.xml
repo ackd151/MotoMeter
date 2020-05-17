@@ -13,4 +13,9 @@
         android:title="@string/toolbar_edit_profile_icon_clear"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/toolbar_delete_profile"
+        android:title="delete profile"
+        app:showAsAction="never" />
+
 </menu>

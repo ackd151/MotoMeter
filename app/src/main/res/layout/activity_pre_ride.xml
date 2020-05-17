@@ -81,7 +81,7 @@
         android:layout_marginBottom="4dp"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/db2"
+        android:textColor="@color/content_background"
         app:layout_constraintBottom_toTopOf="@+id/pre_ride_info_panel_f"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

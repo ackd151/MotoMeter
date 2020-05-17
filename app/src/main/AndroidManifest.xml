@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:largeHeap="true"
-        android:theme="@style/theme_test">
+        android:theme="@style/AppTheme">
         <activity android:name=".ui.activities.EditTask"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />

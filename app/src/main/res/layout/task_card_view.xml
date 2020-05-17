@@ -71,7 +71,7 @@
             android:layout_height="0dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/ic_chevron_right"
-            android:backgroundTint="@color/accent"
+            android:backgroundTint="?colorAccent"
             app:layout_constraintBottom_toBottomOf="@id/constraint_card"
             app:layout_constraintEnd_toEndOf="@id/constraint_card"
             app:layout_constraintTop_toTopOf="@id/constraint_card" />

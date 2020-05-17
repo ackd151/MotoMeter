@@ -31,7 +31,7 @@ public class TaskSignOff extends AppCompatActivity {
     private ProfileRepository profileRepository;
     private TaskRepository taskRepository;
     private TaskLogic taskLogic;
-    private String taskId;
+    private String taskId, profileId;
     private Task task;
     private Profile profile;
 
@@ -58,6 +58,7 @@ public class TaskSignOff extends AppCompatActivity {
         task = taskRepository.getTask(Integer.parseInt(taskId));
         profileRepository = new ProfileService(this);
         profile = profileRepository.getProfile(Integer.parseInt(task.getProfileId()));
+        profileId = profile.getId();
         taskLogic = new TaskLogic(this, profile.getId());
 
         // Get handle on UI components

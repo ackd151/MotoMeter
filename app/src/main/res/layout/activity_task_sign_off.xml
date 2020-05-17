@@ -48,7 +48,7 @@
         android:id="@+id/task_sign_off_task_info_cl"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/db2"
+        android:background="@color/content_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
