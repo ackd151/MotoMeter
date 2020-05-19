@@ -81,12 +81,6 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-//        // Set toolbar option visibility
-//        if (checklistItems.size() == 0) {
-//            hideToolbarOption(delete, deleteAll);
-//        } else {
-//            showToolbarOption(delete, deleteAll);
-//        }
 
         // Set bottom navigation bar
         BottomNavigationView navBar = findViewById(R.id.pre_ride_nav_bar);
@@ -126,9 +120,21 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.pre_ride_menu, menu);
-//        delete = menu.getItem(1);
-//        deleteAll = menu.getItem(2);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        delete = menu.findItem(R.id.toolbar_pre_ride_delete_cl_items);
+        deleteAll = menu.findItem(R.id.toolbar_pre_ride_delete_all_cl_items);
+        // Set toolbar option visibility
+        if (checklistItems.size() == 0) {
+            hideToolbarMenuItems(delete, deleteAll);
+        } else {
+            showToolbarMenuItems(delete, deleteAll);
+        }
+
+        return super.onPrepareOptionsMenu(menu);
     }
 
     // Set toolbar icon actions
@@ -179,6 +185,7 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
                 checklistItems, this);
         checklistItemContainerLV.setAdapter(checklistAdapter);
         isChecklistComplete();
+        invalidateOptionsMenu();
     }
 
     // Used when returning from adding new inspection task, to set readyNotReady textview
@@ -195,7 +202,7 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
     public void isChecklistComplete() {
         // Fetch fresh checklistItems from db
         checklistItems = checklistRepository.getProfileChecklistItems(Integer.parseInt(profileId));
-        // Set readyNotReady textview text and color according to checklist completion status
+        // Set readyNotReady TextView text and color according to checklist completion status
         if (checklistItems.size() == 0) {
             readyNotReadyTV.setVisibility(View.GONE);
         } else {
@@ -239,13 +246,15 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
                 .create();
     }
 
-    private void hideToolbarOption(MenuItem... items) {
+    // Hide toolbar option(s)
+    private void hideToolbarMenuItems(MenuItem... items) {
         for (MenuItem item : items) {
-            item.setVisible(true);
+            item.setVisible(false);
         }
     }
 
-    private void showToolbarOption(MenuItem... items) {
+    // Show toolbar option(s)
+    private void showToolbarMenuItems(MenuItem... items) {
         for (MenuItem item : items) {
             item.setVisible(true);
         }

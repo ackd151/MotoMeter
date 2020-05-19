@@ -55,7 +55,7 @@ public class ProfileCard extends Fragment {
 
         // UI components
         TextView profileTitleTV, profileHoursTV, maintenanceIconTV, nextTaskTV, inspStatusTV,
-                taskHoursTV;
+                taskHoursTV, nextTaskProximityTV;
         ImageView profileImageIV;
 
         // Logic components
@@ -86,6 +86,7 @@ public class ProfileCard extends Fragment {
         nextTaskTV = view.findViewById(R.id.profile_card_task_tv);
         inspStatusTV = view.findViewById(R.id.profile_card_insp_status_tv);
         taskHoursTV = view.findViewById(R.id.profile_card_task_hrs_value_tv);
+        nextTaskProximityTV = view.findViewById(R.id.profile_card_upcoming_tv);
 
         // Set UI components
         profileTitleTV.setText(new ProfileLogic(context).getProfileTitle(profile));
@@ -117,6 +118,7 @@ public class ProfileCard extends Fragment {
                     due == TaskLogic.MaintenanceDue.SOON ?
                             resources.getColor(R.color.caution) :
                             resources.getColor(R.color.danger));
+            nextTaskProximityTV.setText(taskLogic.getDueProximityString(nextTask));
         }
         inspStatusTV.setBackgroundColor(
             checklistLogic.isReady(checklistRepository

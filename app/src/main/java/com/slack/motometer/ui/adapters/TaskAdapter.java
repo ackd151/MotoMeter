@@ -52,16 +52,11 @@ public class TaskAdapter extends ArrayAdapter<Task> {
         TextView taskRemainingHoursTV = view.findViewById(R.id.task_card_view_hour_value_tv);
         String remainingHours = new TaskLogic(context, profile.getId()).getRemainingHours(task);
         taskRemainingHoursTV.setText(remainingHours);
-        // set appropriate color: < 25% of interval yellow, < 1.5 hours red, else green
+        // set appropriate color:  < 2 hours -> yellow, < 0 -> red, else -> green
         float hoursLeft = Float.parseFloat(remainingHours);
-        taskRemainingHoursTV.setTextColor(ContextCompat.getColor(context, R.color.accent_pressed));
-        if (hoursLeft <= task.getInterval()/10) {
-            taskRemainingHoursTV.setTextColor(ContextCompat.getColor(context,
-                    R.color.caution));
-        }
-        if ((task.getInterval() > 3 && hoursLeft <= 1.5f) || hoursLeft < 0) {
-            taskRemainingHoursTV.setTextColor(ContextCompat.getColor(context, R.color.danger));
-        }
+        taskRemainingHoursTV.setTextColor(hoursLeft <= 0 ? ContextCompat.getColor(context,
+                R.color.danger) : hoursLeft <= 2 ? ContextCompat.getColor(context,
+                R.color.caution) : ContextCompat.getColor(context, R.color.accent_pressed));
 
         return view;
     }

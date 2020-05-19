@@ -51,10 +51,7 @@ public class TaskLogic implements Comparator<Task> {
         if (dueSoonest == null) {
             return MaintenanceDue.NOT;
         }
-        float dueIn = Float.parseFloat(getRemainingHours(dueSoonest));
-        return dueIn <= 0 ? MaintenanceDue.PAST :
-                dueIn < 2 ? MaintenanceDue.SOON :
-                        MaintenanceDue.NOT;
+        return getDueProximity(dueSoonest);
     }
 
     // Get the task that is due soonest
@@ -65,6 +62,19 @@ public class TaskLogic implements Comparator<Task> {
             return tasks.get(0);
         }
         return null;
+    }
+
+    public MaintenanceDue getDueProximity(Task task) {
+        float dueIn = Float.parseFloat(getRemainingHours(task));
+        return dueIn <= 0 ? MaintenanceDue.PAST :
+                dueIn <= 2 ? MaintenanceDue.SOON :
+                        MaintenanceDue.NOT;
+    }
+
+    public String getDueProximityString(Task task) {
+        MaintenanceDue dueWhen = getDueProximity(task);
+        return dueWhen == MaintenanceDue.PAST ? "Maintenance past due: "  :
+                dueWhen == MaintenanceDue.SOON ? "Maintenance due soon: " : "Next maintenance task: ";
     }
 
     @Override
