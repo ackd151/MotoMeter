@@ -9,6 +9,12 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/toolbar_edit_task_help"
+        android:icon="@drawable/ic_info"
+        android:title="@string/toolbar_info"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/toolbar_edit_task_icon_clear"
         android:title="@string/toolbar_edit_task_icon_clear"
         app:showAsAction="never" />

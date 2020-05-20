@@ -8,4 +8,10 @@
         android:title="@string/toolbar_tasks_overview_icon_add"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/toolbar_tasks_overview_help"
+        android:icon="@drawable/ic_info"
+        android:title="@string/toolbar_info"
+        app:showAsAction="never" />
+
 </menu>

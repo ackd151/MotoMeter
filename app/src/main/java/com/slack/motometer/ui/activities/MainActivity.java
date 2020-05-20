@@ -3,6 +3,7 @@ package com.slack.motometer.ui.activities;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPagerVP;
     private TabLayout tabLayoutTL;
     private TextView emptyViewTV, infoPanelTV;
+    private ConstraintLayout infoPanelCL;
 
     // Logic Components
     private FragmentStatePagerAdapter profilePagerAdapter;
@@ -64,9 +66,13 @@ public class MainActivity extends AppCompatActivity {
         viewPagerVP.setAdapter(profilePagerAdapter);
         // Set tab_layout tabMode
         tabLayoutTL.setTabMode(profiles.size() <= 4 ? TabLayout.MODE_FIXED : TabLayout.MODE_SCROLLABLE);
-        // Set infoPanel fragment text
-        infoPanelTV = findViewById(R.id.information_tv);
+        // Set infoPanel
+        infoPanelCL = findViewById(R.id.info_panel_cl);
+        infoPanelTV = findViewById(R.id.info_panel_info_text_tv);
         infoPanelTV.setText(R.string.activity_main_information);
+        // Hide info panel again if user clicks help panel
+        infoPanelCL.setClickable(true);
+        infoPanelCL.setOnClickListener(v -> infoPanelCL.setVisibility(View.GONE));
     }
 
     @Override
@@ -80,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
         viewPagerVP.setAdapter(profilePagerAdapter);
         // Set tab_layout tabMode
         tabLayoutTL.setTabMode(profiles.size() <= 4 ? TabLayout.MODE_FIXED : TabLayout.MODE_SCROLLABLE);
-
         // Set empty view visibility
         emptyViewTV = findViewById(R.id.empty_list_item);
         emptyViewTV.setVisibility(profiles.size() == 0 ? View.VISIBLE : View.GONE);
@@ -97,10 +102,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // Start new profile activity
             case R.id.toolbar_main_add_profile:
+                // Start new profile activity
                 Intent intent = new Intent(this, NewProfile.class);
                 startActivity(intent);
+                return true;
+            case R.id.toolbar_main_help:
+                // Show info panel
+                infoPanelCL.setVisibility(View.VISIBLE);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

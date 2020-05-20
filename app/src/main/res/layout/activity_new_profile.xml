@@ -29,11 +29,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/new_profile_window_cl"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
         android:background="@drawable/accent_color_border"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,8 +45,6 @@
             android:id="@+id/new_profile_confirm_btn"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginBottom="64dp"
             android:background="@drawable/button_confrim"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +59,7 @@
             android:background="@drawable/button_cancel"
             app:layout_constraintBaseline_toBaselineOf="@+id/new_profile_confirm_btn"
             app:layout_constraintEnd_toStartOf="@+id/new_profile_confirm_btn"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.6"
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
@@ -167,13 +167,13 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <fragment
-        android:id="@+id/new_profile_info_panel_f"
-        android:name="com.slack.motometer.ui.fragments.CollapsibleInfoPanel"
+    <include
+        layout="@layout/info_panel"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_profile_toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

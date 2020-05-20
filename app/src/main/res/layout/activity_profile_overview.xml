@@ -49,22 +49,23 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:background="@drawable/button_profile_action"
         android:drawableTop="@drawable/ic_maintenance"
         android:padding="8dp"
         android:text="@string/activity_profile_overview_maintenance"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_overview_header_bottom_border" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_overview_home_btn" />
 
     <Button
         android:id="@+id/profile_overview_post_ride_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:background="@drawable/button_profile_action"
         android:drawableTop="@drawable/ic_post_ride"
@@ -79,7 +80,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:background="@drawable/button_profile_action"
         android:drawableTop="@drawable/ic_checklist"
@@ -94,7 +95,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:background="@drawable/button_profile_action"
         android:drawableTop="@drawable/ic_notes"
@@ -109,7 +110,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="4dp"
         android:background="@drawable/button_profile_action"
         android:drawableTop="@drawable/ic_pencil"
@@ -119,13 +120,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_overview_notes_btn" />
 
-    <fragment
-        android:id="@+id/profile_overview_info_panel_f"
-        android:name="com.slack.motometer.ui.fragments.CollapsibleInfoPanel"
+    <include
+        layout="@layout/info_panel"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_overview_toolbar" />
+
+    <Button
+        android:id="@+id/profile_overview_home_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/button_profile_action"
+        android:drawableTop="@drawable/ic_home"
+        android:padding="8dp"
+        android:text="@string/activity_profile_overview_home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_overview_header_bottom_border" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

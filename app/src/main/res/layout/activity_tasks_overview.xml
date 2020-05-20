@@ -53,7 +53,7 @@
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
         android:divider="#00000000"
-        app:layout_constraintBottom_toTopOf="@+id/tasks_overview_info_panel_f"
+        app:layout_constraintBottom_toTopOf="@+id/tasks_overview_nav_bar_top_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tasks_overview_header_f" >
@@ -67,20 +67,20 @@
         android:text="@string/empty_task_list"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/tasks_overview_info_panel_f"
+        app:layout_constraintBottom_toTopOf="@+id/tasks_overview_nav_bar_top_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tasks_overview_header_bottom_border" />
 
-    <fragment
-        android:id="@+id/tasks_overview_info_panel_f"
-        android:name="com.slack.motometer.ui.fragments.CollapsibleInfoPanel"
+    <include
+        layout="@layout/info_panel"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/tasks_overview_nav_bar_top_border"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tasks_overview_toolbar" />
 
     <View
         android:id="@+id/tasks_overview_nav_bar_top_border"

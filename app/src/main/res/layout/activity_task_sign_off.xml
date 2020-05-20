@@ -225,13 +225,13 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <fragment
-        android:id="@+id/task_sign_off_info_panel_f"
-        android:name="com.slack.motometer.ui.fragments.CollapsibleInfoPanel"
+    <include
+        layout="@layout/info_panel"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_sign_off_toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,11 +3,13 @@ package com.slack.motometer.ui.activities;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,6 +33,7 @@ public class TasksOverview extends AppCompatActivity {
     private ListView taskContainerLV;
     private TextView profileTitleTV, profileHoursValueTV, infoPanelTV;
     private BottomNavigationView navBar;
+    private ConstraintLayout infoPanelCL;
 
     // Logic components
     private ProfileRepository profileRepository;
@@ -70,12 +73,17 @@ public class TasksOverview extends AppCompatActivity {
         // Get handle on UI elements
         profileTitleTV = findViewById(R.id.profile_header_title_tv);
         profileHoursValueTV = findViewById(R.id.profile_header_hours_value_tv);
-        infoPanelTV = findViewById(R.id.information_tv);
+        infoPanelTV = findViewById(R.id.info_panel_info_text_tv);
+        infoPanelCL = findViewById(R.id.info_panel_cl);
 
         // Set UI element values
         profileTitleTV.setText(new ProfileLogic(this).getProfileTitle(profile));
         profileHoursValueTV.setText(profile.getHours());
+        // Set infoPanel
         infoPanelTV.setText(R.string.activity_tasks_overview_information);
+        // Hide info panel again if user clicks help panel
+        infoPanelCL.setClickable(true);
+        infoPanelCL.setOnClickListener(v -> infoPanelCL.setVisibility(View.GONE));
 
         // Create and set adapter for ListView
         taskAdapter = new TaskAdapter(this, R.layout.task_card_view, tasks);
@@ -153,7 +161,12 @@ public class TasksOverview extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                // Back button - return to previous activity
                 finish();
+                return true;
+            case R.id.toolbar_tasks_overview_help:
+                // Show info panel
+                infoPanelCL.setVisibility(View.VISIBLE);
                 return true;
             case R.id.toolbar_tasks_overview_icon_add:
                 // start NewTask activity

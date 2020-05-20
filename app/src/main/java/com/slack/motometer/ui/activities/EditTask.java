@@ -3,10 +3,12 @@ package com.slack.motometer.ui.activities;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -23,6 +25,7 @@ public class EditTask extends AppCompatActivity {
     // UI components
     private EditText nameValueET, intervalValueET, completedAtValueET;
     private TextView infoPanelTV;
+    private ConstraintLayout infoPanelCL;
 
     // Logic components
     private String taskId;
@@ -57,7 +60,8 @@ public class EditTask extends AppCompatActivity {
         nameValueET = findViewById(R.id.edit_task_name_value_et);
         intervalValueET = findViewById(R.id.edit_task_interval_value_et);
         completedAtValueET = findViewById(R.id.edit_task_completed_at_value_et);
-        infoPanelTV = findViewById(R.id.information_tv);
+        infoPanelTV = findViewById(R.id.info_panel_info_text_tv);
+        infoPanelCL = findViewById(R.id.info_panel_cl);
 
         // Set UI components
         nameValueET.setText(task.getTaskTitle());
@@ -66,7 +70,11 @@ public class EditTask extends AppCompatActivity {
         intervalValueET.setSelectAllOnFocus(true);
         completedAtValueET.setText(String.valueOf(task.getLastCompletedAt()));
         completedAtValueET.setSelectAllOnFocus(true);
+        // Set infoPanel
         infoPanelTV.setText(R.string.activity_edit_task_information);
+        // Hide info panel again if user clicks help panel
+        infoPanelCL.setClickable(true);
+        infoPanelCL.setOnClickListener(v -> infoPanelCL.setVisibility(View.GONE));
     }
 
     // Inflate toolbar menu
@@ -80,19 +88,22 @@ public class EditTask extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // Back button - return to previous activity
             case android.R.id.home:
+                // Back button - return to previous activity
                 finish();
                 return true;
-            // Save profile edits to db
+            case R.id.toolbar_edit_task_help:
+                infoPanelCL.setVisibility(View.VISIBLE);
+                return true;
             case R.id.toolbar_edit_task_icon_save:
+                // Save profile edits to db
                 if (validateEditTaskForm()) {
                     saveTaskEdits();
                     finish();
                 }
                 return true;
-            // Clear edit profile fields
             case R.id.toolbar_edit_task_icon_clear:
+                // Clear edit profile fields
                 nameValueET.setText("");
                 intervalValueET.setText("");
                 completedAtValueET.setText("");

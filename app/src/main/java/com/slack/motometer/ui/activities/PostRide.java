@@ -3,10 +3,13 @@ package com.slack.motometer.ui.activities;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -23,6 +26,7 @@ public class PostRide extends AppCompatActivity {
     // UI components
     private EditText hoursValueET;
     private TextView infoPanelTV;
+    private ConstraintLayout infoPanelCL;
 
     // Logic components
     private ProfileRepository profileRepository;
@@ -47,7 +51,8 @@ public class PostRide extends AppCompatActivity {
 
         // Get handle on UI components
         hoursValueET = findViewById(R.id.post_ride_hours_value_et);
-        infoPanelTV = findViewById(R.id.information_tv);
+        infoPanelTV = findViewById(R.id.info_panel_info_text_tv);
+        infoPanelCL = findViewById(R.id.info_panel_cl);
 
         // Set Logic components
         profileId = getIntent().getExtras().getString("profileId");
@@ -56,7 +61,11 @@ public class PostRide extends AppCompatActivity {
         profileLogic = new ProfileLogic(this);
 
         // Set UI components
+        // Set infoPanel
         infoPanelTV.setText(R.string.activity_post_ride_information);
+        // Hide info panel again if user clicks help panel
+        infoPanelCL.setClickable(true);
+        infoPanelCL.setOnClickListener(v -> infoPanelCL.setVisibility(View.GONE));
         // Set button listeners/handlers
         findViewById(R.id.post_ride_confirm_btn).setOnClickListener((view) -> {
             if (validateHoursValue(hoursValueET)) {
@@ -105,13 +114,23 @@ public class PostRide extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.post_ride_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
     // Set toolbar icon actions
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // Back button - return to previous activity
             case android.R.id.home:
+                // Back button - return to previous activity
                 finish();
+                return true;
+            case R.id.toolbar_post_ride_help:
+                // Show info panel
+                infoPanelCL.setVisibility(View.VISIBLE);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -9,13 +9,19 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/toolbar_edit_profile_help"
+        android:icon="@drawable/ic_info"
+        android:title="@string/toolbar_info"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/toolbar_edit_profile_icon_clear"
         android:title="@string/toolbar_edit_profile_icon_clear"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/toolbar_delete_profile"
-        android:title="delete profile"
+        android:id="@+id/toolbar_edit_profile_delete"
+        android:title="@string/toolbar_edit_profile_delete"
         app:showAsAction="never" />
 
 </menu>

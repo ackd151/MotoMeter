@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
     private TextView readyNotReadyTV, infoPanelTV;
     private Toolbar toolbar;
     private MenuItem delete, deleteAll;
+    private ConstraintLayout infoPanelCL;
 
     // Logic components
     private ChecklistRepository checklistRepository;
@@ -55,12 +57,17 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
         // Get handle on UI components
         checklistItemContainerLV = findViewById(R.id.pre_ride_cl_lv);
         readyNotReadyTV = findViewById(R.id.pre_ride_ready_tv);
-        infoPanelTV = findViewById(R.id.information_tv);
+        infoPanelTV = findViewById(R.id.info_panel_info_text_tv);
+        infoPanelCL = findViewById(R.id.info_panel_cl);
 
-        // Set UI element values
+        // Set UI components
         // Set ready-not-ready textview text and color depending on checklist completion status
         isChecklistComplete();
+        // Set infoPanel
         infoPanelTV.setText(R.string.activity_pre_ride_information);
+        // Hide info panel again if user clicks help panel
+        infoPanelCL.setClickable(true);
+        infoPanelCL.setOnClickListener(v -> infoPanelCL.setVisibility(View.GONE));
 
         // Create and set adapter for ListView
         checklistAdapter = new ChecklistAdapter(this, R.layout.checklist_card_view,
@@ -142,14 +149,21 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                // Back button - return to previous activity
                 finish();
                 return true;
+            case R.id.toolbar_pre_ride_help:
+                // Show info panel
+                infoPanelCL.setVisibility(View.VISIBLE);
+                return true;
             case R.id.toolbar_pre_ride_add_cl_item:
+                // Start NewChecklistItem activity
                 Intent intent = new Intent(this, NewChecklistItem.class);
                 intent.putExtra("profileId", profileId);
                 startActivityForResult(intent, 1);
                 return true;
             case R.id.toolbar_pre_ride_delete_cl_items:
+                // Make cLItem delete buttons visible
                 for (int i = 0; i < checklistItemContainerLV.getCount() ; ++i) {
                     View view = getViewFromListView(i, checklistItemContainerLV);
                     Button deleteClItemBtn = view.findViewById(R.id.checklist_card_delete_btn);
@@ -163,6 +177,7 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
                 }
                 return true;
             case R.id.toolbar_pre_ride_delete_all_cl_items:
+                // Delete all cLItems
                 AlertDialog deleteAllClItemsDialog = createDeleteAllDialog();
                 deleteAllClItemsDialog.show();
                 return true;

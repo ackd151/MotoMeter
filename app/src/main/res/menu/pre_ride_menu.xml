@@ -6,7 +6,13 @@ xmlns:android="http://schemas.android.com/apk/res/android">
         android:id="@+id/toolbar_pre_ride_add_cl_item"
         android:icon="@drawable/ic_add_circle"
         android:title="@string/toolbar_pre_ride_icon_add"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/toolbar_pre_ride_help"
+        android:icon="@drawable/ic_info"
+        android:title="@string/toolbar_info"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/toolbar_pre_ride_delete_cl_items"

@@ -48,6 +48,7 @@
     <string name="activity_pre_ride_not_ready">Park it?</string>
 
     <!-- activity_profile_overview layout strings -->
+    <string name="activity_profile_overview_home">HOME</string>
     <string name="activity_profile_overview_maintenance">Maintenance</string>
     <string name="activity_profile_overview_post_ride">Post-Ride</string>
     <string name="activity_profile_overview_pre_ride">Pre-Ride</string>
@@ -69,27 +70,31 @@
     <string name="checklist_card_view_complete">Completed</string>
 
     <!-- profile_card_view layout strings -->
+    <string name="profile_card_hourmeter">Hourmeter:</string>
     <string name="profile_card_view_hrs"> hrs.</string>
     <string name="profile_card_view_no_maintenance_due">No Maintenance Due</string>
     <string name="profile_card_view_maintenance_due">Maintenance Due Soon</string>
     <string name="profile_card_no_tasks">No tasks being tracked</string>
+    <string name="profile_card_inspection_status">Pre-ride Inspection Status</string>
 
     <!-- task_card_view layout strings -->
     <string name="task_card_view_due_in">Maintenance due in</string>
 
 
     <!-- toolbar strings -->
-    <!-- toolbar for activity_edit_task strings -->
-    <string name="toolbar_edit_task_title">Edit Task</string>
-    <string name="toolbar_edit_task_icon_save">save</string>
-    <string name="toolbar_edit_task_icon_clear">clear form</string>
+    <string name="toolbar_info">help</string>
     <!-- toolbar for activity_edit_profile strings -->
     <string name="toolbar_edit_profile_title">Edit Profile</string>
     <string name="toolbar_edit_profile_icon_save">save</string>
     <string name="toolbar_edit_profile_icon_clear">clear form</string>
+    <string name="toolbar_edit_profile_delete">delete profile</string>
+    <!-- toolbar for activity_edit_task strings -->
+    <string name="toolbar_edit_task_title">Edit Task</string>
+    <string name="toolbar_edit_task_icon_save">save</string>
+    <string name="toolbar_edit_task_icon_clear">clear form</string>
     <!-- toolbar for activity_main strings -->
     <string name="toolbar_main_title">MotoMeter</string>
-    <string name="toolbar_main_icon_add_profile">Add</string>
+    <string name="toolbar_main_add_profile">add</string>
     <!-- toolbar for activity_new_checklist_item strings -->
     <string name="toolbar_new_checklist_item_title">New Checklist Item</string>
     <!-- toolbar for activity_new_profile strings -->
@@ -106,7 +111,7 @@
     <string name="toolbar_post_ride_title">Update Hourmeter</string>
     <!-- toolbar for activity_pre_ride strings -->
     <string name="toolbar_pre_ride_title">Pre-Ride Inspection</string>
-    <string name="toolbar_pre_ride_icon_add">Add</string>
+    <string name="toolbar_pre_ride_icon_add">add</string>
     <string name="toolbar_pre_ride_delete_title">delete item</string>
     <string name="toolbar_pre_ride_delete_all_title">delete all</string>
     <!-- toolbar for activity_profile_overview strings -->
@@ -148,7 +153,6 @@
     <string name="alert_dialog_notify_saved">saved</string>
 
     <!-- activity_information strings -->
-    <!-- activity_task_sign_off information strings -->
     <string name="activity_edit_profile_information">Edit the year, make, model, and hourmeter
         values in the corresponding fields.\n\nSelecting \'clear form\' from the toolbar menu above
         will clear the text fields but will not affect the profile image.\n\n*The updated
@@ -210,6 +214,6 @@
 
     <!-- non localized strings -->
     <string name="hours">hours</string>
-    <string name="help">Help/Info</string>
+    <string name="help">Help / Info</string>
 
 </resources>

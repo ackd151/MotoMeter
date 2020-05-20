@@ -4,11 +4,13 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -26,6 +28,7 @@ public class TaskSignOff extends AppCompatActivity {
     // UI components
     private TextView taskTitleTV, taskDueInTV, taskIntervalValueTV, taskLastAtValueTV, infoPanelTV;
     private EditText signOffValueET;
+    private ConstraintLayout infoPanelCL;
 
     // Logic components
     private ProfileRepository profileRepository;
@@ -67,7 +70,8 @@ public class TaskSignOff extends AppCompatActivity {
         signOffValueET = findViewById(R.id.task_sign_off_value_et);
         taskIntervalValueTV = findViewById(R.id.task_sign_off_interval_value_tv);
         taskLastAtValueTV = findViewById(R.id.task_sign_off_last_at_value_tv);
-        infoPanelTV = findViewById(R.id.information_tv);
+        infoPanelTV = findViewById(R.id.info_panel_info_text_tv);
+        infoPanelCL = findViewById(R.id.info_panel_cl);
 
         // Set UI components
         taskTitleTV.setText(task.getTaskTitle());
@@ -84,8 +88,11 @@ public class TaskSignOff extends AppCompatActivity {
                 finish();
             }
         });
-        // Set infoPanel fragment text
+        // Set infoPanel
         infoPanelTV.setText(R.string.activity_task_sign_off_information);
+        // Hide info panel again if user clicks help panel
+        infoPanelCL.setClickable(true);
+        infoPanelCL.setOnClickListener(v -> infoPanelCL.setVisibility(View.GONE));
     }
 
     // Ensure fresh db data fetched on activity resume
@@ -109,19 +116,23 @@ public class TaskSignOff extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // Back button - return to previous activity
             case android.R.id.home:
+                // Back button - return to previous activity
                 finish();
                 return true;
-            // Edit task fields
+            case R.id.toolbar_task_sign_off_help:
+                // Show info panel
+                infoPanelCL.setVisibility(View.VISIBLE);
+                return true;
             case R.id.toolbar_task_sign_off_icon_edit:
+                // Edit task fields
                 Intent intent = new Intent(this, EditTask.class);
                 intent.putExtra("taskId", taskId);
                 intent.putExtra("profileId", profile.getId());
                 startActivity(intent);
                 return true;
-            // Delete task from db/app
             case R.id.toolbar_task_sign_off_icon_delete:
+                // Delete task from db/app
                 AlertDialog taskDeleteDialog = deleteTask(task);
                 taskDeleteDialog.show();
                 return true;

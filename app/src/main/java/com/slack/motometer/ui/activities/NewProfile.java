@@ -3,6 +3,7 @@ package com.slack.motometer.ui.activities;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,6 +23,7 @@ public class NewProfile extends AppCompatActivity {
     // UI components
     private EditText yearET, makeET, modelET, hoursET;
     private TextView infoPanelTV;
+    private ConstraintLayout infoPanelCL;
 
     // Logic components
     private ProfileRepository profileRepository;
@@ -66,9 +68,13 @@ public class NewProfile extends AppCompatActivity {
                 finish();
             }
         });
-        // Set help/info panel text
-        infoPanelTV = findViewById(R.id.information_tv);
+        // Set infoPanel
+        infoPanelCL = findViewById(R.id.info_panel_cl);
+        infoPanelTV = findViewById(R.id.info_panel_info_text_tv);
         infoPanelTV.setText(R.string.activity_new_profile_information);
+        // Hide info panel again if user clicks help panel
+        infoPanelCL.setClickable(true);
+        infoPanelCL.setOnClickListener(v -> infoPanelCL.setVisibility(View.GONE));
 
         // Set Logic components
         profileRepository = new ProfileService(this);
@@ -84,9 +90,15 @@ public class NewProfile extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                // Back button - return to previous activity
                 finish();
                 return true;
+            case R.id.toolbar_new_profile_help:
+                // Show info panel
+                infoPanelCL.setVisibility(View.VISIBLE);
+                return true;
             case R.id.toolbar_new_profile_icon_clear:
+                // Clear all EditText fields
                 yearET.setText("");
                 makeET.setText("");
                 modelET.setText("");

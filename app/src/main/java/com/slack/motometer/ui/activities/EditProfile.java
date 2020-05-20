@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -37,6 +38,7 @@ public class EditProfile extends AppCompatActivity {
     private ImageView profileImageIV;
     private EditText yearValueET, makeValueET, modelValueET, hoursValueET;
     private TextView infoPanelTV;
+    private ConstraintLayout infoPanelCL;
 
     // Logic components
     private String profileId;
@@ -76,7 +78,8 @@ public class EditProfile extends AppCompatActivity {
         makeValueET = findViewById(R.id.edit_profile_make_value_et);
         modelValueET = findViewById(R.id.edit_profile_model_value_et);
         hoursValueET = findViewById(R.id.edit_profile_hours_value_et);
-        infoPanelTV = findViewById(R.id.information_tv);
+        infoPanelTV = findViewById(R.id.info_panel_info_text_tv);
+        infoPanelCL = findViewById(R.id.info_panel_cl);
 
         // Set UI components
         profileImageIV.setImageBitmap(profileImage.getImage());
@@ -89,7 +92,11 @@ public class EditProfile extends AppCompatActivity {
         modelValueET.setSelectAllOnFocus(true);
         hoursValueET.setText(profile.getHours());
         hoursValueET.setSelectAllOnFocus(true);
+        // Set infoPanel
         infoPanelTV.setText(R.string.activity_edit_profile_information);
+        // Hide info panel again if user clicks help panel
+        infoPanelCL.setClickable(true);
+        infoPanelCL.setOnClickListener(v -> infoPanelCL.setVisibility(View.GONE));
         // Set imageView onClick to show dialog prompt for photo selection (camera/gallery)
         profileImageIV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +104,14 @@ public class EditProfile extends AppCompatActivity {
                 showPhotoSelectDialog();
             }
         });
+        // Set edit profile cancel/confirm buttons
+        findViewById(R.id.edit_profile_confirm_btn).setOnClickListener(v -> {
+            if (validateEditProfileForm()) {
+                saveProfileEdits();
+                finish();
+            }
+        });
+        findViewById(R.id.edit_profile_cancel_btn).setOnClickListener(v -> finish());
     }
 
     // Inflate toolbar menu
@@ -110,26 +125,30 @@ public class EditProfile extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // Back button - return to previous activity
             case android.R.id.home:
+                // Back button - return to previous activity
                 finish();
                 return true;
-            // Save profile edits to db
+            case R.id.toolbar_edit_profile_help:
+                // Show info panel
+                infoPanelCL.setVisibility(View.VISIBLE);
+                return true;
             case R.id.toolbar_edit_profile_icon_save:
+                // Save profile edits to db
                 if (validateEditProfileForm()) {
                     saveProfileEdits();
                     finish();
                 }
                 return true;
-            // Clear edit profile fields
             case R.id.toolbar_edit_profile_icon_clear:
+                // Clear edit profile fields
                 yearValueET.setText("");
                 makeValueET.setText("");
                 modelValueET.setText("");
                 hoursValueET.setText("");
                 yearValueET.requestFocus();
                 return true;
-            case R.id.toolbar_delete_profile:
+            case R.id.toolbar_edit_profile_delete:
                 AlertDialog profileDeleteDialog = createDeleteProfileDialog(profile);
                 profileDeleteDialog.show();
                 return true;

@@ -3,8 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/toolbar_new_profile_help"
+        android:icon="@drawable/ic_info"
+        android:title="@string/toolbar_info"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/toolbar_new_profile_icon_clear"
         android:title="@string/toolbar_new_profile_icon_clear"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 
 </menu>

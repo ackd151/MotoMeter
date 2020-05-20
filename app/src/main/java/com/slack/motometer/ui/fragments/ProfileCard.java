@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -26,13 +27,19 @@ import com.slack.motometer.domain.repositories.ProfileRepository;
 import com.slack.motometer.domain.services.ChecklistService;
 import com.slack.motometer.domain.services.ImageService;
 import com.slack.motometer.domain.services.ProfileService;
+import com.slack.motometer.ui.activities.EditProfile;
+import com.slack.motometer.ui.activities.Notes;
+import com.slack.motometer.ui.activities.PostRide;
+import com.slack.motometer.ui.activities.PreRide;
 import com.slack.motometer.ui.activities.ProfileOverview;
+import com.slack.motometer.ui.activities.TasksOverview;
 
 import java.util.Objects;
 
 public class ProfileCard extends Fragment {
 
     private Context context;
+    private String profileId;
 
     public static ProfileCard newInstance(String profileId) {
         ProfileCard fragment = new ProfileCard();
@@ -62,7 +69,6 @@ public class ProfileCard extends Fragment {
         ProfileRepository profileRepository;
         ChecklistRepository checklistRepository;
         Profile profile;
-        String profileId;
         TaskLogic taskLogic;
         ChecklistLogic checklistLogic;
         Task nextTask;
@@ -134,7 +140,28 @@ public class ProfileCard extends Fragment {
             startActivity(profileOverview);
         });
 
+        // Set action buttons - edit, tasks, pre-ride, post-ride, notes
+        TextView editProfileTV, tasksTV, preRideTV, postRideTV, notesTV;
+        editProfileTV = view.findViewById(R.id.profile_card_edit_tv);
+        tasksTV = view.findViewById(R.id.profile_card_tasks_btn);
+        preRideTV = view.findViewById(R.id.profile_card_pre_ride_btn);
+        postRideTV = view.findViewById(R.id.profile_card_post_ride_btn);
+        notesTV = view.findViewById(R.id.profile_card_notes_btn);
+        setActionButton(editProfileTV, EditProfile.class);
+        setActionButton(tasksTV, TasksOverview.class);
+        setActionButton(preRideTV, PreRide.class);
+        setActionButton(postRideTV, PostRide.class);
+        setActionButton(notesTV, Notes.class);
+
         return view;
     }
 
+    private void setActionButton(TextView textView, Class cls) {
+        textView.setClickable(true);
+        textView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, cls);
+            intent.putExtra("profileId", profileId);
+            startActivity(intent);
+        });
+    }
 }

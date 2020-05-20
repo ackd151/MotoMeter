@@ -82,18 +82,18 @@
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/content_background"
-        app:layout_constraintBottom_toTopOf="@+id/pre_ride_info_panel_f"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <fragment
-        android:id="@+id/pre_ride_info_panel_f"
-        android:name="com.slack.motometer.ui.fragments.CollapsibleInfoPanel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/pre_ride_nav_bar_top_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <include
+        layout="@layout/info_panel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pre_ride_toolbar" />
 
     <View
         android:id="@+id/pre_ride_nav_bar_top_border"

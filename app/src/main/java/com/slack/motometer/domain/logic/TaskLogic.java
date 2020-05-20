@@ -64,6 +64,7 @@ public class TaskLogic implements Comparator<Task> {
         return null;
     }
 
+    // Get task proximity - due soon, past due, or not due
     public MaintenanceDue getDueProximity(Task task) {
         float dueIn = Float.parseFloat(getRemainingHours(task));
         return dueIn <= 0 ? MaintenanceDue.PAST :
@@ -71,6 +72,7 @@ public class TaskLogic implements Comparator<Task> {
                         MaintenanceDue.NOT;
     }
 
+    // Get string describing task proximity
     public String getDueProximityString(Task task) {
         MaintenanceDue dueWhen = getDueProximity(task);
         return dueWhen == MaintenanceDue.PAST ? "Maintenance past due: "  :

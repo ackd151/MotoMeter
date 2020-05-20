@@ -3,6 +3,7 @@ package com.slack.motometer.ui.activities;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -24,6 +25,7 @@ public class NewTask extends AppCompatActivity {
     // UI components
     private EditText taskNameET, intervalET, lastCompletedAtET;
     private TextView infoPanelTV;
+    private ConstraintLayout infoPanelCL;
 
     // Logic components
     private String profileId;
@@ -56,7 +58,8 @@ public class NewTask extends AppCompatActivity {
         taskNameET = findViewById(R.id.new_task_name_value_et);
         intervalET = findViewById(R.id.new_task_interval_value_et);
         lastCompletedAtET = findViewById(R.id.new_task_last_completed_at_value_et);
-        infoPanelTV = findViewById(R.id.information_tv);
+        infoPanelTV = findViewById(R.id.info_panel_info_text_tv);
+        infoPanelCL = findViewById(R.id.info_panel_cl);
 
         // Set UI components
         // Set confirm/cancel button onClick listeners/handlers
@@ -71,7 +74,11 @@ public class NewTask extends AppCompatActivity {
         findViewById(R.id.new_task_cancel_btn).setOnClickListener(view -> finish());
         // Give top edittext focus
         taskNameET.requestFocus();
+        // Set infoPanel
         infoPanelTV.setText(R.string.activity_new_task_information);
+        // Hide info panel again if user clicks help panel
+        infoPanelCL.setClickable(true);
+        infoPanelCL.setOnClickListener(v -> infoPanelCL.setVisibility(View.GONE));
     }
 
     @Override
@@ -84,9 +91,15 @@ public class NewTask extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                // Back button - return to previous activity
                 finish();
                 return true;
+            case R.id.toolbar_new_task_help:
+                // Show info panel
+                infoPanelCL.setVisibility(View.VISIBLE);
+                return true;
             case R.id.toolbar_new_task_clear:
+                // Clear all EditText fields
                 taskNameET.setText("");
                 intervalET.setText("");
                 lastCompletedAtET.setText("");
