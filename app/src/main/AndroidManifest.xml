@@ -31,9 +31,6 @@
         <activity android:name=".ui.activities.PostRide"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".ui.activities.ProfileOverview"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
         <activity android:name=".ui.activities.NewTask"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />

@@ -11,8 +11,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Scroller;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -63,6 +65,19 @@ public class Notes extends AppCompatActivity {
 
         // Get handle on UI components
         noteContentsET = findViewById(R.id.notes_content_et);
+//        noteContentsET.setOnTouchListener(new View.OnTouchListener() {
+//            public boolean onTouch(View v, MotionEvent event) {
+//                if (noteContentsET.hasFocus()) {
+//                    v.getParent().requestDisallowInterceptTouchEvent(true);
+//                    switch (event.getAction() & MotionEvent.ACTION_MASK){
+//                        case MotionEvent.ACTION_SCROLL:
+//                            v.getParent().requestDisallowInterceptTouchEvent(false);
+//                            return true;
+//                    }
+//                }
+//                return false;
+//            }
+//        });
         infoPanelTV = findViewById(R.id.info_panel_info_text_tv);
         infoPanelCL = findViewById(R.id.info_panel_cl);
 

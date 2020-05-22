@@ -167,8 +167,14 @@
     </string>
     <string name="activity_main_information">Select the + icon in the toolbar menu above
         to create a new motorcycle profile.\n\nYou can switch between profiles by swiping left/right
-        or by using the tabs above.\n\nTouch anywhere in the main view to interact with the
-        corresponding profile.</string>
+        or by using the tabs near the top of the screen.\n\nTouch anywhere in the main view to
+        interact with the corresponding profile.\n\nQuick links can be found at the bottom of the
+        screen. Quick links from left to right are:\n\n\tMAINTENANCE - create, view, and interact
+        with maintenance tasks for the selected profile.\n\n\tPOST-RIDE - update the profile\'s
+        current hourmeter reading.\n\n\tPRE-RIDE - populate, view, and interact with the pre-ride
+        inspection checklist.\n\n\tNOTES / SPECS - record desired notes, specs, torques, inspection
+        criteria, etc.\n\nYou can edit/delete a profile by touching the pencil icon in the top right
+        corner of the profile view, to the right of the profile title.</string>
     <string name="activity_new_checklist_item_information">Supply the inspection name/title and
         select the check mark to add an inspection to the checklist.\n\nSelect the back arrow or
         the cancel(x) button to abort and return to the previous screen.</string>
@@ -215,5 +221,6 @@
     <!-- non localized strings -->
     <string name="hours">hours</string>
     <string name="help">Help / Info</string>
+    <string name="close">close</string>
 
 </resources>

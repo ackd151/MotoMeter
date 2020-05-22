@@ -47,7 +47,7 @@
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="16dp" />
+            android:paddingBottom="4dp" />
 
     </androidx.viewpager.widget.ViewPager>
 

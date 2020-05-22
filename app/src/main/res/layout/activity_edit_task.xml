@@ -95,7 +95,6 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="numberDecimal"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
             app:layout_constraintTop_toBottomOf="@+id/edit_task_interval_value_et" />
@@ -153,6 +152,29 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="140dp" />
+
+        <Button
+            android:id="@+id/edit_task_confirm_btn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/button_confrim"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/edit_task_cancel_btn"
+            app:layout_constraintTop_toBottomOf="@+id/edit_task_completed_at_value_et" />
+
+        <Button
+            android:id="@+id/edit_task_cancel_btn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/button_cancel"
+            app:layout_constraintBaseline_toBaselineOf="@+id/edit_task_confirm_btn"
+            app:layout_constraintEnd_toStartOf="@+id/edit_task_confirm_btn"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

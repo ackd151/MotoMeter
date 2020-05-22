@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -72,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
         infoPanelTV.setText(R.string.activity_main_information);
         // Hide info panel again if user clicks help panel
         infoPanelCL.setClickable(true);
-        infoPanelCL.setOnClickListener(v -> infoPanelCL.setVisibility(View.GONE));
+        infoPanelTV.setMovementMethod(new ScrollingMovementMethod());
+        findViewById(R.id.info_collapse_tv).setOnClickListener(v -> infoPanelCL.setVisibility(View.GONE));
     }
 
     @Override

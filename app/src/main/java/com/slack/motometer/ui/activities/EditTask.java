@@ -75,6 +75,15 @@ public class EditTask extends AppCompatActivity {
         // Hide info panel again if user clicks help panel
         infoPanelCL.setClickable(true);
         infoPanelCL.setOnClickListener(v -> infoPanelCL.setVisibility(View.GONE));
+        // Set edit profile cancel/confirm buttons
+        findViewById(R.id.edit_task_confirm_btn).setOnClickListener(v -> {
+            // Save profile edits to db
+            if (validateEditTaskForm()) {
+                saveTaskEdits();
+                finish();
+            }
+        });
+        findViewById(R.id.edit_task_cancel_btn).setOnClickListener(v -> finish());
     }
 
     // Inflate toolbar menu

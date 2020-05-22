@@ -6,7 +6,6 @@ import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -31,7 +30,6 @@ import com.slack.motometer.ui.activities.EditProfile;
 import com.slack.motometer.ui.activities.Notes;
 import com.slack.motometer.ui.activities.PostRide;
 import com.slack.motometer.ui.activities.PreRide;
-import com.slack.motometer.ui.activities.ProfileOverview;
 import com.slack.motometer.ui.activities.TasksOverview;
 
 import java.util.Objects;
@@ -132,12 +130,12 @@ public class ProfileCard extends Fragment {
                     resources.getColor(R.color.accent_pressed) : resources.getColor(R.color.danger)
         );
 
-        // Set view onClickListener to start ProfileOverview activity
+        // Set view onClickListener to start TasksOverview activity
         view.setClickable(true);
         view.setOnClickListener(v -> {
-            Intent profileOverview = new Intent(context, ProfileOverview.class);
-            profileOverview.putExtra("profileId", profileId);
-            startActivity(profileOverview);
+            Intent tasksOverviewIntent = new Intent(context, TasksOverview.class);
+            tasksOverviewIntent.putExtra("profileId", profileId);
+            startActivity(tasksOverviewIntent);
         });
 
         // Set action buttons - edit, tasks, pre-ride, post-ride, notes
