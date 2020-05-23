@@ -22,6 +22,7 @@ import com.slack.motometer.domain.logic.ChecklistLogic;
 import com.slack.motometer.domain.model.ChecklistItem;
 import com.slack.motometer.domain.repositories.ChecklistRepository;
 import com.slack.motometer.domain.services.ChecklistService;
+import com.slack.motometer.utilities.BottomNavListener;
 import com.slack.motometer.utilities.ChecklistListener;
 import com.slack.motometer.ui.adapters.ChecklistAdapter;
 
@@ -35,6 +36,7 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
     private Toolbar toolbar;
     private MenuItem delete, deleteAll;
     private ConstraintLayout infoPanelCL;
+    private BottomNavigationView navBar;
 
     // Logic components
     private ChecklistRepository checklistRepository;
@@ -90,37 +92,9 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
 
 
         // Set bottom navigation bar
-        BottomNavigationView navBar = findViewById(R.id.pre_ride_nav_bar);
+        navBar = findViewById(R.id.pre_ride_nav_bar);
         navBar.setSelectedItemId(R.id.bottom_nav_pre_ride);
-        navBar.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.bottom_nav_home:
-                    Intent homeIntent = new Intent(getBaseContext(), MainActivity.class);
-                    startActivity(homeIntent);
-                    return true;
-                case R.id.bottom_nav_maintenance:
-                    Intent maintenanceIntent = new Intent(getBaseContext(), TasksOverview.class);
-                    maintenanceIntent.putExtra("profileId", profileId);
-                    startActivity(maintenanceIntent);
-                    return true;
-                case R.id.bottom_nav_post_ride:
-                    Intent postRideIntent = new Intent(getBaseContext(), PostRide.class);
-                    postRideIntent.putExtra("profileId", profileId);
-                    startActivity(postRideIntent);
-                    return true;
-                case R.id.bottom_nav_pre_ride:
-                    Intent preRideIntent = new Intent(getBaseContext(), PreRide.class);
-                    preRideIntent.putExtra("profileId", profileId);
-                    startActivity(preRideIntent);
-                    return true;
-                case R.id.bottom_nav_notes:
-                    Intent notesIntent = new Intent(getBaseContext(), Notes.class);
-                    notesIntent.putExtra("profileId", profileId);
-                    startActivity(notesIntent);
-                    return true;
-            }
-            return false;
-        });
+        navBar.setOnNavigationItemSelectedListener(new BottomNavListener(this, profileId));
     }
 
     // Inflate toolbar
@@ -201,6 +175,7 @@ public class PreRide extends AppCompatActivity implements ChecklistListener {
         checklistItemContainerLV.setAdapter(checklistAdapter);
         isChecklistComplete();
         invalidateOptionsMenu();
+        navBar.getMenu().findItem(R.id.bottom_nav_pre_ride).setChecked(true);
     }
 
     // Used when returning from adding new inspection task, to set readyNotReady textview

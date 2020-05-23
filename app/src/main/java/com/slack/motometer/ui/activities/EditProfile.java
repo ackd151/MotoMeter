@@ -133,13 +133,6 @@ public class EditProfile extends AppCompatActivity {
                 // Show info panel
                 infoPanelCL.setVisibility(View.VISIBLE);
                 return true;
-            case R.id.toolbar_edit_profile_icon_save:
-                // Save profile edits to db
-                if (validateEditProfileForm()) {
-                    saveProfileEdits();
-                    finish();
-                }
-                return true;
             case R.id.toolbar_edit_profile_icon_clear:
                 // Clear edit profile fields
                 yearValueET.setText("");

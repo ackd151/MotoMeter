@@ -3,12 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/toolbar_edit_profile_icon_save"
-        android:icon="@drawable/ic_save"
-        android:title="@string/toolbar_edit_profile_icon_save"
-        app:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/toolbar_edit_profile_help"
         android:icon="@drawable/ic_info"
         android:title="@string/toolbar_info"

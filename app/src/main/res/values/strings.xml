@@ -162,19 +162,22 @@
         profile\' from the toolbar menu to permanently remove this profile from the app.</string>
     <string name="activity_edit_task_information">Edit the task name/title, interval (hrs.), and the
         hourmeter value of when the task was last completed in the corresponding fields.
-        \n\nSelecting \'clear form\' from the toolbar menu above will clear the text fields.\n\n*The
-        updated information is only recorded if the save icon is selected in the toolbar above.*
+        \n\nSelecting \'clear form\' from the toolbar menu above will clear the text fields.
     </string>
     <string name="activity_main_information">Select the + icon in the toolbar menu above
         to create a new motorcycle profile.\n\nYou can switch between profiles by swiping left/right
         or by using the tabs near the top of the screen.\n\nTouch anywhere in the main view to
         interact with the corresponding profile.\n\nQuick links can be found at the bottom of the
-        screen. Quick links from left to right are:\n\n\tMAINTENANCE - create, view, and interact
-        with maintenance tasks for the selected profile.\n\n\tPOST-RIDE - update the profile\'s
-        current hourmeter reading.\n\n\tPRE-RIDE - populate, view, and interact with the pre-ride
-        inspection checklist.\n\n\tNOTES / SPECS - record desired notes, specs, torques, inspection
-        criteria, etc.\n\nYou can edit/delete a profile by touching the pencil icon in the top right
-        corner of the profile view, to the right of the profile title.</string>
+        screen. Quick links from left to right are:\n\n\tMAINTENANCE (wrench icon) - create, view,
+        and interact with maintenance tasks for the selected profile.\n\n\tPOST-RIDE (stopwatch
+        icon) - update the profile\'s current hourmeter reading. This action updates the hours
+        remaining for all tracked maintenance tasks and resets the pre-ride inspections.\n\n\tPRE-
+        RIDE (checklist clipboard) - populate, view, and interact with the pre-ride inspection
+        checklist.\n\n\tNOTES / SPECS (data clipboard) - a simple notepad to record desired notes,
+        specs, torques, inspection criteria, etc.\n\nYou can edit/delete a profile by touching the
+        pencil icon in the top right corner of the profile view, to the right of the profile title.
+        A profile image can be added/edited by touching the outlined image view in the \'Edit
+        Profile\' screen.</string>
     <string name="activity_new_checklist_item_information">Supply the inspection name/title and
         select the check mark to add an inspection to the checklist.\n\nSelect the back arrow or
         the cancel(x) button to abort and return to the previous screen.</string>
@@ -210,8 +213,10 @@
         the profile image. The profile can be deleted by selecting the option in the toolbar menu
         at the top of the edit profile screen.</string>
     <string name="activity_task_sign_off_information">The selected task can be signed off at any
-        value up to the current hourmeter reading.\n\nMaintenace tasks can be edited or deleted by
-        selecting the corresponding option in the toolbar menu above.</string>
+        value up to the current hourmeter reading.\n\nSimply enter the time (hourmeter value) the
+        task was completed and touch the check-mark to submit. This will reset the task\'s interval,
+        restarting the countdown.\n\nMaintenance tasks can be edited or deleted by selecting the
+        corresponding option in the toolbar menu above.</string>
     <string name="activity_tasks_overview_information">Select the + icon in the toolbar menu above
         to create a new maintenance task to be tracked.\n\nSelect an existing task to sign-off,
         edit, or delete that task.\n\nThe navigation tabs below will open the corresponding profile

@@ -6,15 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Scroller;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -25,6 +22,7 @@ import com.slack.motometer.domain.repositories.NoteRepository;
 import com.slack.motometer.domain.repositories.ProfileRepository;
 import com.slack.motometer.domain.services.NoteService;
 import com.slack.motometer.domain.services.ProfileService;
+import com.slack.motometer.utilities.BottomNavListener;
 
 public class Notes extends AppCompatActivity {
 
@@ -32,6 +30,7 @@ public class Notes extends AppCompatActivity {
     private EditText noteContentsET;
     private TextView infoPanelTV;
     private ConstraintLayout infoPanelCL;
+    private BottomNavigationView navBar;
 
     // Logic components
     private ProfileRepository profileRepository;
@@ -65,19 +64,6 @@ public class Notes extends AppCompatActivity {
 
         // Get handle on UI components
         noteContentsET = findViewById(R.id.notes_content_et);
-//        noteContentsET.setOnTouchListener(new View.OnTouchListener() {
-//            public boolean onTouch(View v, MotionEvent event) {
-//                if (noteContentsET.hasFocus()) {
-//                    v.getParent().requestDisallowInterceptTouchEvent(true);
-//                    switch (event.getAction() & MotionEvent.ACTION_MASK){
-//                        case MotionEvent.ACTION_SCROLL:
-//                            v.getParent().requestDisallowInterceptTouchEvent(false);
-//                            return true;
-//                    }
-//                }
-//                return false;
-//            }
-//        });
         infoPanelTV = findViewById(R.id.info_panel_info_text_tv);
         infoPanelCL = findViewById(R.id.info_panel_cl);
 
@@ -87,7 +73,6 @@ public class Notes extends AppCompatActivity {
         if (note.getContents().length() != 0) {
             noteContentsET.append("\n");
         }
-        noteContentsET.setSelection(noteContentsET.getText().length());
         // Set infoPanel
         infoPanelTV.setText(R.string.activity_notes_information);
         // Hide info panel again if user clicks help panel
@@ -95,37 +80,15 @@ public class Notes extends AppCompatActivity {
         infoPanelCL.setOnClickListener(v -> infoPanelCL.setVisibility(View.GONE));
 
         // Set bottom navigation bar
-        BottomNavigationView navBar = findViewById(R.id.notes_nav_bar);
+        navBar = findViewById(R.id.notes_nav_bar);
         navBar.setSelectedItemId(R.id.bottom_nav_notes);
-        navBar.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.bottom_nav_home:
-                    Intent homeIntent = new Intent(getBaseContext(), MainActivity.class);
-                    startActivity(homeIntent);
-                    return true;
-                case R.id.bottom_nav_maintenance:
-                    Intent maintenanceIntent = new Intent(getBaseContext(), TasksOverview.class);
-                    maintenanceIntent.putExtra("profileId", profileId);
-                    startActivity(maintenanceIntent);
-                    return true;
-                case R.id.bottom_nav_post_ride:
-                    Intent postRideIntent = new Intent(getBaseContext(), PostRide.class);
-                    postRideIntent.putExtra("profileId", profileId);
-                    startActivity(postRideIntent);
-                    return true;
-                case R.id.bottom_nav_pre_ride:
-                    Intent preRideIntent = new Intent(getBaseContext(), PreRide.class);
-                    preRideIntent.putExtra("profileId", profileId);
-                    startActivity(preRideIntent);
-                    return true;
-                case R.id.bottom_nav_notes:
-                    Intent notesIntent = new Intent(getBaseContext(), Notes.class);
-                    notesIntent.putExtra("profileId", profileId);
-                    startActivity(notesIntent);
-                    return true;
-            }
-            return false;
-        });
+        navBar.setOnNavigationItemSelectedListener(new BottomNavListener(this, profileId));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        navBar.getMenu().findItem(R.id.bottom_nav_notes).setChecked(true);
     }
 
     // Inflate toolbar menu

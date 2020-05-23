@@ -24,6 +24,7 @@ import com.slack.motometer.domain.repositories.TaskRepository;
 import com.slack.motometer.domain.services.ProfileService;
 import com.slack.motometer.domain.services.TaskService;
 import com.slack.motometer.ui.adapters.TaskAdapter;
+import com.slack.motometer.utilities.BottomNavListener;
 
 import java.util.List;
 
@@ -107,35 +108,7 @@ public class TasksOverview extends AppCompatActivity {
         // Set bottom navigation bar
         navBar = findViewById(R.id.tasks_overview_nav_bar);
         navBar.setSelectedItemId(R.id.bottom_nav_maintenance);
-        navBar.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.bottom_nav_home:
-                    Intent homeIntent = new Intent(getBaseContext(), MainActivity.class);
-                    startActivity(homeIntent);
-                    return true;
-                case R.id.bottom_nav_maintenance:
-                    Intent maintenanceIntent = new Intent(getBaseContext(), TasksOverview.class);
-                    maintenanceIntent.putExtra("profileId", profileId);
-                    startActivity(maintenanceIntent);
-                    return true;
-                case R.id.bottom_nav_post_ride:
-                    Intent postRideIntent = new Intent(getBaseContext(), PostRide.class);
-                    postRideIntent.putExtra("profileId", profileId);
-                    startActivity(postRideIntent);
-                    return true;
-                case R.id.bottom_nav_pre_ride:
-                    Intent preRideIntent = new Intent(getBaseContext(), PreRide.class);
-                    preRideIntent.putExtra("profileId", profileId);
-                    startActivity(preRideIntent);
-                    return true;
-                case R.id.bottom_nav_notes:
-                    Intent notesIntent = new Intent(getBaseContext(), Notes.class);
-                    notesIntent.putExtra("profileId", profileId);
-                    startActivity(notesIntent);
-                    return true;
-            }
-            return false;
-        });
+        navBar.setOnNavigationItemSelectedListener(new BottomNavListener(this, profileId));
     }
 
     // Ensure fresh db data fetched on activity resume
@@ -147,6 +120,7 @@ public class TasksOverview extends AppCompatActivity {
         // clear adapter and repopulate with fresh profiles data
         taskAdapter.clear();
         taskAdapter.addAll(tasks);
+        navBar.getMenu().findItem(R.id.bottom_nav_maintenance).setChecked(true);
     }
 
     // Inflate toolbar
