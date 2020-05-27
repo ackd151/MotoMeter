@@ -98,13 +98,6 @@ public class NewTask extends AppCompatActivity {
                 // Show info panel
                 infoPanelCL.setVisibility(View.VISIBLE);
                 return true;
-            case R.id.toolbar_new_task_clear:
-                // Clear all EditText fields
-                taskNameET.setText("");
-                intervalET.setText("");
-                lastCompletedAtET.setText("");
-                taskNameET.requestFocus();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

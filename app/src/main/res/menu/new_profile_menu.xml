@@ -8,9 +8,4 @@
         android:title="@string/toolbar_info"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/toolbar_new_profile_icon_clear"
-        android:title="@string/toolbar_new_profile_icon_clear"
-        app:showAsAction="never" />
-
 </menu>

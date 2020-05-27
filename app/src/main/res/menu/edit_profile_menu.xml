@@ -9,11 +9,6 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/toolbar_edit_profile_icon_clear"
-        android:title="@string/toolbar_edit_profile_icon_clear"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/toolbar_edit_profile_delete"
         android:title="@string/toolbar_edit_profile_delete"
         app:showAsAction="never" />

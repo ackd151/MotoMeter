@@ -104,13 +104,6 @@ public class EditTask extends AppCompatActivity {
             case R.id.toolbar_edit_task_help:
                 infoPanelCL.setVisibility(View.VISIBLE);
                 return true;
-            case R.id.toolbar_edit_task_icon_clear:
-                // Clear edit profile fields
-                nameValueET.setText("");
-                intervalValueET.setText("");
-                completedAtValueET.setText("");
-                nameValueET.requestFocus();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

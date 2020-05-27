@@ -97,14 +97,6 @@ public class NewProfile extends AppCompatActivity {
                 // Show info panel
                 infoPanelCL.setVisibility(View.VISIBLE);
                 return true;
-            case R.id.toolbar_new_profile_icon_clear:
-                // Clear all EditText fields
-                yearET.setText("");
-                makeET.setText("");
-                modelET.setText("");
-                hoursET.setText("");
-                yearET.requestFocus();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

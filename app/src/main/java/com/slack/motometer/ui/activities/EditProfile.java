@@ -133,14 +133,6 @@ public class EditProfile extends AppCompatActivity {
                 // Show info panel
                 infoPanelCL.setVisibility(View.VISIBLE);
                 return true;
-            case R.id.toolbar_edit_profile_icon_clear:
-                // Clear edit profile fields
-                yearValueET.setText("");
-                makeValueET.setText("");
-                modelValueET.setText("");
-                hoursValueET.setText("");
-                yearValueET.requestFocus();
-                return true;
             case R.id.toolbar_edit_profile_delete:
                 AlertDialog profileDeleteDialog = createDeleteProfileDialog(profile);
                 profileDeleteDialog.show();

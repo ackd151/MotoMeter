@@ -47,14 +47,6 @@
     <string name="activity_pre_ride_ready">Pin it!</string>
     <string name="activity_pre_ride_not_ready">Park it?</string>
 
-    <!-- activity_profile_overview layout strings -->
-    <string name="activity_profile_overview_home">HOME</string>
-    <string name="activity_profile_overview_maintenance">Maintenance</string>
-    <string name="activity_profile_overview_post_ride">Post-Ride</string>
-    <string name="activity_profile_overview_pre_ride">Pre-Ride</string>
-    <string name="activity_profile_overview_notes">Notes / Specs</string>
-    <string name="activity_profile_overview_edit">Edit Profile</string>
-
     <!-- activity_task_sign_off layout strings -->
     <string name="activity_task_sign_off_interval">Maintenance interval:</string>
     <string name="activity_task_sign_off_last_at">Last completed at:</string>
@@ -86,12 +78,10 @@
     <!-- toolbar for activity_edit_profile strings -->
     <string name="toolbar_edit_profile_title">Edit Profile</string>
     <string name="toolbar_edit_profile_icon_save">save</string>
-    <string name="toolbar_edit_profile_icon_clear">clear form</string>
     <string name="toolbar_edit_profile_delete">delete profile</string>
     <!-- toolbar for activity_edit_task strings -->
     <string name="toolbar_edit_task_title">Edit Task</string>
     <string name="toolbar_edit_task_icon_save">save</string>
-    <string name="toolbar_edit_task_icon_clear">clear form</string>
     <!-- toolbar for activity_main strings -->
     <string name="toolbar_main_title">MotoMeter</string>
     <string name="toolbar_main_add_profile">add</string>
@@ -99,10 +89,8 @@
     <string name="toolbar_new_checklist_item_title">New Checklist Item</string>
     <!-- toolbar for activity_new_profile strings -->
     <string name="toolbar_new_profile_title">New Profile</string>
-    <string name="toolbar_new_profile_icon_clear">clear form</string>
     <!-- toolbar for activity_new_task strings -->
     <string name="toolbar_new_task_title">New Maintenance Task</string>
-    <string name="toolbar_new_task_icon_clear">clear form</string>
     <!-- toolbar for activity_notes strings -->
     <string name="toolbar_notes_title">Notes</string>
     <string name="toolbar_notes_icon_save">save</string>
@@ -114,10 +102,6 @@
     <string name="toolbar_pre_ride_icon_add">add</string>
     <string name="toolbar_pre_ride_delete_title">delete item</string>
     <string name="toolbar_pre_ride_delete_all_title">delete all</string>
-    <!-- toolbar for activity_profile_overview strings -->
-    <string name="toolbar_profile_overview_title">Profile Home</string>
-    <string name="toolbar_profile_overview_icon_edit">edit profile</string>
-    <string name="toolbar_profile_overview_icon_delete">delete profile</string>
     <!-- toolbar for activity_task_sign_off strings -->
     <string name="toolbar_task_sign_off_title">Maintenance Task</string>
     <string name="toolbar_task_sign_off_icon_edit">edit task</string>
@@ -154,16 +138,15 @@
 
     <!-- activity_information strings -->
     <string name="activity_edit_profile_information">Edit the year, make, model, and hourmeter
-        values in the corresponding fields.\n\nSelecting \'clear form\' from the toolbar menu above
-        will clear the text fields but will not affect the profile image.\n\n*The updated
-        information is only recorded if the save icon is selected in the toolbar above.*\n\nTouching
-        the profile image area will display a prompt to either take a picture or to select an image
-        from your phone\'s gallery. *Permissions are required for this action.*\n\nSelect \'delete
-        profile\' from the toolbar menu to permanently remove this profile from the app.</string>
+        values in the corresponding fields.*\n\nTouching the profile image area will display a
+        prompt to either take a picture or to select an image from your phone\'s gallery.
+        *Permissions are required for this action.*\n\nSelect \'delete profile\' from the toolbar
+        menu to permanently remove this profile from the app.\n\nSelect the back arrow or the
+        cancel(x) button to abort and return to the previous screen.</string>
     <string name="activity_edit_task_information">Edit the task name/title, interval (hrs.), and the
-        hourmeter value of when the task was last completed in the corresponding fields.
-        \n\nSelecting \'clear form\' from the toolbar menu above will clear the text fields.
-    </string>
+        hourmeter value of when the task was last completed in the corresponding fields.\n\nSelect
+        the check-mark to save the edits.\n\nSelect the back arrow or the
+        cancel(x) button to abort and return to the previous screen.</string>
     <string name="activity_main_information">Select the + icon in the toolbar menu above
         to create a new motorcycle profile.\n\nYou can switch between profiles by swiping left/right
         or by using the tabs near the top of the screen.\n\nTouch anywhere in the main view to
@@ -196,8 +179,10 @@
         updated information is only recorded if the save icon is selected in the toolbar above.*
     </string>
     <string name="activity_post_ride_information">Supply the new hourmeter reading and select the
-        check mark to update the profile\'s current hours.\n\nSelect the back arrow or the
-        cancel(x) button to abort and return to the previous screen.</string>
+        check mark to update the profile\'s current hours.\n\nThe new hourmeter value must be higher
+        than the current value.\n\nIf the profile\'s hours were updated by mistake or were set to an
+        incorrect value, the correct value can be set in the \'Edit Profile\' page.\n\nSelect the
+        back arrow or the cancel(x) button to abort and return to the previous screen.</string>
     <string name="activity_pre_ride_information">Select the + icon in the toolbar menu above to
         create a new pre-ride inspection checklist item.\n\nChecklist items can be removed by
         selecting \'delete item\' or \'delete all\' from the toolbar menu above.\n\nWhen the
@@ -205,13 +190,6 @@
         are reset.\n\nIf you do not wish to use the pre-ride inspection functionality, simply leave
         this list empty and the inspection status flag will not be set on the main profile
         selection page.</string>
-    <string name="activity_profile_overview_information">MAINTENANCE - create, view, and interact
-        with maintenance tasks for the selected profile.\n\nPOST-RIDE - update the profile\'s
-        current hourmeter reading.\n\nPRE-RIDE - populate, view, and interact with the pre-ride
-        inspection checklist.\n\nNOTES / SPECS - record desired notes, specs, torques, inspection
-        criteria, etc.\n\nEDIT PROFILE - edit profile year, make, model, hours, and set or change
-        the profile image. The profile can be deleted by selecting the option in the toolbar menu
-        at the top of the edit profile screen.</string>
     <string name="activity_task_sign_off_information">The selected task can be signed off at any
         value up to the current hourmeter reading.\n\nSimply enter the time (hourmeter value) the
         task was completed and touch the check-mark to submit. This will reset the task\'s interval,
